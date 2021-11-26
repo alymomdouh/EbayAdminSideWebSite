@@ -1,3 +1,5 @@
+using EbayAdminModels.Products;
+using EbayAdminRepository.Products;
 using EbayAdminWebPanel.Data;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
@@ -34,7 +36,9 @@ namespace EbayAdminWebPanel
 
             services.AddDefaultIdentity<IdentityUser>(options => options.SignIn.RequireConfirmedAccount = true)
                 .AddEntityFrameworkStores<ApplicationDbContext>();
+            services.AddTransient<IProductRepository, ProductRepository>();
             services.AddControllersWithViews();
+
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
