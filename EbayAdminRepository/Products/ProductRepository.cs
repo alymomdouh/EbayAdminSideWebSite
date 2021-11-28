@@ -1,6 +1,8 @@
 ﻿namespace EbayAdminRepository.Products
 {
-    using EbayAdminModels.Products;
+    using EbayAdminDbContext;
+    using Microsoft.EntityFrameworkCore;
+    using Models;
     using System;
     using System.Collections.Generic;
     using System.Linq;
@@ -9,20 +11,51 @@
 
     public class ProductRepository : IProductRepository
     {
-        private readonly Ecc _ecc;
-        public ProductRepository(Ecc ecc)
+        private readonly myDbContext _context;
+        public ProductRepository(myDbContext context)
         {
-            _ecc = ecc;
+            _context = context;
         }
         public async Task<int> AddProductAsync(Product product)
         {
-            await _ecc.AddAsync(product);
-            await _ecc.SaveChangesAsync();
-            return product.Id;
+            await _context.AddAsync(product);
+            try
+            {
+                await _context.SaveChangesAsync();
+
+            }
+            catch(Exception e)
+            {
+
+            }
+            return product.ProductId;
         }
+
+        public async Task<int> DeleteProductAsync(Product product)
+        {
+            _context.Remove(product);
+           await _context.SaveChangesAsync();
+            return product.ProductId;
+        }
+
+        public async Task<Product> GetProductDetailsAsync(int value)
+        {
+            return await _context.Products
+                                .Include(p=>p.Admin)
+                                .Where(p => p.ProductId == value)
+                                .FirstOrDefaultAsync();
+        }
+
         public async Task<List<Product>> GetProductsAsync()
         {
-            return await _ecc.Products.ToList();
+            return await _context.Products.ToListAsync();
+        }
+
+        public async Task<int> UpdateProductAsync(Product product)
+        {
+            _context.Update(product);
+            await _context.SaveChangesAsync();
+            return product.ProductId;
         }
     }
 }

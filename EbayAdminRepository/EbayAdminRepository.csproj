@@ -5,6 +5,7 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <ProjectReference Include="..\EbayAdminDbContext\EbayAdminDbContext.csproj" />
     <ProjectReference Include="..\EbayAdminModels\EbayAdminModels.csproj" />
   </ItemGroup>
 
