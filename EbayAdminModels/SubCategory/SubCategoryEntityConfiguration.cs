@@ -17,8 +17,8 @@ namespace Models
             builder.HasKey(s => s.SubCategoryId);
             builder.Property(s => s.SubCategoryId).ValueGeneratedOnAdd();
             builder.Property(s => s.SubCatName).IsRequired().HasMaxLength(20);
-            builder.HasOne(s => s.category).WithMany(c => c.subCategories).HasForeignKey(s => s.CatId).OnDelete(DeleteBehavior.Restrict);
-
-        }
+            builder.HasOne(s => s.category).WithMany(c => c.subCategories).HasForeignKey(s => s.CatId);
+             
+    }
     }
 }

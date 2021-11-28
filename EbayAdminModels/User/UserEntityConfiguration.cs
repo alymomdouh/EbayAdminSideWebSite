@@ -22,8 +22,8 @@ namespace Models
             builder.Property(u => u.Img).IsRequired().HasMaxLength(30);
             builder.Property(u => u.Phone).HasMaxLength(15);
             builder.Property(u => u.Country).IsRequired().HasMaxLength(20);
-            builder.Property(u => u.ActivationCode).HasMaxLength(15);//.HasDefaultValue("");
-             
+            builder.Property(u => u.ActivationCode).HasMaxLength(15).HasDefaultValue("");
+
 
 
 
@@ -31,8 +31,8 @@ namespace Models
             //public string Country { get; set; }
             //public string City { get; set; }
             //public int ZIP { get; set; }
-
-
+             
+             
 
         }
     }

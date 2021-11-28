@@ -22,4 +22,8 @@
     <ProjectReference Include="..\EbayAdminModels\EbayAdminModels.csproj" />
   </ItemGroup>
 
+  <ItemGroup>
+    <Folder Include="Migrations\" />
+  </ItemGroup>
+
 </Project>
