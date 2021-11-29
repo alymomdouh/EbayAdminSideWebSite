@@ -10,14 +10,7 @@
      <link href="~/css/addProduct.css" rel="stylesheet"/> 
 }
 
-<h1>Create product page </h1>
-     <img src="~/img/loader.gif" class="loader" alt="">
-    @*<div class="alert-box">
-        <img src="~/img/error.png" class="alert-img" alt="">
-        <p class="alert-msg"></p>
-    </div> *@ 
-    @*<img src="~/img/dark-logo.png" class="logo" alt="">*@
-
+<h1>Create product page </h1> 
 <div class="form">
     <input type="text" id="product-name" placeholder="product name">
     @*<input type="text" id="short-des" placeholder="short line about the product">*@
@@ -40,29 +33,46 @@
                 <label for="fourth-file-upload-btn" class="upload-image"></label>
             </div>
         </div>
-        @*<div class="select-sizes">
-            <p class="text">size available</p>
-            <div class="sizes">
-                <input type="checkbox" class="size-checkbox" id="xs" value="xs">
-                <input type="checkbox" class="size-checkbox" id="s" value="s">
-                <input type="checkbox" class="size-checkbox" id="m" value="m">
-                <input type="checkbox" class="size-checkbox" id="l" value="l">
-                <input type="checkbox" class="size-checkbox" id="xl" value="xl">
-                <input type="checkbox" class="size-checkbox" id="xxl" value="xxl">
-                <input type="checkbox" class="size-checkbox" id="xxxl" value="xxxl">
-            </div>
-        </div>*@
+          
     </div>
 
     <div class="product-price">
-        <input type="number" id="price" placeholder="enter price">
-        @*<input type="number" id="discount" placeholder="discount percentage">
-        <input type="number" id="sell-price" placeholder="selling price">*@
+        <input type="number" id="price" placeholder="enter price"> 
     </div>
-
-    <input type="number" id="stock" min="20" placeholder="item in sstocks (minimum 20)">
-
-    <textarea id="catg" placeholder="Enter categories here, for example - Men, Jeans, Blue Jeans, Rough jeans (you sholud add men or women at start)"></textarea>
+     
+    <h2>select the category name</h2>
+    <select class="catgid">
+        @*here forloop*@
+        <option value="1">pc</option>
+        <option value="2">Labtops</option>
+        <option value="3">Mobile</option>
+    </select>
+    <button>click to add new category</button>
+    <h2>select the stock name</h2>
+    <select class="stockid">
+        @*here forloop*@
+        <option value="1">stock1</option>
+        <option value="2">stock2</option>
+        <option value="3">stock3</option>
+    </select>
+    <button>click to add new stock</button>
+    <h2>select the sub category name</h2>
+    <select class="subcagid">
+        @*here forloop*@
+        <option value="1">samsung</option>
+        <option value="2">mac</option>
+        <option value="3">lenovo</option>
+    </select>
+    <button>click to add new sub catg</button>
+    <h2>select the brand name</h2>
+    <select class="brandid">
+        @*here forloop*@
+        <option value="1">brand1</option>
+        <option value="2">brand2</option>
+        <option value="3">brand</option>
+    </select>
+    <button>click to add new brand</button>
+    @*<textarea id="catg" placeholder="Enter categories here, for example - Men, Jeans, Blue Jeans, Rough jeans (you sholud add men or women at start)"></textarea>*@
 
     @*<input type="checkbox" class="checkbox" id="tac" checked>
     <label for="tac">clothing take 30% from your total sell</label>*@
