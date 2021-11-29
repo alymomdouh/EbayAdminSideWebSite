@@ -1,4 +1,5 @@
 using EbayAdminDbContext;
+using EbayAdminRepository.Products;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.HttpsPolicy;
@@ -6,6 +7,7 @@ using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
+using Models;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -25,6 +27,11 @@ namespace EbayView
         // This method gets called by the runtime. Use this method to add services to the container.
         public void ConfigureServices(IServiceCollection services)
         {
+            services.AddTransient<IProductRepository, ProductRepository>();
+                services.AddAutoMapper(typeof(Startup));
+                services.AddControllersWithViews();
+            
+
             services.AddControllersWithViews();
             services.AddDbContext<myDbContext>
                 (options =>
@@ -38,7 +45,9 @@ namespace EbayView
         {
             if (env.IsDevelopment())
             {
+
                 app.UseDeveloperExceptionPage();
+                
             }
             else
             {
@@ -46,6 +55,8 @@ namespace EbayView
                 // The default HSTS value is 30 days. You may want to change this for production scenarios, see https://aka.ms/aspnetcore-hsts.
                 app.UseHsts();
             }
+
+
             app.UseHttpsRedirection();
             app.UseStaticFiles();
 
@@ -60,5 +71,6 @@ namespace EbayView
                     pattern: "{controller=Home}/{action=Index}/{id?}");
             });
         }
+        
     }
 }
