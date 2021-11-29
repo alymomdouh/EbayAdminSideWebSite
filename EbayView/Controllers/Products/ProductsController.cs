@@ -10,7 +10,7 @@
     using System.Net;
     using System.Threading.Tasks;
 
-    [Route("epay/[controller]")]
+   // [Route("epay/[controller]/[action]")]
     public class ProductsController : Controller
     {
         private readonly IProductRepository _productRepository;
@@ -27,7 +27,8 @@
             var products= await _productRepository.GetProductsAsync();
             var result = _mapper.Map<List<GetProductsOutputModel>>(products);
 
-            return View(result);
+            //return View(result);
+            return View(products);
         }
         [HttpGet]
         public ActionResult Create()
