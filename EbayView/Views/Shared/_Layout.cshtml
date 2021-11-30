@@ -80,12 +80,33 @@
                             </a>
                             <div class="sb-sidenav-menu-heading">Interface</div> 
 
-                            <a class="nav-link collapsed" href="#" data-bs-toggle="collapse" data-bs-target="#collapseLayouts" aria-expanded="false" aria-controls="collapseLayouts">
+                            <a class="nav-link collapsed" href="#" data-bs-toggle="collapse" data-bs-target="#collapseAdmins" aria-expanded="false" aria-controls="collapseAdmins">
+                                <div class="sb-nav-link-icon"><i class="fas fa-columns"></i></div>
+                                Admins
+                                <div class="sb-sidenav-collapse-arrow"><i class="fas fa-angle-down"></i></div>
+                            </a>
+                            <div class="collapse" id="collapseAdmins" aria-labelledby="headingOne" data-bs-parent="#sidenavAccordion">
+                                <nav class="sb-sidenav-menu-nested nav">
+                                    <a class="nav-link" href="@Url.Action("Index", "admin")">view all Admins</a> 
+                                    <a class="nav-link" href="@Url.Action("Index", "admin")">create new Admin</a> 
+                                </nav>
+                            </div> 
+                            <a class="nav-link collapsed" href="#" data-bs-toggle="collapse" data-bs-target="#collapseClients" aria-expanded="false" aria-controls="collapseClients">
+                                <div class="sb-nav-link-icon"><i class="fas fa-columns"></i></div>
+                                Clients
+                                <div class="sb-sidenav-collapse-arrow"><i class="fas fa-angle-down"></i></div>
+                            </a>
+                            <div class="collapse" id="collapseClients" aria-labelledby="headingOne" data-bs-parent="#sidenavAccordion">
+                                <nav class="sb-sidenav-menu-nested nav">
+                                    <a class="nav-link" href="@Url.Action("Index", "user")">view all Clients</a> 
+                                </nav>
+                            </div> 
+                            <a class="nav-link collapsed" href="#" data-bs-toggle="collapse" data-bs-target="#collapseProducts" aria-expanded="false" aria-controls="collapseProducts">
                                 <div class="sb-nav-link-icon"><i class="fas fa-columns"></i></div>
                                 Products
                                 <div class="sb-sidenav-collapse-arrow"><i class="fas fa-angle-down"></i></div>
                             </a>
-                            <div class="collapse" id="collapseLayouts" aria-labelledby="headingOne" data-bs-parent="#sidenavAccordion">
+                            <div class="collapse" id="collapseProducts" aria-labelledby="headingOne" data-bs-parent="#sidenavAccordion">
                                 <nav class="sb-sidenav-menu-nested nav">
                                     <a class="nav-link" href="@Url.Action("Index", "Products")">view all products</a>
                                     <a class="nav-link" href="@Url.Action("Create", "Products")">create product</a> 
@@ -93,6 +114,21 @@
                                     <a class="nav-link" href="/Products/create">create product</a>*@
                                 </nav>
                             </div> 
+                            <a class="nav-link collapsed" href="@Url.Action("Index", "catg")" data-bs-toggle="collapse" data-bs-target="#collapsecatg" aria-expanded="false" aria-controls="collapsecatg">
+                                <div class="sb-nav-link-icon"><i class="fas fa-book-open"></i></div>
+                                categories
+                                <div class="sb-sidenav-collapse-arrow"> </div>
+                            </a>
+                            <a class="nav-link collapsed" href="@Url.Action("Index", "subcatg")" data-bs-toggle="collapse" data-bs-target="#collapsecatg" aria-expanded="false" aria-controls="collapsecatg">
+                                <div class="sb-nav-link-icon"><i class="fas fa-book-open"></i></div>
+                                Subcategories
+                                <div class="sb-sidenav-collapse-arrow"> </div>
+                            </a>
+                            <a class="nav-link collapsed" href="@Url.Action("Index", "brand")" data-bs-toggle="collapse" data-bs-target="#collapsecatg" aria-expanded="false" aria-controls="collapsecatg">
+                                <div class="sb-nav-link-icon"><i class="fas fa-book-open"></i></div>
+                                Brands
+                                <div class="sb-sidenav-collapse-arrow"> </i></div>
+                            </a>
                             <a class="nav-link collapsed" href="#" data-bs-toggle="collapse" data-bs-target="#collapsePages" aria-expanded="false" aria-controls="collapsePages">
                                 <div class="sb-nav-link-icon"><i class="fas fa-book-open"></i></div>
                                 Pages
