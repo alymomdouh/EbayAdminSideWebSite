@@ -8,22 +8,17 @@
     <meta name="author" content="" /> 
     <title>@ViewData["Title"] - EbayView</title>
     <link href="https://cdn.jsdelivr.net/npm/simple-datatables@latest/dist/style.css" rel="stylesheet" />
-    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.0/css/bootstrap.min.css" integrity="sha384-9gVQ4dYFwwWSjIDZnLEWnxCjeSWFphJiwGPXr1jddIhOegiu1FwO5qRGvFXOdJZ4" crossorigin="anonymous">
- <link rel="stylesheet" href="https://pro.fontawesome.com/releases/v5.10.0/css/duotone.css" 
-     integrity="sha384-R3QzTxyukP03CMqKFe0ssp5wUvBPEyy9ZspCB+Y01fEjhMwcXixTyeot+S40+AjZ" crossorigin="anonymous"/>
-<link rel="stylesheet" href="https://pro.fontawesome.com/releases/v5.10.0/css/fontawesome.css" 
-      integrity="sha384-eHoocPgXsiuZh+Yy6+7DsKAerLXyJmu2Hadh4QYyt+8v86geixVYwFqUvMU8X90l" crossorigin="anonymous"/>
     <link rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrap.min.css" /> 
     <link href="~/css/styles.css" rel="stylesheet" />
+    <link href="~/css/style1.css" rel="stylesheet" />
     <link href="~/css/site.css" rel="stylesheet"/>  
     @*@await RenderSectionAsync("styles", required: false)*@
     @RenderSection("styleslink", false)
     <script src="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/js/all.min.js" crossorigin="anonymous"></script>
-
 </head>
 <body class="sb-nav-fixed">
             <!-- Header-->
-    <nav class="sb-topnav navbar navbar-expand navbar-dark bg-dark">
+    <nav class="sb-topnav navbar navbar-expand navbar-dark bg-dark pt-2" style="height:75px">
             <!-- Navbar Brand-->
             <a class="navbar-brand ps-3" href="@Url.Action("Index", "Home")">Shoppy</a>
             <!-- Sidebar Toggle-->
@@ -36,7 +31,7 @@
                 </div>
             </form>
             <!-- Navbar-->
-            <ul class="navbar-nav ms-auto ms-md-0 me-3 me-lg-4">
+            @*<ul class="navbar-nav ms-auto ms-md-0 me-3 me-lg-4">
                 <li class="nav-item dropdown">
                     <a class="nav-link dropdown-toggle" id="navbarDropdown" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false"><i class="fas fa-user fa-fw"></i></a>
                     <ul class="dropdown-menu dropdown-menu-end" aria-labelledby="navbarDropdown">
@@ -46,26 +41,72 @@
                         <li><a class="dropdown-item" href="#!">Logout</a></li>
                     </ul>
                 </li>
-            </ul>
+            </ul>*@
+
+                            <div class="profile_details">		
+								        <ul>
+									        <li class="dropdown profile_details_drop">
+										        <a href="#" class="dropdown-toggle" data-toggle="dropdown" aria-expanded="false">
+											        <div class="profile_img">	
+												        <span class="prfil-img"><img src="~/img/p1.png" alt=""> </span> 
+												        <div class="user-name">
+													        <p>Malorum</p>
+													        <span>Administrator</span>
+												        </div>
+												       <i class="fa fa-angle-down lnr"></i>
+												        <i class="fa fa-angle-up lnr"></i> 
+												        <div class="clearfix"></div>	
+											        </div>	
+										        </a>
+										        <ul class="dropdown-menu drp-mnu">
+											        <li> <a href="#"><i class="fa fa-cog"></i> Settings</a> </li> 
+											        <li> <a href="#"><i class="fa fa-user"></i> Profile</a> </li> 
+											        <li> <a href="#"><i class="fa fa-sign-out"></i> Logout</a> </li>
+										        </ul>
+									        </li>
+								        </ul>
+							</div>
+							<div class="clearfix"> </div>
     </nav>
     <div id="layoutSidenav">
             <div id="layoutSidenav_nav">
                 <nav class="sb-sidenav accordion sb-sidenav-dark" id="sidenavAccordion">
                     <div class="sb-sidenav-menu">
                         <div class="nav">
-                            @*<div class="sb-sidenav-menu-heading">Core</div>*@
+                            <div class="sb-sidenav-menu-heading">Core</div>
                             <a class="nav-link" href="@Url.Action("Index", "Home")">
                                 <div class="sb-nav-link-icon"><i class="fas fa-tachometer-alt"></i></div>
                                 Dashboard
                             </a>
-                            @*<div class="sb-sidenav-menu-heading">Interface</div> *@
+                            <div class="sb-sidenav-menu-heading">Interface</div> 
 
-                            <a class="nav-link collapsed" href="#" data-bs-toggle="collapse" data-bs-target="#collapseLayouts" aria-expanded="false" aria-controls="collapseLayouts">
+                            <a class="nav-link collapsed" href="#" data-bs-toggle="collapse" data-bs-target="#collapseAdmins" aria-expanded="false" aria-controls="collapseAdmins">
+                                <div class="sb-nav-link-icon"><i class="fas fa-columns"></i></div>
+                                Admins
+                                <div class="sb-sidenav-collapse-arrow"><i class="fas fa-angle-down"></i></div>
+                            </a>
+                            <div class="collapse" id="collapseAdmins" aria-labelledby="headingOne" data-bs-parent="#sidenavAccordion">
+                                <nav class="sb-sidenav-menu-nested nav">
+                                    <a class="nav-link" href="@Url.Action("Index", "admin")">view all Admins</a> 
+                                    <a class="nav-link" href="@Url.Action("Index", "admin")">create new Admin</a> 
+                                </nav>
+                            </div> 
+                            <a class="nav-link collapsed" href="#" data-bs-toggle="collapse" data-bs-target="#collapseClients" aria-expanded="false" aria-controls="collapseClients">
+                                <div class="sb-nav-link-icon"><i class="fas fa-columns"></i></div>
+                                Clients
+                                <div class="sb-sidenav-collapse-arrow"><i class="fas fa-angle-down"></i></div>
+                            </a>
+                            <div class="collapse" id="collapseClients" aria-labelledby="headingOne" data-bs-parent="#sidenavAccordion">
+                                <nav class="sb-sidenav-menu-nested nav">
+                                    <a class="nav-link" href="@Url.Action("Index", "user")">view all Clients</a> 
+                                </nav>
+                            </div> 
+                            <a class="nav-link collapsed" href="#" data-bs-toggle="collapse" data-bs-target="#collapseProducts" aria-expanded="false" aria-controls="collapseProducts">
                                 <div class="sb-nav-link-icon"><i class="fas fa-columns"></i></div>
                                 Products
                                 <div class="sb-sidenav-collapse-arrow"><i class="fas fa-angle-down"></i></div>
                             </a>
-                            <div class="collapse" id="collapseLayouts" aria-labelledby="headingOne" data-bs-parent="#sidenavAccordion">
+                            <div class="collapse" id="collapseProducts" aria-labelledby="headingOne" data-bs-parent="#sidenavAccordion">
                                 <nav class="sb-sidenav-menu-nested nav">
                                     <a class="nav-link" href="@Url.Action("Index", "Products")">view all products</a>
                                     <a class="nav-link" href="@Url.Action("Create", "Products")">create product</a> 
@@ -73,20 +114,21 @@
                                     <a class="nav-link" href="/Products/create">create product</a>*@
                                 </nav>
                             </div> 
-                            @*////*@
-                            <a class="nav-link collapsed" href="#" data-bs-toggle="collapse" data-bs-target="#collapse" aria-expanded="false" aria-controls="collapseLayouts">
-                                <div class="sb-nav-link-icon"><i class="fas fa-columns"></i></div>
-                                user
-                                <div class="sb-sidenav-collapse-arrow"><i class="fas fa-angle-down"></i></div>
+                            <a class="nav-link collapsed" href="@Url.Action("Index", "catg")" data-bs-toggle="collapse" data-bs-target="#collapsecatg" aria-expanded="false" aria-controls="collapsecatg">
+                                <div class="sb-nav-link-icon"><i class="fas fa-book-open"></i></div>
+                                categories
+                                <div class="sb-sidenav-collapse-arrow"> </div>
                             </a>
-                            <div class="collapse" id="collapse" aria-labelledby="headingOne" data-bs-parent="#sidenavAccordion">
-                                <nav class="sb-sidenav-menu-nested nav">
-                                    <a class="nav-link" href="@Url.Action("Index", "user")">view all users</a>
-                                    <a class="nav-link" href="@Url.Action("Create", "user")">create user</a>  
-                                </nav>
-                            </div> 
-                            @*//////*@
-                             
+                            <a class="nav-link collapsed" href="@Url.Action("Index", "subcatg")" data-bs-toggle="collapse" data-bs-target="#collapsecatg" aria-expanded="false" aria-controls="collapsecatg">
+                                <div class="sb-nav-link-icon"><i class="fas fa-book-open"></i></div>
+                                Subcategories
+                                <div class="sb-sidenav-collapse-arrow"> </div>
+                            </a>
+                            <a class="nav-link collapsed" href="@Url.Action("Index", "brand")" data-bs-toggle="collapse" data-bs-target="#collapsecatg" aria-expanded="false" aria-controls="collapsecatg">
+                                <div class="sb-nav-link-icon"><i class="fas fa-book-open"></i></div>
+                                Brands
+                                <div class="sb-sidenav-collapse-arrow"> </i></div>
+                            </a>
                             <a class="nav-link collapsed" href="#" data-bs-toggle="collapse" data-bs-target="#collapsePages" aria-expanded="false" aria-controls="collapsePages">
                                 <div class="sb-nav-link-icon"><i class="fas fa-book-open"></i></div>
                                 Pages
@@ -130,8 +172,8 @@
                         </div>
                     </div>
                     <div class="sb-sidenav-footer">
-                        <div class="small">shoopy:</div>
-                        admin Dashboard
+                        <div class="small">Logged in as:</div>
+                        Start Bootstrap
                     </div>
                 </nav>
             </div>
@@ -161,14 +203,13 @@
     
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js" crossorigin="anonymous"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.8.0/Chart.min.js" crossorigin="anonymous"></script>
-    <script src="https://cdn.jsdelivr.net/npm/simple-datatables@latest" crossorigin="anonymous"></script>
-    <script src="~/js/datatables-simple-demo.js"></script>
+     <script src="https://cdn.jsdelivr.net/npm/simple-datatables@latest" crossorigin="anonymous"></script>
+     <script src="~/js/datatables-simple-demo.js"></script>
     <script src="~/lib/jquery/dist/jquery.min.js"></script>
     <script src="~/lib/bootstrap/dist/js/bootstrap.bundle.min.js"></script> 
     <script src="~/js/scripts.js"></script>
     <script src="~/js/site.js" asp-append-version="true"></script>
 
     @RenderSection("Scriptslink", false)
-     
 </body>
 </html>
