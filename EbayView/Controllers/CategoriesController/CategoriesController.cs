@@ -24,7 +24,7 @@
         {
             var categories = await _categoryRepository.GetCategoriesAsync();
 
-            var result = _mapper.Map<GetCategoriesOutputModel>(categories);
+            var result = _mapper.Map<List<GetCategoriesOutputModel>>(categories);
 
             return View(result);
         }

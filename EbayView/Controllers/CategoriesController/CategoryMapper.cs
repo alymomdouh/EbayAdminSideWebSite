@@ -13,8 +13,8 @@
         public CategoryMapper()
         {
             CreateMap<CreateCategoryInputModel, Category>();
-            CreateMap<GetCategoriesOutputModel, Category>();
-            CreateMap<GetCategoryDetailsOutputModel, Category>();
+            CreateMap< Category,GetCategoriesOutputModel>();
+            CreateMap< Category, GetCategoryDetailsOutputModel>();
 
         }
     }
