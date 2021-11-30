@@ -1417,7 +1417,16 @@
         $(triggerArray).toggleClass(ClassName$3.COLLAPSED, !isOpen).attr('aria-expanded', isOpen);
       }
     } // Static
-    ;
+              ;
+
+          Collapse.prototype.addAriaAndCollapsedClass = function ($element, $trigger) {
+              var isOpen = $element.hasClass('in')
+
+              $element.attr('aria-expanded', isOpen)
+              $trigger
+                  .toggleClass('collapsed', !isOpen)
+                  .attr('aria-expanded', isOpen)
+          }
 
     Collapse._getTargetFromElement = function _getTargetFromElement(element) {
       var selector = Util.getSelectorFromElement(element);
