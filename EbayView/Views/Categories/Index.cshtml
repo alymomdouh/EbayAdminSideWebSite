@@ -1,4 +1,4 @@
-﻿@model IEnumerable<Models.Category>
+﻿@model IEnumerable<EbayView.Models.ViewModel.Category.GetCategoriesOutputModel>
 
 @{
     ViewData["Title"] = "Index Category";
@@ -26,7 +26,7 @@
                 #
             </th>
             <th>
-                @*@Html.DisplayNameFor(model => model.Name)*@
+                @Html.DisplayNameFor(model => model.CategoryName)
                 Category name
             </th> 
             <th>
@@ -38,11 +38,11 @@
         </tr>
     </thead>
     <tbody>
-@*@foreach (var item in Model) {*@
+        @foreach (var item in Model)   { 
         <tr>
             <td>#</td>
             <td>
-                @*@Html.DisplayFor(modelItem => item.Name)*@
+                @Html.DisplayFor(modelItem => item.CategoryName)
                 item.Name
             </td>
             <td>
@@ -62,6 +62,6 @@
                 <a asp-action="Delete" asp-route-id="@item.ProductId">Delete</a>
             </td>*@
         </tr>
-@*}*@
+}
     </tbody>
 </table>

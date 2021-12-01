@@ -78,8 +78,7 @@
                                 <div class="sb-nav-link-icon"><i class="fas fa-tachometer-alt"></i></div>
                                 Dashboard
                             </a>
-                            <div class="sb-sidenav-menu-heading">Interface</div> 
-
+                            @*<div class="sb-sidenav-menu-heading">Interface</div> *@ 
                             <a class="nav-link collapsed" href="#" data-bs-toggle="collapse" data-bs-target="#collapseAdmins" aria-expanded="false" aria-controls="collapseAdmins">
                                 <div class="sb-nav-link-icon"><i class="fas fa-columns"></i></div>
                                 Admins
@@ -114,10 +113,9 @@
                                     <a class="nav-link" href="/Products/create">create product</a>*@
                                 </nav>
                             </div> 
-                            <a class="nav-link collapsed" href="@Url.Action("Index", "catg")" data-bs-toggle="collapse" data-bs-target="#collapsecatg" aria-expanded="false" aria-controls="collapsecatg">
+                            <a class="nav-link collapsed" href="@Url.Action("Index", "Categories")">
                                 <div class="sb-nav-link-icon"><i class="fas fa-book-open"></i></div>
-                                categories
-                                <div class="sb-sidenav-collapse-arrow"> </div>
+                                Categories 
                             </a>
                             <a class="nav-link collapsed" href="@Url.Action("Index", "subcatg")" data-bs-toggle="collapse" data-bs-target="#collapsecatg" aria-expanded="false" aria-controls="collapsecatg">
                                 <div class="sb-nav-link-icon"><i class="fas fa-book-open"></i></div>

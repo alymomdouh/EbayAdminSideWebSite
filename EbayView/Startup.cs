@@ -72,8 +72,8 @@ namespace EbayView
             {
                 endpoints.MapControllerRoute(
                     name: "default",
-                    pattern: "{controller=Home}/{action=Index}/{id?}");
-                // Products   Home
+                    pattern: "{controller=Categories}/{action=Index}/{id?}");
+                // Products   Home  
             });
         }
         
