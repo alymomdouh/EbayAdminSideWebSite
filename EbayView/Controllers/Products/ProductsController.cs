@@ -27,8 +27,8 @@
             var products= await _productRepository.GetProductsAsync();
             var result = _mapper.Map<List<GetProductsOutputModel>>(products);
 
-            //return View(result);
-            return View(products);
+             return View(result);
+            //return View(products);
         }
         [HttpGet]
         public ActionResult Create()
@@ -52,8 +52,7 @@
             if (id == null)
             {
                 //return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
-            }
-
+            } 
             var product = await _productRepository.GetProductDetailsAsync(id.Value);
 
             if (product == null)
@@ -70,23 +69,20 @@
             if (id == null)
             {
                 //return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
-            }
-
+            } 
             var product = await _productRepository.GetProductDetailsAsync(id.Value);
 
             if (product == null)
             {
                 //return HttpNotFound();
             }
-            var result = _mapper.Map<GetProductDetailsOutputModel>(product);
-
+            var result = _mapper.Map<GetProductDetailsOutputModel>(product); 
             return View(result);
         }
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<ActionResult> Edit([FromBody] CreateProductInputModel model)
-        {
-
+        public async Task<ActionResult> Edit( CreateProductInputModel model)
+        { 
             if (ModelState.IsValid)
             {
                 var product = _mapper.Map<Product>(model);

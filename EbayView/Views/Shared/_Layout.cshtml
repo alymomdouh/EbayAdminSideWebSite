@@ -100,6 +100,17 @@
                                     <a class="nav-link" href="@Url.Action("Index", "user")">view all Clients</a> 
                                 </nav>
                             </div> 
+                            <a class="nav-link collapsed" href="#" data-bs-toggle="collapse" data-bs-target="#collapsecatg" aria-expanded="false" aria-controls="collapsecatg">
+                                <div class="sb-nav-link-icon"><i class="fas fa-columns"></i></div>
+                                Categories
+                                <div class="sb-sidenav-collapse-arrow"><i class="fas fa-angle-down"></i></div>
+                            </a>
+                            <div class="collapse" id="collapsecatg" aria-labelledby="headingOne" data-bs-parent="#sidenavAccordion">
+                                <nav class="sb-sidenav-menu-nested nav">
+                                    <a class="nav-link" href="@Url.Action("Index", "Categories")">view all Categories</a>
+                                    <a class="nav-link" href="@Url.Action("Create", "Categories")">create Categories</a> 
+                                 </nav>
+                            </div> 
                             <a class="nav-link collapsed" href="#" data-bs-toggle="collapse" data-bs-target="#collapseProducts" aria-expanded="false" aria-controls="collapseProducts">
                                 <div class="sb-nav-link-icon"><i class="fas fa-columns"></i></div>
                                 Products
@@ -113,10 +124,10 @@
                                     <a class="nav-link" href="/Products/create">create product</a>*@
                                 </nav>
                             </div> 
-                            <a class="nav-link collapsed" href="@Url.Action("Index", "Categories")">
+                            @*<a class="nav-link collapsed" href="@Url.Action("Index", "Categories")">
                                 <div class="sb-nav-link-icon"><i class="fas fa-book-open"></i></div>
                                 Categories 
-                            </a>
+                            </a>*@
                             <a class="nav-link collapsed" href="@Url.Action("Index", "subcatg")" data-bs-toggle="collapse" data-bs-target="#collapsecatg" aria-expanded="false" aria-controls="collapsecatg">
                                 <div class="sb-nav-link-icon"><i class="fas fa-book-open"></i></div>
                                 Subcategories
