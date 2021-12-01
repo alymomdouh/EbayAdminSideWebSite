@@ -14,7 +14,7 @@
         {
             CreateMap<Product, GetProductsOutputModel>();
 
-            CreateMap<PostProductInputModel, Product>()
+            CreateMap<CreateProductInputModel, Product>()
                 .ForMember(dest => dest.ProductId, o => o.MapFrom(s => s.ProductId))
                 .ForMember(dest => dest.Name, o => o.MapFrom(s => s.Name))
                 .ForMember(dest => dest.Price, o => o.MapFrom(s => s.Price))
@@ -25,6 +25,7 @@
                 .ForMember(dest => dest.StockId, o => o.MapFrom(s => s.StockId))
                 .ForMember(dest => dest.BrandId, o => o.MapFrom(s => s.BrandId))
                 .ForMember(dest => dest.CatId, o => o.MapFrom(s => s.CatId))
+                .ForMember(dest => dest.productImgs, o => o.MapFrom(s => ProductImg.Create(s.imgspathes)))
                 .ForAllOtherMembers(dest => dest.Ignore());
 
 

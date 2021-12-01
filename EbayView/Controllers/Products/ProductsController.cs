@@ -10,7 +10,7 @@
     using System.Net;
     using System.Threading.Tasks;
 
-   // [Route("epay/[controller]/[action]")]
+    //[Route("epay/[controller]")]
     public class ProductsController : Controller
     {
         private readonly IProductRepository _productRepository;
@@ -38,7 +38,7 @@
 
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Create([FromBody]PostProductInputModel model)
+        public async Task<IActionResult> Create([FromBody]CreateProductInputModel model)
         {
             var product = _mapper.Map<Product>(model);
 
@@ -84,7 +84,7 @@
         }
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<ActionResult> Edit([FromBody]PostProductInputModel model)
+        public async Task<ActionResult> Edit([FromBody] CreateProductInputModel model)
         {
 
             if (ModelState.IsValid)

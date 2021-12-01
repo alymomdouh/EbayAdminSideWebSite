@@ -1,4 +1,6 @@
 using EbayAdminDbContext;
+using EbayAdminModels.Category;
+using EbayAdminRepository.Category;
 using EbayAdminRepository.Products;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
@@ -28,7 +30,9 @@ namespace EbayView
         public void ConfigureServices(IServiceCollection services)
         {
             services.AddTransient<IProductRepository, ProductRepository>();
-                services.AddAutoMapper(typeof(Startup));
+            services.AddTransient<ICategoryRepository, CategoryRepository>();
+
+            services.AddAutoMapper(typeof(Startup));
                 services.AddControllersWithViews();
             
 
