@@ -39,7 +39,7 @@
 
             return View(result);
         }
-        [HttpGet("cre")]
+        [HttpGet]
         public async Task<ActionResult> Create()
         {
             var categories = await _categoryRepository.GetCategoriesAsync();
