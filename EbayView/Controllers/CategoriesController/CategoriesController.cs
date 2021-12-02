@@ -11,6 +11,7 @@
     {
         private readonly ICategoryRepository _categoryRepository;
         private readonly IMapper _mapper;
+        
         public CategoriesController(ICategoryRepository categoryRepository, IMapper mapper)
         {
             _categoryRepository = categoryRepository;
@@ -20,6 +21,7 @@
         [HttpGet]
         public async Task<IActionResult> Index()
         {
+        
             var categories = await _categoryRepository.GetCategoriesAsync();
             var result = _mapper.Map<List<GetCategoriesOutputModel>>(categories);
             return View(result);
