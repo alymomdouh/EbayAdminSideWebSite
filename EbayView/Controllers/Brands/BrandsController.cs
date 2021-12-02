@@ -16,7 +16,8 @@
             _BrandRepository = BrandRepository;
             _mapper = mapper;
         }
-        // GET: BrandsController
+
+        [HttpGet]
         public async Task<IActionResult> Index()
         {
             var Brands = await _BrandRepository.GetBrandsAsync();
@@ -26,28 +27,28 @@
             return View(result);
         }
 
-        // GET: BrandsController/Details/5
+        [HttpGet]
         public async Task<ActionResult> Details(int id)
         {
             var Brand = await _BrandRepository.GetBrandDetailsAsync(id);
             var result = _mapper.Map<GetBrandDetailsOutputModel>(Brand);
             return View(result);
         }
-
-        // GET: BrandsController/Create
+        [HttpGet]
         public ActionResult Create()
         {
             return View();
         }
 
-
-        // GET: BrandsController/Edit/5
-        public ActionResult Edit(int id)
+        [HttpGet]
+        public async Task<IActionResult> Edit(int id)
         {
-            return View();
+            Brands brand = await _BrandRepository.GetBrandDetailsAsync(id);
+            var result = _mapper.Map<GetBrandDetailsOutputModel>(brand);
+
+            return View(result);
         }
 
-        // POST: BrandsController/Create
         [HttpPost]
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> Create([FromBody] CreateBrandInputModel model)
@@ -63,10 +64,8 @@
                 return View();
             }
         }
-        // POST: BrandsController/Edit/5
         [HttpPost]
         [ValidateAntiForgeryToken]
-
         public async Task<IActionResult> Edit([FromBody] CreateBrandInputModel model)
         {
             try
@@ -81,21 +80,23 @@
             }
         }
 
-        // GET: BrandsController/Delete/5
-        public ActionResult Delete(int id)
+        [HttpGet]
+        public async Task<IActionResult> Delete(int id)
         {
-            return View();
+            Brands brand = await _BrandRepository.GetBrandDetailsAsync(id);
+            var result = _mapper.Map<GetBrandDetailsOutputModel>(brand);
+
+            return View(result);
         }
 
-        // POST: BrandsController/Delete/5
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Delete(int id, IFormCollection collection)
+        public async Task<IActionResult> PostDelete(int id)
         {
             try
             {
-                var stock = await _BrandRepository.GetBrandDetailsAsync(id);
-                await _BrandRepository.DeleteBrandAsync(stock);
+                var brand = await _BrandRepository.GetBrandDetailsAsync(id);
+                await _BrandRepository.DeleteBrandAsync(brand);
                 return RedirectToAction(nameof(Index));
             }
             catch
