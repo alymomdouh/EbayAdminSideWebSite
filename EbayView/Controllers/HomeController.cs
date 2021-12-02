@@ -1,6 +1,8 @@
 ﻿using EbayView.Models;
+using EbayView.Models.ViewModel;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Logging;
+using Models;
 using System;
 using System.Collections.Generic;
 using System.Diagnostics;
@@ -12,15 +14,22 @@ namespace EbayView.Controllers
     public class HomeController : Controller
     {
         private readonly ILogger<HomeController> _logger;
+        private readonly IProductRepository _productRepository;
 
-        public HomeController(ILogger<HomeController> logger)
+        public HomeController(ILogger<HomeController> logger,IProductRepository productRepository)
         {
-            _logger = logger;
+            _productRepository = productRepository;
         }
 
-        public IActionResult Index()
+        [HttpGet("count")]
+ 
+        public async Task<IActionResult> Index()
         {
-            return View();
+            var productCount = await _productRepository.GetProductCountAsync();
+
+            var statics = new GetStatisticsOutputModel();
+            statics.ProductCount = productCount;
+            return View(productCount);
         }
 
         public IActionResult Privacy()

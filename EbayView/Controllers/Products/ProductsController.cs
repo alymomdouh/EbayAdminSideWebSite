@@ -1,7 +1,11 @@
 ﻿namespace EbayView.Controllers.Products
 {
     using AutoMapper;
+    using EbayAdminModels.Category;
+    using EbayView.Models.ViewModel.Brands;
+    using EbayView.Models.ViewModel.Category;
     using EbayView.Models.ViewModel.Products;
+    using EbayView.Models.ViewModel.Stocks;
     using global::Models;
     using Microsoft.AspNetCore.Mvc;
     using System.Collections.Generic;
@@ -12,10 +16,19 @@
     {
         private readonly IProductRepository _productRepository;
         private readonly IMapper _mapper;
-        public ProductsController(IProductRepository productRepository, IMapper mapper)
+        private readonly ICategoryRepository _categoryRepository;
+        private readonly IStockRepository _stockRepository;
+        private readonly IBrandRepository _brandRepository;
+        public ProductsController(IProductRepository productRepository, IMapper mapper
+            ,ICategoryRepository categoryRepository,
+            IBrandRepository brandRepository,IStockRepository stockRepository)
         {
             _productRepository = productRepository;
             _mapper = mapper;
+            _categoryRepository = categoryRepository;
+            _brandRepository = brandRepository;
+            _stockRepository = stockRepository;
+
         }
 
         [HttpGet]
@@ -26,11 +39,24 @@
 
             return View(result);
         }
-        [HttpGet]
-        public ActionResult Create()
+        [HttpGet("cre")]
+        public async Task<ActionResult> Create()
         {
-            return View();
+            var categories = await _categoryRepository.GetCategoriesAsync();
+            var categoriesResult = _mapper.Map<List<GetCategoriesOutputModel>>(categories);
+
+            var brands = await _brandRepository.GetBrandsAsync();
+            var brandsResult = _mapper.Map<List<GetBrandsOutputModel>>(brands);
+
+            var stocks = await _stockRepository.GetStockAsync();
+            var stocksResult = _mapper.Map<List<GetStocksOutputModel>>(stocks);
+            GetMetaDataOutputModel metaData = new GetMetaDataOutputModel();
+            metaData.Brands = brandsResult;
+            metaData.Categories = categoriesResult;
+            metaData.Stocks = stocksResult;
+            return View(metaData);
         }
+        
 
         [HttpPost]
         [ValidateAntiForgeryToken]

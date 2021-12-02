@@ -10,5 +10,6 @@
         Task<Product> GetProductDetailsAsync(int value);
         Task<int> UpdateProductAsync(Product product);
         Task<int> DeleteProductAsync(Product product);
+        Task<int> GetProductCountAsync();
     }
 }

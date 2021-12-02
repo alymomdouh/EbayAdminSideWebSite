@@ -38,6 +38,11 @@
             return product.ProductId;
         }
 
+        public async Task<int> GetProductCountAsync()
+        {
+            return await _context.Products.CountAsync();
+        }
+
         public async Task<Product> GetProductDetailsAsync(int value)
         {
             return await _context.Products
