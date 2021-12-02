@@ -30,9 +30,14 @@
 
 
             CreateMap<Product, GetProductDetailsOutputModel>()
-                .ForMember(dest => dest.AdminName, o => o.MapFrom(s => s.Admin.FistName));
-                
-
-        }
+                .ForMember(dest => dest.AdminName, o => o.MapFrom(s =>  s.Admin.FistName+" " +s.Admin.LastName ))
+                .ForMember(dest => dest.categoryName, o => o.MapFrom(s => s.category.CategoryName))
+                .ForMember(dest => dest.subcategoryName, o => o.MapFrom(s => s.subCategory.SubCatName))
+                .ForMember(dest => dest.stockName, o => o.MapFrom(s => s.stock.StockName))
+                .ForMember(dest => dest.brandName, o => o.MapFrom(s => s.brands.BrandName))
+                .ForMember(dest => dest.rateNumber, o => o.MapFrom(s => s.rates.Count))
+                .ForMember(dest => dest.commentNumber, o => o.MapFrom(s => s.comments.Count))
+                .ForMember(dest => dest.productImgs, o => o.MapFrom(s => s.productImgs));
+    }
     }
 }

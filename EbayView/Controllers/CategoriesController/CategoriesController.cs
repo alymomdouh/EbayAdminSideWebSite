@@ -22,39 +22,32 @@
         // GET: CategoriesController
         public async Task<IActionResult> Index()
         {
-            var categories = await _categoryRepository.GetCategoriesAsync();
-
-            var result = _mapper.Map<List<GetCategoriesOutputModel>>(categories);
-
+            var categories = await _categoryRepository.GetCategoriesAsync(); 
+            var result = _mapper.Map<List<GetCategoriesOutputModel>>(categories); 
             return View(result);
-        }
-
+        } 
         // GET: CategoriesController/Details/5
         public async Task<ActionResult> Details(int id)
         {
-            var category = await _categoryRepository.GetCategoryDetailsAsync(id);
+            //var category = await _categoryRepository.GetCategoryDetailsAsync(id);
+            var category = GetCategory(id);
             var result = _mapper.Map<GetCategoryDetailsOutputModel>(category);
             return View(result);
+        } 
+        private async Task<Category> GetCategory(int id)
+        {
+            return await _categoryRepository.GetCategoryDetailsAsync(id);
         }
-
         // GET: CategoriesController/Create
         public ActionResult Create()
         {
             return View();
-        }
-
-
-        // GET: CategoriesController/Edit/5
-        public ActionResult Edit(int id)
-        {
-            return View();
-        }
-
+        }  
         // POST: CategoriesController/Create
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Create([FromBody] CreateCategoryInputModel model)
-        {
+        public async Task<IActionResult> Create( CreateCategoryInputModel model)
+        {  //[FromBody]
             try
             {
                 var category = _mapper.Map<Category>(model);
@@ -66,10 +59,16 @@
                 return View();
             }
         }
+        // GET: CategoriesController/Edit/5
+        public ActionResult Edit(int id)
+        {
+            //var category = GetCategory(id);
+            //var result = _mapper.Map<CreateCategoryInputModel> (category); // error
+            return View();
+        }
         // POST: CategoriesController/Edit/5
         [HttpPost]
-        [ValidateAntiForgeryToken]
-
+        [ValidateAntiForgeryToken] 
         public async Task<IActionResult> Edit([FromBody] CreateCategoryInputModel model)
         {
             try

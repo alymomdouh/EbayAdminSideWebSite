@@ -16,6 +16,8 @@
             CreateMap< Category,GetCategoriesOutputModel>();
             CreateMap< Category, GetCategoryDetailsOutputModel>();
 
+             
+
         }
     }
 }

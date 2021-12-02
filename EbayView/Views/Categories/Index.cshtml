@@ -1,0 +1,55 @@
+﻿@model IEnumerable<EbayView.Models.ViewModel.Category.GetCategoriesOutputModel>
+
+@{
+    ViewData["Title"] = "Index Category";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+  
+<h1>List of All Products</h1>
+<table class="table">
+    <thead>
+        <tr>
+            <th>
+                #
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.CategoryName) 
+            </th> 
+            <th>
+                @*@Html.DisplayNameFor(model => model.Description)*@
+                number of product in this Category
+            </th>
+            <th>Edite</th>
+            <th>Delete</th>
+        </tr>
+    </thead>
+    <tbody>
+        @{int i = 1;} 
+        @foreach (var item in Model)   {
+            
+        <tr>
+            <td>@i</td>
+            <td>
+                @Html.DisplayFor(modelItem => item.CategoryName)
+                 
+            </td>
+            <td>
+                @*@Html.DisplayFor(modelItem => item.Price)*@
+                number of product in catg
+            </td>
+            <td>
+                @Html.ActionLink("Edit","Edit" ,"Categories", new { id = item.CategoryId},new{@class="btn btn-primary"}) 
+            </td>
+            <td>
+                @Html.ActionLink("Delete","Edit" ,"Categories", new { id = item.CategoryId},new{@class="btn btn-primary"}) 
+            </td>
+             @{i++; }
+            @*<td>
+                <a asp-action="Edit" asp-route-id="@item.ProductId">Edit</a> |
+                <a asp-action="Details" asp-route-id="@item.ProductId">Details</a> |
+                <a asp-action="Delete" asp-route-id="@item.ProductId">Delete</a>
+            </td>*@
+        </tr>
+}
+    </tbody>
+</table>

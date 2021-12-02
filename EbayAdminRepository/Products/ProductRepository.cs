@@ -41,7 +41,14 @@
         public async Task<Product> GetProductDetailsAsync(int value)
         {
             return await _context.Products
-                                .Include(p=>p.Admin)
+                                .Include(p=>  p.Admin )
+                                .Include(p=>  p.brands) 
+                                .Include(p=>  p.category)
+                                .Include(p=>  p.subCategory)
+                                .Include(p=>  p.stock)
+                                .Include(p=>  p.rates)
+                                .Include(p=>  p.comments)
+                                .Include(p=>  p.productImgs)
                                 .Where(p => p.ProductId == value)
                                 .FirstOrDefaultAsync();
         }
