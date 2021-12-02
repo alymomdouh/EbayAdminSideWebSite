@@ -1,15 +1,14 @@
-﻿@model Models.Product
+﻿@model EbayView.Models.ViewModel.Products.PostProductInputModel
 
 @{
-    ViewData["Title"] = "Create";
+    ViewData["Title"] = "Create new Product";
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
 @section styleslink
 {
     @*<h1>User Info</h1>*@
      <link href="~/css/addProduct.css" rel="stylesheet"/> 
-}
-
+} 
 <h1>Create product page </h1> 
 <div class="form">
     <input type="text" id="product-name" placeholder="product name">

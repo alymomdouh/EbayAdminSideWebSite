@@ -33,18 +33,23 @@
         [HttpGet]
         public ActionResult Create()
         {
-            return View();
+            // add by aly
+            PostProductInputModel model = new PostProductInputModel();
+            //model.AvailableCategories= _productRepository.CategoryRepository.
+            return View(model);
         }
 
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Create([FromBody]CreateProductInputModel model)
+        public async Task<IActionResult> Create(CreateProductInputModel model)
         {
             var product = _mapper.Map<Product>(model);
 
             await _productRepository.AddProductAsync(product);
 
             return View(product);
+            // add by aly   if (ModelState.IsValid) } return View(model);
+
         }
         [HttpGet]
         public async Task<ActionResult> Details(int? id)

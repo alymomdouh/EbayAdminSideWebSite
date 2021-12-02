@@ -1,6 +1,8 @@
 ﻿namespace EbayView.Models.ViewModel.Products
 {
-    using System.ComponentModel.DataAnnotations;
+    using System.Collections.Generic;
+    using System.ComponentModel.DataAnnotations; 
+    using global::Models;
 
     public class PostProductInputModel
     {
@@ -23,5 +25,12 @@
         public int StockId { get; set; }
         [Range(1, int.MaxValue, ErrorMessage = "SubCatId Is Required")]
         public int SubCatId { get; set; }
+
+
+        //   added by aly   get names from db to select 
+        public List<Category> AvailableCategories { get; set; }
+        public List<SubCategory> AvailableSubCategories { get; set; }
+        public List<Brands> AvailableBrands { get; set; }
+        public List<Stock> AvailableStock { get; set; }
     }
 }
