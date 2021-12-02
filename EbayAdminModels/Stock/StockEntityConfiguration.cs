@@ -8,9 +8,9 @@ using System.Threading.Tasks;
 
 namespace Models 
 {
-    public class StockEntityConfiguration : IEntityTypeConfiguration<Stock>
+    public class StockEntityConfiguration : IEntityTypeConfiguration<Stocks>
     {
-        public void Configure(EntityTypeBuilder<Stock> builder)
+        public void Configure(EntityTypeBuilder<Stocks> builder)
         {
             //throw new NotImplementedException();
             builder.HasKey(s => s.StockId);

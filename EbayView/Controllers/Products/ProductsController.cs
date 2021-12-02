@@ -28,7 +28,7 @@
             var result = _mapper.Map<List<GetProductsOutputModel>>(products);
 
             //return View(result);
-            return View(products);
+            return View(result);
         }
         [HttpGet]
         public ActionResult Create()
