@@ -42,31 +42,19 @@
         [HttpGet]
         public async Task<ActionResult> Create()
         {
-            var categories = await _categoryRepository.GetCategoriesAsync();
-            var categoriesResult = _mapper.Map<List<GetCategoriesOutputModel>>(categories);
-
-            var brands = await _brandRepository.GetBrandsAsync();
-            var brandsResult = _mapper.Map<List<GetBrandsOutputModel>>(brands);
-
-            var stocks = await _stockRepository.GetStockAsync();
-            var stocksResult = _mapper.Map<List<GetStocksOutputModel>>(stocks);
-            GetMetaDataOutputModel metaData = new GetMetaDataOutputModel();
-            metaData.Brands = brandsResult;
-            metaData.Categories = categoriesResult;
-            metaData.Stocks = stocksResult;
-            return View(metaData);
+            return View();
         }
         
 
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Create([FromBody] CreateProductInputModel model)
+        public async Task<IActionResult> Create([FromBody]CreateProductInputModel model)
         {
             var product = _mapper.Map<Product>(model);
 
             await _productRepository.AddProductAsync(product);
 
-            return RedirectToAction("Index");
+            return View(product);
         }
         [HttpGet()]
         public async Task<ActionResult> Details(int? id)
