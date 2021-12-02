@@ -3,7 +3,6 @@
     using AutoMapper;
     using EbayView.Models.ViewModel.Stocks;
     using global::Models;
-    using Microsoft.AspNetCore.Http;
     using Microsoft.AspNetCore.Mvc;
     using System.Collections.Generic;
     using System.Threading.Tasks;
@@ -16,7 +15,7 @@
             _StockRepository = StockRepository;
             _mapper = mapper;
         }
-        // GET: StocksController
+        [HttpGet]
         public async Task<IActionResult> Index()
         {
             var Stocks = await _StockRepository.GetStockAsync();
@@ -25,36 +24,32 @@
 
             return View(result);
         }
-
-        // GET: StocksController/Details/5
+        [HttpGet]
         public async Task<ActionResult> Details(int id)
         {
             var Stock = await _StockRepository.GetStockDetailsAsync(id);
             var result = _mapper.Map<GetStockDetailsOutputModel>(Stock);
             return View(result);
         }
-
-        // GET: StocksController/Create
+        [HttpGet]
         public ActionResult Create()
         {
             return View();
         }
 
-
-        // GET: StocksController/Edit/5
+        [HttpGet]
         public ActionResult Edit(int id)
         {
             return View();
         }
 
-        // POST: StocksController/Create
-        [HttpPost]
+        [HttpPost("cre")]
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> Create([FromBody] CreateStockInputModel model)
         {
             try
             {
-                var Stock = _mapper.Map<Stocks>(model);
+                var Stock = _mapper.Map<Stock>(model);
                 await _StockRepository.AddStockAsync(Stock);
                 return RedirectToAction(nameof(Index));
             }
@@ -63,7 +58,6 @@
                 return View();
             }
         }
-        // POST: StocksController/Edit/5
         [HttpPost]
         [ValidateAntiForgeryToken]
 
@@ -71,7 +65,7 @@
         {
             try
             {
-                var Stock = _mapper.Map<Stocks>(model);
+                var Stock = _mapper.Map<Stock>(model);
                 await _StockRepository.UpdateStockAsync(Stock);
                 return RedirectToAction(nameof(Index));
             }
@@ -80,17 +74,17 @@
                 return View();
             }
         }
-
-        // GET: StocksController/Delete/5
-        public ActionResult Delete(int id)
+        [HttpGet]
+        public async Task<IActionResult> Delete(int id)
         {
-            return View();
+            var Stock = await _StockRepository.GetStockDetailsAsync(id);
+            var result = _mapper.Map<GetStockDetailsOutputModel>(Stock);
+            return View(result);
         }
 
-        // POST: StocksController/Delete/5
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Delete(int id, IFormCollection collection)
+        public async Task<IActionResult> PostDelete(int id)
         {
             try
             {

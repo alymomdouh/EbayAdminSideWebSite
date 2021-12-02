@@ -1,19 +1,16 @@
 using EbayAdminDbContext;
 using EbayAdminModels.Category;
+using EbayAdminRepository.Brands;
 using EbayAdminRepository.Category;
 using EbayAdminRepository.Products;
+using EbayAdminRepository.Stocks;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
-using Microsoft.AspNetCore.HttpsPolicy;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 using Models;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
 
 namespace EbayView
 {
@@ -31,10 +28,12 @@ namespace EbayView
         {
             services.AddTransient<IProductRepository, ProductRepository>();
             services.AddTransient<ICategoryRepository, CategoryRepository>();
+            services.AddTransient<IBrandRepository, BrandRepository>();
+            services.AddTransient<IStockRepository, StockRepository>();
 
             services.AddAutoMapper(typeof(Startup));
-                services.AddControllersWithViews();
-            
+            services.AddControllersWithViews();
+
 
             services.AddControllersWithViews();
             services.AddDbContext<myDbContext>
@@ -51,7 +50,7 @@ namespace EbayView
             {
 
                 app.UseDeveloperExceptionPage();
-                
+
             }
             else
             {
@@ -76,6 +75,6 @@ namespace EbayView
                 // Products   Home  Categories
             });
         }
-        
+
     }
 }
