@@ -40,7 +40,7 @@
 
             await _productRepository.AddProductAsync(product);
 
-            return View(product);
+            return RedirectToAction("Index");
         }
         [HttpGet()]
         public async Task<ActionResult> Details(int? id)

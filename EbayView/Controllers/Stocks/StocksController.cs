@@ -43,7 +43,7 @@
             return View();
         }
 
-        [HttpPost("cre")]
+        [HttpPost]
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> Create([FromBody] CreateStockInputModel model)
         {

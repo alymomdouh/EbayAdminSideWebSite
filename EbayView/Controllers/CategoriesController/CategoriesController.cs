@@ -4,50 +4,43 @@
     using EbayAdminModels.Category;
     using EbayView.Models.ViewModel.Category;
     using global::Models;
-    using Microsoft.AspNetCore.Http;
     using Microsoft.AspNetCore.Mvc;
-    using System;
     using System.Collections.Generic;
-    using System.Linq;
     using System.Threading.Tasks;
     public class CategoriesController : Controller
     {
         private readonly ICategoryRepository _categoryRepository;
         private readonly IMapper _mapper;
-        public CategoriesController(ICategoryRepository categoryRepository,IMapper mapper)
+        public CategoriesController(ICategoryRepository categoryRepository, IMapper mapper)
         {
             _categoryRepository = categoryRepository;
             _mapper = mapper;
         }
-        // GET: CategoriesController
+
+        [HttpGet]
         public async Task<IActionResult> Index()
         {
-            var categories = await _categoryRepository.GetCategoriesAsync(); 
-            var result = _mapper.Map<List<GetCategoriesOutputModel>>(categories); 
+            var categories = await _categoryRepository.GetCategoriesAsync();
+            var result = _mapper.Map<List<GetCategoriesOutputModel>>(categories);
             return View(result);
-        } 
-        // GET: CategoriesController/Details/5
+        }
+        [HttpGet]
         public async Task<ActionResult> Details(int id)
         {
-            //var category = await _categoryRepository.GetCategoryDetailsAsync(id);
-            var category = GetCategory(id);
+            var category = await _categoryRepository.GetCategoryDetailsAsync(id);
             var result = _mapper.Map<GetCategoryDetailsOutputModel>(category);
             return View(result);
-        } 
-        private async Task<Category> GetCategory(int id)
-        {
-            return await _categoryRepository.GetCategoryDetailsAsync(id);
         }
-        // GET: CategoriesController/Create
+        [HttpGet]
         public ActionResult Create()
         {
             return View();
-        }  
-        // POST: CategoriesController/Create
+        }
+
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Create( CreateCategoryInputModel model)
-        {  //[FromBody]
+        public async Task<IActionResult> Create([FromBody]CreateCategoryInputModel model)
+        {
             try
             {
                 var category = _mapper.Map<Category>(model);
@@ -59,16 +52,15 @@
                 return View();
             }
         }
-        // GET: CategoriesController/Edit/5
-        public ActionResult Edit(int id)
+        public async Task<ActionResult> Edit(int id)
         {
-            //var category = GetCategory(id);
-            //var result = _mapper.Map<CreateCategoryInputModel> (category); // error
-            return View();
+            var category = await _categoryRepository.GetCategoryDetailsAsync(id);
+            var result = _mapper.Map<CreateCategoryInputModel>(category);
+            return View(result);
         }
-        // POST: CategoriesController/Edit/5
+
         [HttpPost]
-        [ValidateAntiForgeryToken] 
+        [ValidateAntiForgeryToken]
         public async Task<IActionResult> Edit([FromBody] CreateCategoryInputModel model)
         {
             try
@@ -82,17 +74,15 @@
                 return View();
             }
         }
-
-        // GET: CategoriesController/Delete/5
+        [HttpGet]
         public ActionResult Delete(int id)
         {
             return View();
         }
 
-        // POST: CategoriesController/Delete/5
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Delete(int id, IFormCollection collection)
+        public async Task<IActionResult> PostDelete(int id)
         {
             try
             {
