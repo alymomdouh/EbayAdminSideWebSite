@@ -5,6 +5,7 @@
     using System.ComponentModel.DataAnnotations;
     using System.Linq;
     using System.Threading.Tasks;
+    using global::Models;// add by aly
 
     public class CreateProductInputModel   // for edite and create
     {    
@@ -29,5 +30,11 @@
 
         public int SubCatId { get; set; }
         public string[] imgspathes { get; set; }
+         
+        //   added by aly   get names from db to select 
+        public List<Category> AvailableCategories { get; set; }
+        public List<SubCategory> AvailableSubCategories { get; set; }
+        public List<Brands> AvailableBrands { get; set; }
+        public List<Stock> AvailableStock { get; set; }
     }
 }

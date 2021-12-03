@@ -31,7 +31,7 @@
 
         }
 
-        [HttpGet]
+        [HttpGet] // finshed
         public async Task<IActionResult> Index()
         {
             var products = await _productRepository.GetProductsAsync();
@@ -39,7 +39,7 @@
 
             return View(result);
         }
-        [HttpGet]
+        [HttpGet]// error
         public async Task<ActionResult> Create()
         {
             var categories = await _categoryRepository.GetCategoriesAsync();
@@ -54,13 +54,20 @@
             metaData.Brands = brandsResult;
             metaData.Categories = categoriesResult;
             metaData.Stocks = stocksResult;
-            return View(metaData);
+            //return View(metaData);
+            // aly code 
+            CreateProductInputModel model = new CreateProductInputModel();
+            model.AvailableBrands = brands;  
+            //model.AvailableStock = stocksResult;
+            return View();
         } 
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Create(CreateProductInputModel model)
+       // public async Task<IActionResult> Create(CreateProductInputModel model)
+        public async Task<IActionResult> Create(Product model)
         {
-            var product = _mapper.Map<Product>(model);
+            
+               var product = _mapper.Map<Product>(model);
 
             await _productRepository.AddProductAsync(product);
 

@@ -1,0 +1,155 @@
+﻿@model EbayView.Models.ViewModel.Products.CreateProductInputModel
+
+@{
+    ViewData["Title"] = "Create new Product";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+@section styleslink
+{
+    @*<h1>User Info</h1>*@
+     <link href="~/css/addProduct.css" rel="stylesheet"/> 
+} 
+<h1 class="w-100 text-center m-1">Create product page </h1> 
+<div class="form">
+    <input type="text" id="product-name" placeholder="product name">
+    @*<input type="text" id="short-des" placeholder="short line about the product">*@
+    <textarea id="des" placeholder="detail description"></textarea>
+
+    <!-- product image -->
+    <div class="product-info">
+         <div class="product-image"><p class="text">product image</p></div> 
+        <div class="upload-image-sec">
+            <!-- upload inputs -->
+            <p class="text"><img src="~/img/camera.png" alt="">upload image</p>
+            <div class="upload-catalouge">
+                <input type="file" class="fileupload" id="first-file-upload-btn" hidden>
+                <label for="first-file-upload-btn" class="upload-image"></label>
+                <input type="file" class="fileupload" id="second-file-upload-btn" hidden>
+                <label for="second-file-upload-btn" class="upload-image"></label>
+                <input type="file" class="fileupload" id="third-file-upload-btn" hidden>
+                <label for="third-file-upload-btn" class="upload-image"></label>
+                <input type="file" class="fileupload" id="fourth-file-upload-btn" hidden>
+                <label for="fourth-file-upload-btn" class="upload-image"></label>
+            </div>
+        </div>
+          
+    </div>
+
+    <div class="product-price">
+        <input type="number" id="price" placeholder="enter price"> 
+    </div>
+     
+    <h2>select the category name</h2>
+    <select class="catgid">
+        @*here forloop*@
+        <option value="1">pc</option>
+        <option value="2">Labtops</option>
+        <option value="3">Mobile</option>
+    </select>
+    <button>click to add new category</button>
+    <h2>select the stock name</h2>
+    <select class="stockid">
+        @*here forloop*@
+        <option value="1">stock1</option>
+        <option value="2">stock2</option>
+        <option value="3">stock3</option>
+    </select>
+    <button>click to add new stock</button>
+    <h2>select the sub category name</h2>
+    <select class="subcagid">
+        @*here forloop*@
+        <option value="1">samsung</option>
+        <option value="2">mac</option>
+        <option value="3">lenovo</option>
+    </select>
+    <button>click to add new sub catg</button>
+    <h2>select the brand name</h2>
+    <select class="brandid">
+        @*here forloop*@
+        <option value="1">brand1</option>
+        <option value="2">brand2</option>
+        <option value="3">brand</option>
+    </select>
+    <button>click to add new brand</button>
+    @*<textarea id="catg" placeholder="Enter categories here, for example - Men, Jeans, Blue Jeans, Rough jeans (you sholud add men or women at start)"></textarea>*@
+
+    @*<input type="checkbox" class="checkbox" id="tac" checked>
+    <label for="tac">clothing take 30% from your total sell</label>*@
+
+    <div class="buttons">
+        <button class="btn" id="add-btn">add product</button>
+       @* <button class="btn" id="save-btn">save draft</button>*@
+    </div>
+</div>
+
+
+ @section Scriptslink
+{
+    <script src="~/js/addProduct.js"></script>
+
+}
+
+
+
+ @*
+        <h4>Product</h4>
+        <hr />
+        <div class="row">
+            <div class="col-md-4">
+                <form asp-action="Create">
+                    <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+                    <div class="form-group">
+                        <label asp-for="Name" class="control-label"></label>
+                        <input asp-for="Name" class="form-control" />
+                        <span asp-validation-for="Name" class="text-danger"></span>
+                    </div>
+                    <div class="form-group">
+                        <label asp-for="Price" class="control-label"></label>
+                        <input asp-for="Price" class="form-control" />
+                        <span asp-validation-for="Price" class="text-danger"></span>
+                    </div>
+                    <div class="form-group">
+                        <label asp-for="Quantity" class="control-label"></label>
+                        <input asp-for="Quantity" class="form-control" />
+                        <span asp-validation-for="Quantity" class="text-danger"></span>
+                    </div>
+                    <div class="form-group">
+                        <label asp-for="Description" class="control-label"></label>
+                        <input asp-for="Description" class="form-control" />
+                        <span asp-validation-for="Description" class="text-danger"></span>
+                    </div>
+                    <div class="form-group">
+                        <label asp-for="AdminId" class="control-label"></label>
+                        <select asp-for="AdminId" class ="form-control" asp-items="ViewBag.AdminId"></select>
+                    </div>
+                    <div class="form-group">
+                        <label asp-for="CatId" class="control-label"></label>
+                        <select asp-for="CatId" class ="form-control" asp-items="ViewBag.CatId"></select>
+                    </div>
+                    <div class="form-group">
+                        <label asp-for="BrandId" class="control-label"></label>
+                        <select asp-for="BrandId" class ="form-control" asp-items="ViewBag.BrandId"></select>
+                    </div>
+                    <div class="form-group">
+                        <label asp-for="StockId" class="control-label"></label>
+                        <select asp-for="StockId" class ="form-control" asp-items="ViewBag.StockId"></select>
+                    </div>
+                    <div class="form-group">
+                        <label asp-for="SubCatId" class="control-label"></label>
+                        <select asp-for="SubCatId" class ="form-control" asp-items="ViewBag.SubCatId"></select>
+                    </div>
+                    <div class="form-group">
+                        <input type="submit" value="Create" class="btn btn-primary" />
+                    </div>
+                </form>
+            </div>
+        </div>
+
+        <div>
+            <a asp-action="Index">Back to List</a>
+        </div>
+
+        @section Scripts {
+            @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+        }
+      *@

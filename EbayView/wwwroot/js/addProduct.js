@@ -29,14 +29,63 @@
 //})
 
 // upload image handle
-let uploadImages = document.querySelectorAll('.fileupload');
+let uploadImages = document.querySelectorAll('.fileupload'); // load all imgs
 let imagePaths = []; // will store all uploaded images paths;
 uploadImages.forEach((fileupload, index) => {
     fileupload.addEventListener('change', () => {
-        const file = fileupload.files[0];
-        let imageUrl; 
-        if (file.type.includes('image')) {
-            if (file.type.includes('image')) {
+
+        //var element = fileupload;
+        //var formData = new FormData();
+        //var totalFiles = element.files.length;
+        //for (var i = 0; i < totalFiles; i++) {
+        //    var file = element.files[i];
+        //    formData.append("Photo", file);
+        //}
+        //$.ajax({
+        //    type: 'POST',
+        //    url: '@Url.Action("UploadImage", "Shared")',
+        //    dataType: 'json',
+        //    data: formData,
+        //    contentType: false,
+        //    processData: false
+        //})
+        //    .done(function (response) {
+        //        console.log(response); 
+        //        if (response.Success) {
+        //            //$("#ImageURL").val(response.ImageURL);
+        //            //$("#productImage").attr("src", response.ImageURL);
+        //            let label = document.querySelector(`label[for=${fileupload.id}]`);
+        //            label.style.backgroundImage = `url(${file.name})`;
+        //            let productImage = document.querySelector('.product-image');
+        //            productImage.style.backgroundImage = `url(${file.name})`;
+        //            imagePaths[index] = response.ImageURL;
+        //        }
+        //    })
+        //    .fail(function (XMLHttpRequest, textStatus, errorThrown) {
+        //        alert("FAIL");
+        //    });
+    });
+
+
+
+
+
+
+        //const file = fileupload.files[0];
+        //let imageUrl; 
+        //if (file.type.includes('image')) {
+        //    console.log("inside if file.type.includes");
+        //    console.log("file is:" + file);
+        //    console.log("file name:" + file.name);
+        //    let label = document.querySelector(`label[for=${fileupload.id}]`);
+        //    console.log("label:" +label);
+        //    console.log("fileupload.id:" +fileupload.id);
+        //    label.style.backgroundImage = `url(${file.name})`;
+        //    let productImage = document.querySelector('.product-image');
+        //    productImage.style.backgroundImage = `url(${file.name})`;
+        //    console.log(productImage);
+
+            //if (file.type.includes('image')) {
                 // means user uploaded an image
                 //fetch('/s3url').then(res => res.json())
                 //    .then(url => {
@@ -47,13 +96,10 @@ uploadImages.forEach((fileupload, index) => {
                 //        }).then(res => {
                 //            imageUrl = url.split("?")[0];
                 //            imagePaths[index] = imageUrl;
-                //            let label = document.querySelector(`label[for=${fileupload.id}]`);
-                //            label.style.backgroundImage = `url(${imageUrl})`;
-                //            let productImage = document.querySelector('.product-image');
-                //            productImage.style.backgroundImage = `url(${imageUrl})`;
+                //            
                 //        })
                 //    })
-            }
+            //}
 
         } else {
             showAlert('upload image only');
