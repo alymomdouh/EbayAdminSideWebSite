@@ -28,7 +28,7 @@
                 .ForMember(dest => dest.productImgs, o => o.MapFrom(s => ProductImg.Create(s.imgspathes)))
                 .ForAllOtherMembers(dest => dest.Ignore());
 
-
+            // add by aly
             CreateMap<Product, GetProductDetailsOutputModel>()
                 .ForMember(dest => dest.AdminName, o => o.MapFrom(s =>  s.Admin.FistName+" " +s.Admin.LastName ))
                 .ForMember(dest => dest.categoryName, o => o.MapFrom(s => s.category.CategoryName))

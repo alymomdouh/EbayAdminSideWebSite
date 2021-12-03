@@ -43,12 +43,10 @@
         public async Task<ActionResult> Create()
         {
             return View();
-        }
-        
-
+        } 
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Create([FromBody]CreateProductInputModel model)
+        public async Task<IActionResult> Create(CreateProductInputModel model)
         {
             var product = _mapper.Map<Product>(model);
 
@@ -107,10 +105,8 @@
             if (id == null)
             {
                 return BadRequest();
-            }
-
-            var product = await _productRepository.GetProductDetailsAsync(id.Value);
-
+            } 
+            var product = await _productRepository.GetProductDetailsAsync(id.Value); 
             if (product == null)
             {
                 return StatusCode((int)HttpStatusCode.NotFound);
