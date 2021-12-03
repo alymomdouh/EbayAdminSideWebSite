@@ -6,8 +6,8 @@
     using System.Linq;
     using System.Threading.Tasks;
 
-    public class CreateProductInputModel
-    {
+    public class CreateProductInputModel   // for edite and create
+    {    
         public int ProductId { get; set; }
         [Required(ErrorMessage = "Name is Required")]
         public string Name { get; set; }

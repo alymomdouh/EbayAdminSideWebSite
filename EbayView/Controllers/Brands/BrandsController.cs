@@ -51,7 +51,7 @@
 
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Create([FromBody] CreateBrandInputModel model)
+        public async Task<IActionResult> Create( CreateBrandInputModel model)
         {
             try
             {
@@ -66,7 +66,7 @@
         }
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Edit([FromBody] CreateBrandInputModel model)
+        public async Task<IActionResult> Edit( CreateBrandInputModel model)
         {
             try
             {
@@ -89,7 +89,8 @@
             return View(result);
         }
 
-        [HttpPost]
+        [HttpPost]// ahmed
+        [HttpPost, ActionName("Delete")]// aly
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> PostDelete(int id)
         {

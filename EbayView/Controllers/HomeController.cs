@@ -21,7 +21,7 @@ namespace EbayView.Controllers
             _productRepository = productRepository;
         }
 
-        [HttpGet("count")]
+        //[HttpGet("count")]
  
         public async Task<IActionResult> Index()
         {
