@@ -42,7 +42,19 @@
         [HttpGet]
         public async Task<ActionResult> Create()
         {
-            return View();
+            var categories = await _categoryRepository.GetCategoriesAsync();
+            var categoriesResult = _mapper.Map<List<GetCategoriesOutputModel>>(categories);
+
+            var brands = await _brandRepository.GetBrandsAsync();
+            var brandsResult = _mapper.Map<List<GetBrandsOutputModel>>(brands);
+
+            var stocks = await _stockRepository.GetStockAsync();
+            var stocksResult = _mapper.Map<List<GetStocksOutputModel>>(stocks);
+            GetMetaDataOutputModel metaData = new GetMetaDataOutputModel();
+            metaData.Brands = brandsResult;
+            metaData.Categories = categoriesResult;
+            metaData.Stocks = stocksResult;
+            return View(metaData);
         } 
         [HttpPost]
         [ValidateAntiForgeryToken]

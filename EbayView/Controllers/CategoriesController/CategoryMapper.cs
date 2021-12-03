@@ -14,10 +14,7 @@
         {
             CreateMap<CreateCategoryInputModel, Category>();
             CreateMap< Category,GetCategoriesOutputModel>();
-            CreateMap< Category, GetCategoryDetailsOutputModel>();
-
-             
-
+            CreateMap< Category, GetCategoryDetailsOutputModel>(); 
         }
     }
 }
