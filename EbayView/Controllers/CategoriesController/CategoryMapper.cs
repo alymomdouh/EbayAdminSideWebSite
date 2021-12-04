@@ -12,9 +12,12 @@
     {
         public CategoryMapper()
         {
-            CreateMap<CreateCategoryInputModel, Category>();
-            CreateMap< Category,GetCategoriesOutputModel>();
-            CreateMap< Category, GetCategoryDetailsOutputModel>(); 
+            CreateMap<CreateCategoryInputModel, Category>().ReverseMap();
+            CreateMap< Category,GetCategoriesOutputModel>().ReverseMap();
+            CreateMap< Category, GetCategoryDetailsOutputModel>().ReverseMap(); 
+
+             
+
         }
     }
 }
