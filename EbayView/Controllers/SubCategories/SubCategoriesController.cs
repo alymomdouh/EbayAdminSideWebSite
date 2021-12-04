@@ -19,8 +19,7 @@
 
         [HttpGet]
         public async Task<IActionResult> Index()
-        {
-
+        { 
             var Subcategories = await _SubcategoryRepository.GetSubCategoriesAsync();
             var result = _mapper.Map<List<GetSubCategoriesOutputModel>>(Subcategories);
             return View(result);
@@ -40,7 +39,7 @@
 
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Create([FromBody] CreateSubCategoryInputModel model)
+        public async Task<IActionResult> Create(CreateSubCategoryInputModel model)
         {
             try
             {
@@ -83,7 +82,7 @@
             return View(result);
         }
 
-        [HttpPost]
+        [HttpPost, ActionName("Delete")] // add by aly
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> DeleteSubCategory(int id)
         {
