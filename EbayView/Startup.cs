@@ -1,9 +1,12 @@
 using EbayAdminDbContext;
 using EbayAdminModels.Category;
+using EbayAdminModels.SubCategory;
 using EbayAdminRepository.Brands;
 using EbayAdminRepository.Category;
+using EbayAdminRepository.Comments;
 using EbayAdminRepository.Products;
 using EbayAdminRepository.Stocks;
+using EbayAdminRepository.SubCategory;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.EntityFrameworkCore;
@@ -30,7 +33,8 @@ namespace EbayView
             services.AddTransient<ICategoryRepository, CategoryRepository>();
             services.AddTransient<IBrandRepository, BrandRepository>();
             services.AddTransient<IStockRepository, StockRepository>();
-
+            services.AddTransient<ISubCategoryRepository, SubCategoryRepository>();
+            services.AddTransient<ICommentRepository, CommentRepository>();
             services.AddAutoMapper(typeof(Startup));
             services.AddControllersWithViews();
 
