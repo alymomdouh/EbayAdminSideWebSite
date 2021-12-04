@@ -48,7 +48,7 @@
 
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Create([FromBody]CreateProductInputModel model)
+        public async Task<IActionResult> Create( CreateProductInputModel model)
         {
             var product = _mapper.Map<Product>(model);
 
@@ -56,7 +56,7 @@
 
             return View(product);
         }
-        [HttpGet()]
+        [HttpGet]
         public async Task<ActionResult> Details(int? id)
         {
             if (id == null)
@@ -117,7 +117,7 @@
             }
             var result = _mapper.Map<GetProductDetailsOutputModel>(product);
 
-            return View(result);
+            return View("producat is deleted");
         }
 
         [HttpPost, ActionName("Delete")]

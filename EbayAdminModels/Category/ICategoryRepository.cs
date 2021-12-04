@@ -9,7 +9,7 @@
         Task<int> AddCategoryAsync(Category category);
         Task<List<Category>> GetCategoriesAsync();
         Task<Category> GetCategoryDetailsAsync(int value);
-        Task<int> UpdateCategoryAsync(Category product);
-        Task<int> DeleteCategoryAsync(Category product);
+        Task<int> UpdateCategoryAsync(Category category);
+        Task<int> DeleteCategoryAsync(Category category);
     }
 }
