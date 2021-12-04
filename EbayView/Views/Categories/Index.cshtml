@@ -36,8 +36,8 @@
                  
             </td>
             <td>
-                @*@Html.DisplayFor(modelItem => item.Price)*@
-                number of product in catg
+                @Html.DisplayFor(modelItem => item.ProductInCategory)
+                @*number of product in catg*@
             </td>
             <td>
                 @Html.ActionLink("Edit","Edit" ,"Categories", new { id = item.CategoryId},new{@class="btn btn-primary"}) 

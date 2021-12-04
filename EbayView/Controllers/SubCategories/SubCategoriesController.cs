@@ -20,6 +20,7 @@
         [HttpGet]
         public async Task<IActionResult> Index()
         {
+
             var Subcategories = await _SubcategoryRepository.GetSubCategoriesAsync();
             var result = _mapper.Map<List<GetSubCategoriesOutputModel>>(Subcategories);
             return View(result);
