@@ -77,15 +77,10 @@
             }
         }
         [HttpGet]
-        public ActionResult Delete(int id)
+        //[ValidateAntiForgeryToken]
+        public async Task<IActionResult> Delete(int id)
         {
-            return View();
-        }
-
-        [HttpPost]
-        [ValidateAntiForgeryToken]
-        public async Task<IActionResult> PostDelete(int id)
-        {
+            //return View();
             try
             {
                 var category = await _categoryRepository.GetCategoryDetailsAsync(id);
@@ -93,9 +88,25 @@
                 return RedirectToAction(nameof(Index));
             }
             catch
-            {
-                return View();
+            { 
+                return RedirectToAction(nameof(Index));
             }
         }
+
+        //[HttpPost]
+        //[ValidateAntiForgeryToken]
+        //public async Task<IActionResult> PostDelete(int id)
+        //{
+        //    try
+        //    {
+        //        var category = await _categoryRepository.GetCategoryDetailsAsync(id);
+        //        await _categoryRepository.DeleteCategoryAsync(category);
+        //        return RedirectToAction(nameof(Index));
+        //    }
+        //    catch
+        //    {
+        //        return View();
+        //    }
+        //}
     }
 }

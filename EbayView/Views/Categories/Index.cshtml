@@ -43,7 +43,8 @@
                 @Html.ActionLink("Edit","Edit" ,"Categories", new { id = item.CategoryId},new{@class="btn btn-primary"}) 
             </td>
             <td>
-                @Html.ActionLink("Delete","Edit" ,"Categories", new { id = item.CategoryId},new{@class="btn btn-primary"}) 
+                @*@Html.ActionLink("Delete","Delete" ,"Categories", new { id = item.CategoryId},new{@class="btn btn-primary"}) *@
+                 <a asp-action="Delete" asp-route-id="@item.CategoryId" class="btn btn-primary">Delete</a> 
             </td>
              @{i++; }
             @*<td>
