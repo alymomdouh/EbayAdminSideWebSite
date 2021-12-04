@@ -54,12 +54,12 @@
             metaData.Brands = brandsResult;
             metaData.Categories = categoriesResult;
             metaData.Stocks = stocksResult;
-            //return View(metaData);
+            return View(metaData);
             // aly code 
-            CreateProductInputModel model = new CreateProductInputModel();
-            model.AvailableBrands = brands;  
+           // CreateProductInputModel model = new CreateProductInputModel();
+           // model.AvailableBrands = brands;  
             //model.AvailableStock = stocksResult;
-            return View();
+            //return View();
         } 
         [HttpPost]
         [ValidateAntiForgeryToken]

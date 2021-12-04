@@ -89,7 +89,7 @@
             return View(result);
         }
 
-        [HttpPost]// ahmed
+        //[HttpPost]// ahmed
         [HttpPost, ActionName("Delete")]// aly
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> PostDelete(int id)
