@@ -131,7 +131,9 @@
             }
             var result = _mapper.Map<GetProductDetailsOutputModel>(product);
 
-            return View("producat is deleted");
+            //return View("producat is deleted");
+            // add by aly
+            return View(result);
         }
 
         [HttpPost, ActionName("Delete")]
