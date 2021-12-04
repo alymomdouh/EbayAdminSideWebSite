@@ -41,7 +41,7 @@
 
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Create([FromBody]CreateCategoryInputModel model)
+        public async Task<IActionResult> Create(CreateCategoryInputModel model)
         {
             try
             {
@@ -63,7 +63,7 @@
 
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Edit([FromBody] CreateCategoryInputModel model)
+        public async Task<IActionResult> Edit( CreateCategoryInputModel model)
         {
             try
             {
