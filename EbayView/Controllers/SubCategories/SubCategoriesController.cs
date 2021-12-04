@@ -55,7 +55,7 @@
         public async Task<ActionResult> Edit(int id)
         {
             var Subcategory = await _SubcategoryRepository.GetSubCategoryDetailsAsync(id);
-            var result = _mapper.Map<CreateSubCategoryInputModel>(Subcategory);
+            var result = _mapper.Map<GetSubCategoryDetailsOutputModel>(Subcategory);
             return View(result);
         }
 
@@ -75,9 +75,11 @@
             }
         }
         [HttpGet]
-        public ActionResult Delete(int id)
+        public async Task<ActionResult> Delete(int id)
         {
-            return View();
+            var Subcategory = await _SubcategoryRepository.GetSubCategoryDetailsAsync(id);
+            var result = _mapper.Map<GetSubCategoryDetailsOutputModel>(Subcategory);
+            return View(result);
         }
 
         [HttpPost]

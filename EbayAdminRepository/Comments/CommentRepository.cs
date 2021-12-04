@@ -36,9 +36,9 @@
             return await _context.Comments.Where(c => c.UserId == value).FirstOrDefaultAsync();
         }
 
-        public async Task<List<Comment>> GetCommentAsync()
+        public async Task<List<Comment>> GetCommentAsync(int value)
         {
-            return await _context.Comments.ToListAsync();
+            return await _context.Comments.Where(c => c.UserId == value).ToListAsync();
         }
 
         public async Task<int> UpdateCommentAsync(Comment Comment)

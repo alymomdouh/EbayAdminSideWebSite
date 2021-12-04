@@ -16,9 +16,9 @@
             _mapper = mapper;
         }
         [HttpGet]
-        public async Task<IActionResult> Index()
+        public async Task<IActionResult> Index(int id)
         {
-            var Comments = await _CommentRepository.GetCommentAsync();
+            var Comments = await _CommentRepository.GetCommentAsync(id);
 
             var result = _mapper.Map<List<GetCommentOutputModel>>(Comments);
 
