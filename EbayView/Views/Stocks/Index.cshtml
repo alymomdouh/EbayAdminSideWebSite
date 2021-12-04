@@ -1,0 +1,42 @@
+﻿@model IEnumerable<EbayView.Models.ViewModel.Stocks.GetStocksOutputModel>
+
+<div class="w-100 text-center">
+    <a asp-action="Create" class="btn btn-primary">Create New</a>
+</div>
+<table class="table">
+    <thead>
+        <tr>
+            <th>#</th>
+            <th>
+                @Html.DisplayNameFor(model => model.StockName)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.StockAddress)
+            </th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+        @{
+            int i = 1;}
+@foreach (var item in Model) {
+        <tr>
+            <td>@i</td>
+            <td>
+                @Html.DisplayFor(modelItem => item.StockName)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.StockAddress)
+            </td>
+            <td>
+                <a asp-action="Edit" asp-route-id="@item.StockId">Edit</a>  
+                @*<a asp-action="Details" asp-route-id="@item.StockId">Details</a>  *@
+                
+            </td>
+            <td><a asp-action="Delete" asp-route-id="@item.StockId">Delete</a></td>
+                @{
+                    i++;}
+        </tr>
+}
+    </tbody>
+</table>
