@@ -47,7 +47,7 @@
         {
             return await _context.Products
                                 .Include(p=>  p.Admin )
-                                .Include(p=>  p.brands) 
+                                .Include(p=>  p.brands) // add by aly
                                 .Include(p=>  p.category)
                                 .Include(p=>  p.subCategory)
                                 .Include(p=>  p.stock)
