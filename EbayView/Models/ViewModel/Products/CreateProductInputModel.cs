@@ -5,6 +5,10 @@
     using System.ComponentModel.DataAnnotations;
     using System.Linq;
     using System.Threading.Tasks;
+    using EbayView.Models.ViewModel.Brands;
+    using EbayView.Models.ViewModel.Category;
+    using EbayView.Models.ViewModel.Stocks;
+    using EbayView.Models.ViewModel.SubCategory;
     using global::Models;// add by aly
 
     public class CreateProductInputModel   // for edite and create
@@ -32,9 +36,10 @@
         public string[] imgspathes { get; set; }
          
         //   added by aly   get names from db to select 
-        public List<Category> AvailableCategories { get; set; }
-        public List<SubCategory> AvailableSubCategories { get; set; }
-        public List<Brands> AvailableBrands { get; set; }
-        public List<Stock> AvailableStock { get; set; }
+        //public List<GetCategoriesOutputModel> AvailableCategories { get; set; }
+        //public List<GetSubCategoriesOutputModel> AvailableSubCategories { get; set; }
+        //public List<GetBrandsOutputModel> AvailableBrands { get; set; }
+        //public List<GetStocksOutputModel> AvailableStock { get; set; }
+         
     }
 }
