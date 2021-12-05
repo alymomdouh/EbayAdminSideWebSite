@@ -12,13 +12,17 @@
 
         public static List<ProductImg> Create(string[] imgspathes)
         {
-            var proImgs = new List<ProductImg>();
-            foreach (var item in imgspathes)
+            if (imgspathes.Length>0)
             {
-                var proImg = new ProductImg() { src = item };
-                proImgs.Add(proImg);
+                var proImgs = new List<ProductImg>();
+                foreach (var item in imgspathes)
+                {
+                    var proImg = new ProductImg() { src = item  };
+                    proImgs.Add(proImg);
+                }
+                return proImgs;
             }
-            return proImgs;
+            return null;
         }
     }
 }

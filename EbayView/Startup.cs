@@ -7,6 +7,7 @@ using EbayAdminRepository.Comments;
 using EbayAdminRepository.Products;
 using EbayAdminRepository.Stocks;
 using EbayAdminRepository.SubCategory;
+using EbayView.Controllers.UploadImg;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.EntityFrameworkCore;
@@ -38,7 +39,9 @@ namespace EbayView
             services.AddAutoMapper(typeof(Startup));
             services.AddControllersWithViews();
 
-
+            //services.AddSingleton<UploadImgController>();// for upload img 
+            //services.AddScoped<UploadImgController>();// for upload img 
+            services.AddTransient<UploadImgController>();
             services.AddControllersWithViews();
             services.AddDbContext<myDbContext>
                 (options =>

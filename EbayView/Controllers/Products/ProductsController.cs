@@ -2,10 +2,13 @@
 {
     using AutoMapper;
     using EbayAdminModels.Category;
+    using EbayAdminModels.SubCategory;
+    using EbayView.Models;
     using EbayView.Models.ViewModel.Brands;
     using EbayView.Models.ViewModel.Category;
     using EbayView.Models.ViewModel.Products;
     using EbayView.Models.ViewModel.Stocks;
+    using EbayView.Models.ViewModel.SubCategory;
     using global::Models;
     using Microsoft.AspNetCore.Mvc;
     using System.Collections.Generic;
@@ -17,10 +20,11 @@
         private readonly IProductRepository _productRepository;
         private readonly IMapper _mapper;
         private readonly ICategoryRepository _categoryRepository;
+        private readonly ISubCategoryRepository _subcategoryRepository;
         private readonly IStockRepository _stockRepository;
         private readonly IBrandRepository _brandRepository;
         public ProductsController(IProductRepository productRepository, IMapper mapper
-            ,ICategoryRepository categoryRepository,
+            ,ICategoryRepository categoryRepository, ISubCategoryRepository subcategoryRepository,
             IBrandRepository brandRepository,IStockRepository stockRepository)
         {
             _productRepository = productRepository;
@@ -28,6 +32,7 @@
             _categoryRepository = categoryRepository;
             _brandRepository = brandRepository;
             _stockRepository = stockRepository;
+            _subcategoryRepository = subcategoryRepository;
 
         }
 
@@ -42,35 +47,45 @@
         [HttpGet]// error
         public async Task<ActionResult> Create()
         {
+            // made by aly
+            //var Admins = await _categoryRepository.GetCategoriesAsync();
+            //var AllAdminsResult = _mapper.Map<List<GetCategoriesOutputModel>>(Admins);
+            //ViewBag.AvailableAdmins = AllAdminsResult;
+
             var categories = await _categoryRepository.GetCategoriesAsync();
-            var categoriesResult = _mapper.Map<List<GetCategoriesOutputModel>>(categories);
+            var AllcategoriesResult = _mapper.Map<List<GetCategoriesOutputModel>>(categories);
+            ViewBag.AvailableCategories = AllcategoriesResult;
+
+            var subcategories = await _subcategoryRepository.GetSubCategoriesAsync();
+            var AllsubcategoriesResult = _mapper.Map<List<GetSubCategoriesOutputModel>>(subcategories);
+            ViewBag.AvailableSubCategories = AllsubcategoriesResult;
 
             var brands = await _brandRepository.GetBrandsAsync();
-            var brandsResult = _mapper.Map<List<GetBrandsOutputModel>>(brands);
+            var AllbrandsResult = _mapper.Map<List<GetBrandsOutputModel>>(brands);
+            ViewBag.AvailableBrands = AllbrandsResult;
 
             var stocks = await _stockRepository.GetStockAsync();
-            var stocksResult = _mapper.Map<List<GetStocksOutputModel>>(stocks);
-            GetMetaDataOutputModel metaData = new GetMetaDataOutputModel();
-            metaData.Brands = brandsResult;
-            metaData.Categories = categoriesResult;
-            metaData.Stocks = stocksResult;
-            return View(metaData);
-            // aly code 
-           // CreateProductInputModel model = new CreateProductInputModel();
-           // model.AvailableBrands = brands;  
-            //model.AvailableStock = stocksResult;
-            //return View();
+            var AllstocksResult = _mapper.Map<List<GetStocksOutputModel>>(stocks);
+            ViewBag.AvailableStock = AllstocksResult;
+
+            //CreateProductInputModel metaData = new CreateProductInputModel(); 
+            //metaData.AvailableCategories = AllcategoriesResult;
+            //metaData.AvailableSubCategories = AllsubcategoriesResult;
+            //metaData.AvailableBrands = AllbrandsResult;
+            //metaData.AvailableStock = AllstocksResult;
+            //return View(metaData);
+            return View();
         } 
         [HttpPost]
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> Create(CreateProductInputModel model)
         {
             
-               var product = _mapper.Map<Product>(model);
-
+               var product = _mapper.Map<Product>(model); 
             await _productRepository.AddProductAsync(product);
+            //return View(product);
 
-            return View(product);
+            return RedirectToAction("Index");
         }
         [HttpGet]
         public async Task<ActionResult> Details(int? id)
