@@ -77,7 +77,7 @@
             return View();
         } 
         [HttpPost]
-        [ValidateAntiForgeryToken]
+        [ValidateAntiForgeryToken] 
         public async Task<IActionResult> Create(CreateProductInputModel model)
         {
             

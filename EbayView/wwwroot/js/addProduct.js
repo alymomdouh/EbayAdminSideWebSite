@@ -3,26 +3,40 @@
 // upload image handle
 let uploadImages = document.querySelectorAll('.fileupload'); // load all imgs  tag input file
 //let imagePaths = []; // will store all uploaded images paths;
-const imagePaths = Array.from({ length: 4 }).map(el => "")
+const imagePaths = Array.from({ length: 4 }).map(el => "");
 uploadImages.forEach((fileupload, index) => {
     fileupload.addEventListener('change', () => {
-        console.log(fileupload); // print the input tag
-        var element = fileupload;
-        var formData = new FormData();
-        var totalFiles = element.files.length;  
-        for (var i = 0; i < totalFiles; i++) {
-            var file = element.files[i];
-            formData.append("Photo", file);
-        }
-        //console.log(formData); 
-        $.ajax({
-            type: 'POST',  //url: '@Url.Action("UploadImagefun", "UploadImg")',
-            url: '/UploadImg/UploadImagefun', 
-            data: formData,
-            dataType: "json",  //contentType: "application/json; charset=utf-8",
-            contentType: false, // Not to set any content header  
-            processData: false // Not to process data
-        })
+            console.log(fileupload); // print the input tag
+            var element = fileupload;
+            var formData = new FormData();
+            var totalFiles = element.files.length;
+            console.log(totalFiles);
+            for (var i = 0; i < totalFiles; i++) {
+                var file = element.files[i]; 
+             }
+        formData.append("file", file);
+               //var files = fileupload.prop("files");
+               // var url = "/UploadImg/OnPostMyUploader?handler=MyUploader";
+               // formData = new FormData();
+               // formData.append("MyUploader", files[0]); 
+            //console.log(formData.get("Photo"));
+            $.ajax({
+                type: 'POST',
+                //url: '@Url.Action("UploadImagefun", "UploadImg")',  OnPostMyUploader
+                //url: '/UploadImg/UploadImagefun',  
+                url: '/UploadImg/UploadLogo',
+                //dataType:"json",  //contentType: "application/json; charset=utf-8",
+                data: formData,
+                contentType: false, // Not to set any content header  
+                processData: false // Not to process data  
+                ////////
+                //type: 'POST',
+                //url: url,
+                //data: formData,
+                //cache: false,
+                //contentType: false,
+                //processData: false,
+            })
             .done(function (response) {
                 //console.log(response); 
                 if (response.success) {
@@ -36,7 +50,10 @@ uploadImages.forEach((fileupload, index) => {
                     $('#' + fileupload.id).removeAttr("type");
                     $('#' + fileupload.id).css("cursor", "not-allowed");
                     //$('#' + fileupload.id).css("value", response.imagename);
-                    document.getElementById(fileupload.id).value = response.imagename;
+                    //document.getElementById(fileupload.id).value = response.imagename;
+                    document.getElementById(fileupload.id).value = `/img/Uploads/Photos/${response.imagename}`;
+                    //console.log($('#' + fileupload.id));
+                    //document.getElementById("second-file-upload-btn").value
                     //$("#" + fileupload.id ).css("background-image", "url(/img/Uploads/Photos/" + response.imagename + ")");
 
                     //console.log(label);
@@ -63,6 +80,7 @@ uploadImages.forEach((fileupload, index) => {
                 alert("FAIL");
             });
     });
+     
 });
 
 // other validate
@@ -94,42 +112,42 @@ const validateForm = () => {
 }
 
 // upload product or create after make or press submit button 
-$("#saveBtn").click(function () {
-    var model = {
-        Name: $('#Name').val,//productName.text,
-        Price: productprice.val,
-        Quantity: productQuantity.val ,
-        Description: productDescription.val, AdminId: productAdminId.val, CatId: productCatId.val,
-        BrandId: productBrandId.val, StockId: productStockId.val, SubCatId: productSubCatId.val, imgspathes: imagePaths
+//$("#saveBtn").click(function () {
+//    var model = {
+//        Name: $('#Name').val,//productName.text,
+//        Price: productprice.val,
+//        Quantity: productQuantity.val ,
+//        Description: productDescription.val, AdminId: productAdminId.val, CatId: productCatId.val,
+//        BrandId: productBrandId.val, StockId: productStockId.val, SubCatId: productSubCatId.val, imgspathes: imagePaths
 
-    };
-    //if ($("#createProduct").valid()) {
-        $.ajax({
-            type: 'POST',
-            url: '/Products/Create',  
-            data: JSON.stringify(model), 
-            contentType: "application/json"
-        })
-            .done(function (response) {
-                //$("#tableContiner").html(response);
-                //$("#actionContainer").html(""); 
-                focusAction("tableContiner");
-                alert("success "+response);
-            })
-            .fail(function (XMLHttpRequest, textStatus, errorThrown) {
-                alert("FAIL");
-            });
-    //}
-    //else {
-    //    swal({
-    //        title: "Warning",
-    //        text: "Please enter all valid data in fields.",
-    //        icon: "warning",
-    //        buttons: true,
-    //        dangerMode: true,
-    //    });
-   // }
-});
+//    };
+//    //if ($("#createProduct").valid()) {
+//        $.ajax({
+//            type: 'POST',
+//            url: '/Products/Create',  
+//            data: JSON.stringify(model), 
+//            contentType: "application/json"
+//        })
+//            .done(function (response) {
+//                //$("#tableContiner").html(response);
+//                //$("#actionContainer").html(""); 
+//                focusAction("tableContiner");
+//                alert("success "+response);
+//            })
+//            .fail(function (XMLHttpRequest, textStatus, errorThrown) {
+//                alert("FAIL");
+//            });
+//    //}
+//    //else {
+//    //    swal({
+//    //        title: "Warning",
+//    //        text: "Please enter all valid data in fields.",
+//    //        icon: "warning",
+//    //        buttons: true,
+//    //        dangerMode: true,
+//    //    });
+//   // }
+//});
 
 
 

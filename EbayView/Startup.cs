@@ -49,9 +49,11 @@ namespace EbayView
             services.AddAutoMapper(typeof(Startup));
             services.AddControllersWithViews();
 
-            //services.AddSingleton<UploadImgController>();// for upload img 
+             services.AddSingleton<UploadImgController>();// for upload img 
             //services.AddScoped<UploadImgController>();// for upload img 
-            services.AddTransient<UploadImgController>();
+            //services.AddTransient<UploadImgController>();
+
+
             services.AddControllersWithViews();
             services.AddDbContext<myDbContext>
                 (options =>
