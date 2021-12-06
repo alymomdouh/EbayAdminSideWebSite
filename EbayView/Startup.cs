@@ -4,9 +4,14 @@ using EbayAdminModels.SubCategory;
 using EbayAdminRepository.Brands;
 using EbayAdminRepository.Category;
 using EbayAdminRepository.Comments;
+using EbayAdminRepository.Offers;
+using EbayAdminRepository.Orders;
 using EbayAdminRepository.Products;
+using EbayAdminRepository.Rates;
+using EbayAdminRepository.Shippers;
 using EbayAdminRepository.Stocks;
 using EbayAdminRepository.SubCategory;
+using EbayAdminRepository.WatchLists;
 using EbayView.Controllers.UploadImg;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
@@ -36,6 +41,11 @@ namespace EbayView
             services.AddTransient<IStockRepository, StockRepository>();
             services.AddTransient<ISubCategoryRepository, SubCategoryRepository>();
             services.AddTransient<ICommentRepository, CommentRepository>();
+            services.AddTransient<IOrderRepository, OrderRepository>();
+            services.AddTransient<IWatchListRepository, WatchListRepository>();
+            services.AddTransient<IRateRepository, RateRepository>();
+            services.AddTransient<IShipperRepository, ShipperRepository>();
+            services.AddTransient<IOfferRepository, OfferRepository>();
             services.AddAutoMapper(typeof(Startup));
             services.AddControllersWithViews();
 
