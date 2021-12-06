@@ -40,7 +40,9 @@
 
         public async Task<Order> GetOrderDetailsAsync(int value)
         {
-            return await _context.Orders.Where(c => c.OrderId == value).FirstOrDefaultAsync();
+            return await _context.Orders
+                .Include(o=>o.orderItems)
+                .Where(c => c.OrderId == value).FirstOrDefaultAsync();
         }
 
 

@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Models;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
@@ -19,5 +20,6 @@ namespace EbayView.Models.ViewModel.Orders
         public string FistName { get; set; }
         public int ZIP { get; set; }
         public int PaymentId { get; set; }
+        public List<OrderItem> OrderItems { get; set; }
     }
 }
