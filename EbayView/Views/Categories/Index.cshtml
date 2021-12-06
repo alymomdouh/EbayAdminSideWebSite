@@ -3,11 +3,11 @@
 @{
     ViewData["Title"] = "Index Category";
     Layout = "~/Views/Shared/_Layout.cshtml";
-}
-  <p style="width:100%;text-align:center;display:block;margin:10px auto;">
-    <a asp-action="Create" class="btn btn-primary">Create New</a>
-   </p>
+} 
 <h1>List of All Products</h1>
+<p style="width:100%;text-align:center;display:block;margin:10px auto;">
+    <a asp-action="Create" class="btn btn-primary">Create New</a>
+  </p>
 <table class="table table-striped table-bordered table-hover">
     <thead class="thead-dark">
         <tr>
@@ -17,10 +17,10 @@
             <th>
                 @Html.DisplayNameFor(model => model.CategoryName) 
             </th> 
-            <th>
-                @*@Html.DisplayNameFor(model => model.Description)*@
-                number of product in this Category
-            </th>
+            @*<th>
+                @Html.DisplayNameFor(model => model.Description)*@
+               @* number of product in this Category*@
+            @*</th>*@
             <th>Edite</th>
             <th>Delete</th>
         </tr>
@@ -35,10 +35,10 @@
                 @Html.DisplayFor(modelItem => item.CategoryName)
                  
             </td>
-            <td>
+           @* <td>
                 @Html.DisplayFor(modelItem => item.ProductInCategory)
                 @*number of product in catg*@
-            </td>
+           @* </td>*@ 
             <td>
                 @Html.ActionLink("Edit","Edit" ,"Categories", new { id = item.CategoryId},new{@class="btn btn-primary"}) 
             </td>

@@ -7,7 +7,8 @@
     using Microsoft.AspNetCore.Mvc;
     using System.Collections.Generic;
     using System.Threading.Tasks;
-    public class BrandsController : Controller
+    //finshed  slove all problem
+    public class BrandsController : Controller   
     {
         private readonly IBrandRepository _BrandRepository;
         private readonly IMapper _mapper;
