@@ -7,6 +7,7 @@
     using Microsoft.AspNetCore.Mvc;
     using System.Collections.Generic;
     using System.Threading.Tasks;
+    ////finshed  slove all problem
     public class CategoriesController : Controller
     {
         private readonly ICategoryRepository _categoryRepository;

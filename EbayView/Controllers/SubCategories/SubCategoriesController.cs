@@ -1,18 +1,24 @@
 ﻿namespace EbayView.Controllers.SubCategories
 {
     using AutoMapper;
+    using EbayAdminModels.Category;
     using EbayAdminModels.SubCategory;
+    using EbayView.Models.ViewModel.Category;
     using EbayView.Models.ViewModel.SubCategory;
     using global::Models;
     using Microsoft.AspNetCore.Mvc;
     using System.Collections.Generic;
     using System.Threading.Tasks;
+    //finshed all Subcategory
     public class SubCategoriesController : Controller
     {
+        private readonly ICategoryRepository _categoryRepository;
         private readonly ISubCategoryRepository _SubcategoryRepository;
         private readonly IMapper _mapper;
-        public SubCategoriesController(ISubCategoryRepository SubcategoryRepository, IMapper mapper)
+        public SubCategoriesController(ICategoryRepository categoryRepository, 
+                                       ISubCategoryRepository SubcategoryRepository, IMapper mapper)
         {
+            _categoryRepository = categoryRepository;
             _SubcategoryRepository = SubcategoryRepository;
             _mapper = mapper;
         }
@@ -32,8 +38,12 @@
             return View(result);
         }
         [HttpGet]
-        public ActionResult Create()
+        public async Task<ActionResult> Create()
         {
+            // add by aly
+            var categories = await _categoryRepository.GetCategoriesAsync();
+            var AllcategoriesResult = _mapper.Map<List<GetCategoriesOutputModel>>(categories);
+            ViewBag.AvailableCategories = AllcategoriesResult; 
             return View();
         }
 
@@ -54,9 +64,15 @@
         }
         public async Task<ActionResult> Edit(int id)
         {
+            // add by aly
+            var categories = await _categoryRepository.GetCategoriesAsync();
+            var AllcategoriesResult = _mapper.Map<List<GetCategoriesOutputModel>>(categories);
+            ViewBag.AvailableCategories = AllcategoriesResult;
+
             var Subcategory = await _SubcategoryRepository.GetSubCategoryDetailsAsync(id);
             var result = _mapper.Map<GetSubCategoryDetailsOutputModel>(Subcategory);
-            return View(result);
+            ViewBag.selectedSubcategory = result;   // aly 
+            return View();
         }
 
         [HttpPost]
@@ -77,9 +93,14 @@
         [HttpGet]
         public async Task<ActionResult> Delete(int id)
         {
+            //var Subcategory = await _SubcategoryRepository.GetSubCategoryDetailsAsync(id);
+            //var result = _mapper.Map<GetSubCategoryDetailsOutputModel>(Subcategory);
+            //return View(result);
+
+            //add by aly 
             var Subcategory = await _SubcategoryRepository.GetSubCategoryDetailsAsync(id);
-            var result = _mapper.Map<GetSubCategoryDetailsOutputModel>(Subcategory);
-            return View(result);
+            await _SubcategoryRepository.DeleteSubCategoryAsync(Subcategory);
+            return RedirectToAction(nameof(Index));
         }
 
         [HttpPost, ActionName("Delete")] // add by aly

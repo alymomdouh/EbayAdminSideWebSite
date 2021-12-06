@@ -16,13 +16,7 @@
             CreateMap<SubCategory, GetSubCategoriesOutputModel>();
             CreateMap<SubCategory, GetSubCategoryDetailsOutputModel>();
 
-            // add by aly 
-            CreateMap<SubCategory, GetSubCategoriesOutputModel>()
-               .ForMember(dest => dest.SubCategoryName, o => o.MapFrom(s => s.SubCatName)).ReverseMap(); 
-            CreateMap<SubCategory, CreateSubCategoryInputModel>()
-               .ForMember(dest => dest.SubCategoryName, o => o.MapFrom(s => s.SubCatName)).ReverseMap();
-            CreateMap<SubCategory, CreateSubCategoryInputModel>()
-               .ForMember(dest => dest.SubCategoryName, o => o.MapFrom(s => s.SubCatName)).ReverseMap();
+             
         }
     }
 }

@@ -8,7 +8,7 @@ namespace EbayView.Models.ViewModel.SubCategory
     public class CreateSubCategoryInputModel
     {
         public int SubCategoryId { get; set; }
-
-        public string SubCategoryName { get; set; }
+        public int CatId { get; set; } // add by aly 
+        public string SubCatName { get; set; }
     }
 }
