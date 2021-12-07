@@ -11,5 +11,10 @@ namespace EbayView.Models.ViewModel.Comments
         public int ProductId { get; set; }
         public string Description { get; set; }
         public DateTime Date { get; set; }
+
+        // add by aly
+        public string UserName { get; set; }
+        public string ProductName { get; set; }
+
     }
 }

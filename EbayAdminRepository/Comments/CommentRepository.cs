@@ -16,11 +16,8 @@
         }
         public async Task<int> AddCommentAsync(Comment Comment)
         {
-            await _context.Comments.AddAsync(Comment);
-
-            await _context.SaveChangesAsync();
-
-
+            await _context.Comments.AddAsync(Comment); 
+            await _context.SaveChangesAsync(); 
             return Comment.UserId;
         }
 
@@ -31,16 +28,12 @@
             return Comment.UserId;
         }
 
-        public async Task<Comment> GetCommentDetailsAsync(int value)
+        public async Task<Comment> GetCommentDetailsAsync(int UserId,int ProdId)
         {
-            return await _context.Comments.Where(c => c.UserId == value).FirstOrDefaultAsync();
+            //return await _context.Comments.Where(c => c.UserId == value).FirstOrDefaultAsync();
+            // by aly
+            return await _context.Comments.Where(c =>c.UserId==UserId && c.ProductId==ProdId).FirstOrDefaultAsync();
         }
-
-        public async Task<List<Comment>> GetCommentAsync(int value)
-        {
-            return await _context.Comments.Where(c => c.UserId == value).ToListAsync();
-        }
-
         public async Task<int> UpdateCommentAsync(Comment Comment)
         {
             _context.Update(Comment);
@@ -48,6 +41,25 @@
             return Comment.UserId;
         }
 
-      
+        // add by aly 
+        public async Task<List<Comment>> GetAllCommentAsync()
+        {
+            return await _context.Comments
+                .Include(c=> c.product).Include(c=>c.user)
+                .ToListAsync();
+        }
+        public async Task<List<Comment>> GetCommentByUserIdAsync(int value)
+        {
+            return await _context.Comments.Where(c => c.UserId == value)
+                .Include(c => c.product).Include(c => c.user)
+                .ToListAsync();
+        }
+        public async Task<List<Comment>> GetCommentByProdIdAsync(int value)
+        {
+            return await _context.Comments.Where(c => c.ProductId == value)
+                .Include(c => c.product).Include(c => c.user)
+                .ToListAsync();
+        }
+         
     }
 }
