@@ -18,10 +18,8 @@
         [HttpGet]
         public async Task<IActionResult> Index()
         {
-            var Shippers = await _ShipperRepository.GetShipperAsync();
-
-            var result = _mapper.Map<List<GetShippersOutputModel>>(Shippers);
-
+            var Shippers = await _ShipperRepository.GetShipperAsync(); 
+            var result = _mapper.Map<List<GetShippersOutputModel>>(Shippers); 
             return View(result);
         }
         [HttpGet]
@@ -36,15 +34,6 @@
         {
             return View();
         }
-
-        [HttpGet]
-        public async Task<IActionResult> Edit(int id)
-        {
-            var Shipper = await _ShipperRepository.GetShipperDetailsAsync(id);
-            var result = _mapper.Map<GetShipperDetailsOutputModel>(Shipper);
-            return View(result);
-        }
-
         [HttpPost]
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> Create(CreateShipperInputModel model)
@@ -60,9 +49,15 @@
                 return View();
             }
         }
+        [HttpGet]
+        public async Task<IActionResult> Edit(int id)
+        {
+            var Shipper = await _ShipperRepository.GetShipperDetailsAsync(id);
+            var result = _mapper.Map<CreateShipperInputModel>(Shipper);
+            return View(result); 
+        }  
         [HttpPost]
-        [ValidateAntiForgeryToken]
-
+        [ValidateAntiForgeryToken] 
         public async Task<IActionResult> Edit(CreateShipperInputModel model)
         {
             try
@@ -79,11 +74,15 @@
         [HttpGet]
         public async Task<IActionResult> Delete(int id)
         {
-            var Shipper = await _ShipperRepository.GetShipperDetailsAsync(id);
-            var result = _mapper.Map<GetShipperDetailsOutputModel>(Shipper);
-            return View(result);
-        }
+            //var Shipper = await _ShipperRepository.GetShipperDetailsAsync(id);
+            //var result = _mapper.Map<GetShipperDetailsOutputModel>(Shipper);
+            //return View(result);
 
+            // add by aly 
+            var stock = await _ShipperRepository.GetShipperDetailsAsync(id);
+            await _ShipperRepository.DeleteShipperAsync(stock);
+            return RedirectToAction(nameof(Index));
+        } 
         [HttpPost]
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> PostDelete(int id)
