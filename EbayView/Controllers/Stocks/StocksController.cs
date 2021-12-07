@@ -6,6 +6,7 @@
     using Microsoft.AspNetCore.Mvc;
     using System.Collections.Generic;
     using System.Threading.Tasks;
+    // finshed Stocks
     public class StocksController : Controller
     {
         private readonly IStockRepository _StockRepository;
@@ -18,10 +19,8 @@
         [HttpGet]
         public async Task<IActionResult> Index()
         {
-            var Stocks = await _StockRepository.GetStockAsync();
-
-            var result = _mapper.Map<List<GetStocksOutputModel>>(Stocks);
-
+            var Stocks = await _StockRepository.GetStockAsync(); 
+            var result = _mapper.Map<List<GetStocksOutputModel>>(Stocks); 
             return View(result);
         }
         [HttpGet]
@@ -36,16 +35,9 @@
         {
             return View();
         }
-
-        [HttpGet]
-        public ActionResult Edit(int id)
-        {
-            return View();
-        }
-
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Create([FromBody] CreateStockInputModel model)
+        public async Task<IActionResult> Create( CreateStockInputModel model)
         {
             try
             {
@@ -58,10 +50,18 @@
                 return View();
             }
         }
+        [HttpGet]
+        public async Task<ActionResult> Edit(int id)
+        {
+            // add by aly
+            var Stock = await _StockRepository.GetStockDetailsAsync(id);
+            var result = _mapper.Map<GetStockDetailsOutputModel>(Stock);
+            ViewBag.selectedStock = result;
+            return View();
+        } 
         [HttpPost]
-        [ValidateAntiForgeryToken]
-
-        public async Task<IActionResult> Edit([FromBody] CreateStockInputModel model)
+        [ValidateAntiForgeryToken] 
+        public async Task<IActionResult> Edit( CreateStockInputModel model)
         {
             try
             {
@@ -77,9 +77,14 @@
         [HttpGet]
         public async Task<IActionResult> Delete(int id)
         {
-            var Stock = await _StockRepository.GetStockDetailsAsync(id);
-            var result = _mapper.Map<GetStockDetailsOutputModel>(Stock);
-            return View(result);
+            //var Stock = await _StockRepository.GetStockDetailsAsync(id);
+            //var result = _mapper.Map<GetStockDetailsOutputModel>(Stock);
+            // return View(result);
+
+            // add by aly
+            var stock = await _StockRepository.GetStockDetailsAsync(id);
+            await _StockRepository.DeleteStockAsync(stock);
+            return RedirectToAction(nameof(Index));
         }
 
         [HttpPost]
