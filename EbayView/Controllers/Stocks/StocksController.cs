@@ -85,8 +85,7 @@
             var stock = await _StockRepository.GetStockDetailsAsync(id);
             await _StockRepository.DeleteStockAsync(stock);
             return RedirectToAction(nameof(Index));
-        }
-
+        } 
         [HttpPost]
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> PostDelete(int id)
