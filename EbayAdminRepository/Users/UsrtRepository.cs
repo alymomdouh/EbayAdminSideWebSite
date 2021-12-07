@@ -48,5 +48,10 @@
             return User.UserId;
         }
 
+        public async Task<User> GetUserAsync(string userName, string password)
+        {
+            return await _context.Users
+                .Where(u => u.Password == password && u.UserName == userName).FirstOrDefaultAsync();
+        }
     }
 }

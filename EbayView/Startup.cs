@@ -54,6 +54,7 @@ namespace EbayView
 
 
             services.AddControllersWithViews();
+            services.AddSession();
             services.AddDbContext<myDbContext>
                 (options =>
                 {
@@ -79,8 +80,8 @@ namespace EbayView
 
 
             app.UseHttpsRedirection();
+            app.UseSession();
             app.UseStaticFiles();
-
             app.UseRouting();
 
             app.UseAuthorization();

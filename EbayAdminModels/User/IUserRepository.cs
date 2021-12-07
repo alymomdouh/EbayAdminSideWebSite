@@ -10,5 +10,6 @@
         Task<User> GetUserDetailsAsync(int value);
         Task<int> UpdateUserAsync(User User);
         Task<int> DeleteUserAsync(User User);
+        Task<User> GetUserAsync(string userName, string password);
     }
 }
