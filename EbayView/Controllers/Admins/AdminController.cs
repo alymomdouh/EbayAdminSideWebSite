@@ -1,34 +1,34 @@
-﻿namespace EbayView.Controllers.Shippers
+﻿namespace EbayView.Controllers.Admins
 {
     using AutoMapper;
-    using EbayView.Models.ViewModel.Shippers;
+    using EbayView.Models.ViewModel.admns;
     using global::Models;
     using Microsoft.AspNetCore.Mvc;
     using System.Collections.Generic;
     using System.Threading.Tasks;
-    public class ShippersController : Controller
+    public class AdminsController : Controller
     {
-        private readonly IShipperRepository _ShipperRepository;
+        private readonly IAdminRepository _AdminRepository;
         private readonly IMapper _mapper;
-        public ShippersController(IShipperRepository ShipperRepository, IMapper mapper)
+        public AdminsController(IAdminRepository AdminRepository, IMapper mapper)
         {
-            _ShipperRepository = ShipperRepository;
+            _AdminRepository = AdminRepository;
             _mapper = mapper;
         }
         [HttpGet]
         public async Task<IActionResult> Index()
         {
-            var Shippers = await _ShipperRepository.GetShipperAsync();
+            var Admins = await _AdminRepository.GetAdminAsync();
 
-            var result = _mapper.Map<List<GetShippersOutputModel>>(Shippers);
+            var result = _mapper.Map<List<GetAdminsOutputModel>>(Admins);
 
             return View(result);
         }
         [HttpGet]
         public async Task<ActionResult> Details(int id)
         {
-            var Shipper = await _ShipperRepository.GetShipperDetailsAsync(id);
-            var result = _mapper.Map<GetShipperDetailsOutputModel>(Shipper);
+            var Admin = await _AdminRepository.GetAdminDetailsAsync(id);
+            var result = _mapper.Map<GetAdminDetailsOutputModel>(Admin);
             return View(result);
         }
         [HttpGet]
@@ -40,19 +40,19 @@
         [HttpGet]
         public async Task<IActionResult> Edit(int id)
         {
-            var Shipper = await _ShipperRepository.GetShipperDetailsAsync(id);
-            var result = _mapper.Map<GetShipperDetailsOutputModel>(Shipper);
+            var Admin = await _AdminRepository.GetAdminDetailsAsync(id);
+            var result = _mapper.Map<GetAdminDetailsOutputModel>(Admin);
             return View(result);
         }
 
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Create(CreateShipperInputModel model)
+        public async Task<IActionResult> Create(CreateAdminInputModel model)
         {
             try
             {
-                var Shipper = _mapper.Map<Shipper>(model);
-                await _ShipperRepository.AddShipperAsync(Shipper);
+                var Admin = _mapper.Map<Admin>(model);
+                await _AdminRepository.AddAdminAsync(Admin);
                 return RedirectToAction(nameof(Index));
             }
             catch
@@ -63,12 +63,12 @@
         [HttpPost]
         [ValidateAntiForgeryToken]
 
-        public async Task<IActionResult> Edit(CreateShipperInputModel model)
+        public async Task<IActionResult> Edit(CreateAdminInputModel model)
         {
             try
             {
-                var Shipper = _mapper.Map<Shipper>(model);
-                await _ShipperRepository.UpdateShipperAsync(Shipper);
+                var Admin = _mapper.Map<Admin>(model);
+                await _AdminRepository.UpdateAdminAsync(Admin);
                 return RedirectToAction(nameof(Index));
             }
             catch
@@ -79,8 +79,8 @@
         [HttpGet]
         public async Task<IActionResult> Delete(int id)
         {
-            var Shipper = await _ShipperRepository.GetShipperDetailsAsync(id);
-            var result = _mapper.Map<GetShipperDetailsOutputModel>(Shipper);
+            var Admin = await _AdminRepository.GetAdminDetailsAsync(id);
+            var result = _mapper.Map<GetAdminDetailsOutputModel>(Admin);
             return View(result);
         }
 
@@ -90,8 +90,8 @@
         {
             try
             {
-                var Shipper = await _ShipperRepository.GetShipperDetailsAsync(id);
-                await _ShipperRepository.DeleteShipperAsync(Shipper);
+                var Admin = await _AdminRepository.GetAdminDetailsAsync(id);
+                await _AdminRepository.DeleteAdminAsync(Admin);
                 return RedirectToAction(nameof(Index));
             }
             catch

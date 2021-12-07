@@ -12,6 +12,8 @@ using EbayAdminRepository.Shippers;
 using EbayAdminRepository.Stocks;
 using EbayAdminRepository.SubCategory;
 using EbayAdminRepository.WatchLists;
+using EbayAdminRepository.Admins;
+using EbayAdminRepository.Users;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.EntityFrameworkCore;
@@ -45,6 +47,8 @@ namespace EbayView
             services.AddTransient<IRateRepository, RateRepository>();
             services.AddTransient<IShipperRepository, ShipperRepository>();
             services.AddTransient<IOfferRepository, OfferRepository>();
+            services.AddTransient<IAdminRepository, AdminRepository>();
+            services.AddTransient<IUserRepository, UserRepository>();
             services.AddAutoMapper(typeof(Startup));
             services.AddControllersWithViews();
 
