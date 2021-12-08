@@ -8,7 +8,7 @@
     {
         public BrandMapper()
         {
-            CreateMap<CreateOffersInputModel, Offers>();
+            CreateMap<CreateOffersInputModel, Offers>().ReverseMap();
             CreateMap<Offers, GetOfferOutputModel>();
             CreateMap<Offers, GetOfferDetailsOutputModel>();
 

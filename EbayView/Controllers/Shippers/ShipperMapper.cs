@@ -13,7 +13,7 @@
     {
         public ShipperMapper()
         {
-            CreateMap<CreateShipperInputModel, Shipper>();
+            CreateMap<CreateShipperInputModel, Shipper>().ReverseMap();
             CreateMap<Shipper, GetShippersOutputModel>();
             CreateMap<Shipper, GetShipperDetailsOutputModel>();
 

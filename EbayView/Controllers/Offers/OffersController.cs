@@ -38,10 +38,16 @@
         [HttpGet]
         public async Task<ActionResult> Create()
         {
+            //add by aly 
             var products = await _productRepository.GetProductsAsync();
             var AllproductsResult = _mapper.Map<List<GetProductsOutputModel>>(products);
-           ViewBag.AvailableProducts = AllproductsResult;
-            return View();
+           // if (AllproductsResult.Count >0) { 
+            if (AllproductsResult!=null)
+                {
+                    ViewBag.AvailableProducts = AllproductsResult; 
+                    return View();
+            }
+            return RedirectToAction("Index", "Home");
         }
         [HttpPost]
         [ValidateAntiForgeryToken]
@@ -63,8 +69,13 @@
         {
             var Offer = await _OfferRepository.GetOfferDetailsAsync(id);
             var result = _mapper.Map<GetOfferDetailsOutputModel>(Offer);
-
-            return View(result);
+            //return View(result);
+            // by aly 
+            ViewBag.selectoffer = result;
+            var products = await _productRepository.GetProductsAsync();
+            var AllproductsResult = _mapper.Map<List<GetProductsOutputModel>>(products);  
+                ViewBag.AvailableProducts = AllproductsResult;
+                return View(); 
         } 
         [HttpPost]
         [ValidateAntiForgeryToken]
@@ -86,9 +97,11 @@
         public async Task<IActionResult> Delete(int id)
         {
             Offers Offer = await _OfferRepository.GetOfferDetailsAsync(id);
-            var result = _mapper.Map<GetOfferDetailsOutputModel>(Offer);
-
-            return View(result);
+            //var result = _mapper.Map<GetOfferDetailsOutputModel>(Offer); 
+            //return View(result);
+            // by aly 
+                         await _OfferRepository.DeleteOfferAsync(Offer);
+            return RedirectToAction(nameof(Index));
         }
 
        
