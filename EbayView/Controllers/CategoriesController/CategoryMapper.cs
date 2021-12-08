@@ -14,9 +14,12 @@
         {
             CreateMap<CreateCategoryInputModel, Category>().ReverseMap();
             CreateMap< Category,GetCategoriesOutputModel>().ReverseMap();
-            CreateMap< Category, GetCategoryDetailsOutputModel>().ReverseMap(); 
-
-             
+            CreateMap< Category, GetCategoryDetailsOutputModel>().ReverseMap();
+            // add by aly
+            CreateMap< Category, GetCategoriesOutputModel>() 
+                .ForMember(des=>des.ProductInCategory,conf=>conf.MapFrom(
+                    s=>s.Products.Count()));
+                    //s=>s.Products.Where(p=>p.CatId==s.CategoryId).Select(p=>p.ProductId).Count()));
 
         }
     }

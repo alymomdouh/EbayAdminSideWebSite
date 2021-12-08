@@ -12,12 +12,11 @@
     {
         public SubCategoryMapper()
         {
-            CreateMap<CreateSubCategoryInputModel, SubCategory>();
+            CreateMap<CreateSubCategoryInputModel, SubCategory>().ReverseMap();
             CreateMap<SubCategory, GetSubCategoriesOutputModel>();
             CreateMap<SubCategory, GetSubCategoryDetailsOutputModel>();
 
-
-
+             
         }
     }
 }

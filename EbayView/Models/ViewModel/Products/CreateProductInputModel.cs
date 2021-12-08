@@ -5,9 +5,14 @@
     using System.ComponentModel.DataAnnotations;
     using System.Linq;
     using System.Threading.Tasks;
+    using EbayView.Models.ViewModel.Brands;
+    using EbayView.Models.ViewModel.Category;
+    using EbayView.Models.ViewModel.Stocks;
+    using EbayView.Models.ViewModel.SubCategory;
+    using global::Models;// add by aly
 
-    public class CreateProductInputModel
-    {
+    public class CreateProductInputModel   // for edite and create
+    {    
         public int ProductId { get; set; }
         [Required(ErrorMessage = "Name is Required")]
         public string Name { get; set; }
@@ -29,5 +34,12 @@
 
         public int SubCatId { get; set; }
         public string[] imgspathes { get; set; }
+         
+        //   added by aly   get names from db to select 
+        //public List<GetCategoriesOutputModel> AvailableCategories { get; set; }
+        //public List<GetSubCategoriesOutputModel> AvailableSubCategories { get; set; }
+        //public List<GetBrandsOutputModel> AvailableBrands { get; set; }
+        //public List<GetStocksOutputModel> AvailableStock { get; set; }
+         
     }
 }

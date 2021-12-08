@@ -1,6 +1,6 @@
 ﻿namespace EbayView.Models.ViewModel.Products
 {
-    public class GetProductDetailsOutputModel
+    public class GetProductDetailsOutputModel  //Details
     {
         public int ProductId { get; set; }
         public string Name { get; set; }

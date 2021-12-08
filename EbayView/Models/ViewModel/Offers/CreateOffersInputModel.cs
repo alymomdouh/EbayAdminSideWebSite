@@ -10,6 +10,7 @@ namespace EbayView.Models.ViewModel.Offers
         public int OfferId { get; set; }
         public int ProductId { get; set; }
         public int AdminId { get; set; }
+        public float OldPrice { get; set; }
         public float NewPrice { get; set; }
         public int Precentage { get; set; }
         public DateTime StartDate { get; set; }

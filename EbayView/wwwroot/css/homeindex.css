@@ -1,4 +1,7 @@
-﻿.market-update-block {
+﻿.market-updates {
+    margin-top: 50px;
+} 
+.market-update-block {
     padding: 2em 2em;
     background: #999;
 }

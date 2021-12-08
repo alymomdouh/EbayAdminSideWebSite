@@ -2,6 +2,7 @@
 {
     using AutoMapper;
     using EbayView.Models.ViewModel.Offers;
+    using EbayView.Models.ViewModel.Products;
     using global::Models;
     using Microsoft.AspNetCore.Http;
     using Microsoft.AspNetCore.Mvc;
@@ -9,21 +10,21 @@
     using System.Threading.Tasks;
     public class OffersController : Controller
     {
+        private readonly IProductRepository _productRepository;
         private readonly IOfferRepository _OfferRepository;
         private readonly IMapper _mapper;
-        public OffersController(IOfferRepository OfferRepository, IMapper mapper)
+        public OffersController(IOfferRepository OfferRepository, IMapper mapper
+                                ,IProductRepository productRepository)
         {
             _OfferRepository = OfferRepository;
+            _productRepository = productRepository;
             _mapper = mapper;
-        }
-
+        } 
         [HttpGet]
         public async Task<IActionResult> Index()
         {
-            var Offers = await _OfferRepository.GetOffersAsync();
-
-            var result = _mapper.Map<List<GetOfferOutputModel>>(Offers);
-
+            var Offers = await _OfferRepository.GetOffersAsync(); 
+            var result = _mapper.Map<List<GetOfferOutputModel>>(Offers); 
             return View(result);
         }
 
@@ -35,20 +36,19 @@
             return View(result);
         }
         [HttpGet]
-        public ActionResult Create()
+        public async Task<ActionResult> Create()
         {
-            return View();
+            //add by aly 
+            var products = await _productRepository.GetProductsAsync();
+            var AllproductsResult = _mapper.Map<List<GetProductsOutputModel>>(products);
+           // if (AllproductsResult.Count >0) { 
+            if (AllproductsResult!=null)
+                {
+                    ViewBag.AvailableProducts = AllproductsResult; 
+                    return View();
+            }
+            return RedirectToAction("Index", "Home");
         }
-
-        [HttpGet]
-        public async Task<IActionResult> Edit(int id)
-        {
-            var Offer = await _OfferRepository.GetOfferDetailsAsync(id);
-            var result = _mapper.Map<GetOfferDetailsOutputModel>(Offer);
-
-            return View(result);
-        }
-
         [HttpPost]
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> Create(CreateOffersInputModel model)
@@ -64,6 +64,19 @@
                 return View();
             }
         }
+        [HttpGet]
+        public async Task<IActionResult> Edit(int id)
+        {
+            var Offer = await _OfferRepository.GetOfferDetailsAsync(id);
+            var result = _mapper.Map<GetOfferDetailsOutputModel>(Offer);
+            //return View(result);
+            // by aly 
+            ViewBag.selectoffer = result;
+            var products = await _productRepository.GetProductsAsync();
+            var AllproductsResult = _mapper.Map<List<GetProductsOutputModel>>(products);  
+                ViewBag.AvailableProducts = AllproductsResult;
+                return View(); 
+        } 
         [HttpPost]
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> Edit(CreateOffersInputModel model)
@@ -84,9 +97,11 @@
         public async Task<IActionResult> Delete(int id)
         {
             Offers Offer = await _OfferRepository.GetOfferDetailsAsync(id);
-            var result = _mapper.Map<GetOfferDetailsOutputModel>(Offer);
-
-            return View(result);
+            //var result = _mapper.Map<GetOfferDetailsOutputModel>(Offer); 
+            //return View(result);
+            // by aly 
+                         await _OfferRepository.DeleteOfferAsync(Offer);
+            return RedirectToAction(nameof(Index));
         }
 
        

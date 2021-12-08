@@ -7,6 +7,7 @@
     using Microsoft.AspNetCore.Mvc;
     using System.Collections.Generic;
     using System.Threading.Tasks;
+    ////finshed  slove all problem
     public class CategoriesController : Controller
     {
         private readonly ICategoryRepository _categoryRepository;
@@ -41,7 +42,7 @@
 
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Create([FromBody]CreateCategoryInputModel model)
+        public async Task<IActionResult> Create(CreateCategoryInputModel model)
         {
             try
             {
@@ -63,7 +64,7 @@
 
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Edit([FromBody] CreateCategoryInputModel model)
+        public async Task<IActionResult> Edit( CreateCategoryInputModel model)
         {
             try
             {
@@ -77,15 +78,10 @@
             }
         }
         [HttpGet]
-        public ActionResult Delete(int id)
+        //[ValidateAntiForgeryToken]
+        public async Task<IActionResult> Delete(int id)
         {
-            return View();
-        }
-
-        [HttpPost]
-        [ValidateAntiForgeryToken]
-        public async Task<IActionResult> PostDelete(int id)
-        {
+            //return View();
             try
             {
                 var category = await _categoryRepository.GetCategoryDetailsAsync(id);
@@ -93,9 +89,25 @@
                 return RedirectToAction(nameof(Index));
             }
             catch
-            {
-                return View();
+            { 
+                return RedirectToAction(nameof(Index));
             }
         }
+
+        //[HttpPost]
+        //[ValidateAntiForgeryToken]
+        //public async Task<IActionResult> PostDelete(int id)
+        //{
+        //    try
+        //    {
+        //        var category = await _categoryRepository.GetCategoryDetailsAsync(id);
+        //        await _categoryRepository.DeleteCategoryAsync(category);
+        //        return RedirectToAction(nameof(Index));
+        //    }
+        //    catch
+        //    {
+        //        return View();
+        //    }
+        //}
     }
 }

@@ -13,7 +13,8 @@ using EbayAdminRepository.Stocks;
 using EbayAdminRepository.SubCategory;
 using EbayAdminRepository.WatchLists;
 using EbayAdminRepository.Admins;
-using EbayAdminRepository.Users;
+using EbayAdminRepository.Users; 
+using EbayView.Controllers.UploadImg;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.EntityFrameworkCore;
@@ -51,6 +52,10 @@ namespace EbayView
             services.AddTransient<IUserRepository, UserRepository>();
             services.AddAutoMapper(typeof(Startup));
             services.AddControllersWithViews();
+
+             services.AddSingleton<UploadImgController>();// for upload img 
+            //services.AddScoped<UploadImgController>();// for upload img 
+            //services.AddTransient<UploadImgController>();
 
 
             services.AddControllersWithViews();

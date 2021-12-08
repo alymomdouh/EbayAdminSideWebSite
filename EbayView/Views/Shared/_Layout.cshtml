@@ -126,18 +126,38 @@
                             </div> 
                             @*<a class="nav-link collapsed" href="@Url.Action("Index", "Categories")">
                                 <div class="sb-nav-link-icon"><i class="fas fa-book-open"></i></div>
-                                Categories 
+                                Categories  
                             </a>*@
-                            <a class="nav-link collapsed" href="@Url.Action("Index", "subcatg")" data-bs-toggle="collapse" data-bs-target="#collapsecatg" aria-expanded="false" aria-controls="collapsecatg">
+                            <a class="nav-link" href="@Url.Action("Index", "Offers")" aria-expanded="false">
+                                <div class="sb-nav-link-icon"><i class="fas fa-book-open"></i></div>
+                                Offers
+                                <div class="sb-sidenav-collapse-arrow"> </div>
+                            </a>
+                            <a class="nav-link" href="@Url.Action("Index", "SubCategories")" aria-expanded="false">
                                 <div class="sb-nav-link-icon"><i class="fas fa-book-open"></i></div>
                                 Subcategories
                                 <div class="sb-sidenav-collapse-arrow"> </div>
                             </a>
-                            <a class="nav-link collapsed" href="@Url.Action("Index", "brand")" data-bs-toggle="collapse" data-bs-target="#collapsecatg" aria-expanded="false" aria-controls="collapsecatg">
+                            <a class="nav-link " href="@Url.Action("Index", "Brands")" aria-expanded="false">
                                 <div class="sb-nav-link-icon"><i class="fas fa-book-open"></i></div>
                                 Brands
-                                <div class="sb-sidenav-collapse-arrow"> </i></div>
+                                <div class="sb-sidenav-collapse-arrow">  </div>
                             </a>
+                            <a class="nav-link " href="@Url.Action("Index", "Stocks")" aria-expanded="false">
+                                <div class="sb-nav-link-icon"><i class="fas fa-book-open"></i></div>
+                                Stocks
+                                <div class="sb-sidenav-collapse-arrow">  </div>
+                            </a>
+                            <a class="nav-link " href="@Url.Action("Index", "Shippers")" aria-expanded="false">
+                                <div class="sb-nav-link-icon"><i class="fas fa-book-open"></i></div>
+                                Shippers
+                                <div class="sb-sidenav-collapse-arrow">  </div>
+                            </a> 
+                            <a class="nav-link " href="@Url.Action("Index", "Comment")" aria-expanded="false">
+                                <div class="sb-nav-link-icon"><i class="fas fa-book-open"></i></div>
+                                Comment
+                                <div class="sb-sidenav-collapse-arrow">  </div>
+                            </a>  
                             <a class="nav-link collapsed" href="#" data-bs-toggle="collapse" data-bs-target="#collapsePages" aria-expanded="false" aria-controls="collapsePages">
                                 <div class="sb-nav-link-icon"><i class="fas fa-book-open"></i></div>
                                 Pages
@@ -156,7 +176,7 @@
                                             <a class="nav-link" href="password.html">Forgot Password</a>
                                         </nav>
                                     </div>
-                                    <a class="nav-link collapsed" href="#" data-bs-toggle="collapse" data-bs-target="#pagesCollapseError" aria-expanded="false" aria-controls="pagesCollapseError">
+                                   @* <a class="nav-link collapsed" href="#" data-bs-toggle="collapse" data-bs-target="#pagesCollapseError" aria-expanded="false" aria-controls="pagesCollapseError">
                                         Error
                                         <div class="sb-sidenav-collapse-arrow"><i class="fas fa-angle-down"></i></div>
                                     </a>
@@ -166,10 +186,10 @@
                                             <a class="nav-link" href="404.html">404 Page</a>
                                             <a class="nav-link" href="500.html">500 Page</a>
                                         </nav>
-                                    </div>
+                                    </div>*@
                                 </nav>
                             </div>
-                            <div class="sb-sidenav-menu-heading">Addons</div>
+                            @*<div class="sb-sidenav-menu-heading">Addons</div>
                             <a class="nav-link" href="charts.html">
                                 <div class="sb-nav-link-icon"><i class="fas fa-chart-area"></i></div>
                                 Charts
@@ -177,25 +197,25 @@
                             <a class="nav-link" href="tables.html">
                                 <div class="sb-nav-link-icon"><i class="fas fa-table"></i></div>
                                 Tables
-                            </a>
+                            </a>*@
                         </div>
                     </div>
-                    <div class="sb-sidenav-footer">
+                    @*<div class="sb-sidenav-footer">
                         <div class="small">Logged in as:</div>
                         Start Bootstrap
-                    </div>
+                    </div>*@
                 </nav>
             </div>
             <div id="layoutSidenav_content">
                 <main>
                     <div class="container-fluid px-4">
-                        <h1 class="mt-4">Dashboard</h1>
-                        <main role="main" class="pb-3">
+                       @* <h1 class="mt-4">Dashboard</h1>*@
+                        <main role="main" class="pb-3 mt-5 mb-5">
                             @RenderBody()
                         </main>
                     </div>
                 </main>
-                <footer class="border-top footer text-muted">
+                <footer class="border-top footer text-muted ">
                     <div class="container">
                         &copy; 2021 - EbayView - <a asp-area="" asp-controller="Home" asp-action="Privacy">Privacy</a>
                     </div>
@@ -213,7 +233,7 @@
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js" crossorigin="anonymous"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.8.0/Chart.min.js" crossorigin="anonymous"></script>
      <script src="https://cdn.jsdelivr.net/npm/simple-datatables@latest" crossorigin="anonymous"></script>
-     <script src="~/js/datatables-simple-demo.js"></script>
+     @*<script src="~/js/datatables-simple-demo.js"></script>*@
     <script src="~/lib/jquery/dist/jquery.min.js"></script>
     <script src="~/lib/bootstrap/dist/js/bootstrap.bundle.min.js"></script> 
     <script src="~/js/scripts.js"></script>

@@ -8,10 +8,12 @@
     {
         public BrandMapper()
         {
-            CreateMap<CreateOffersInputModel, Offers>();
+            CreateMap<CreateOffersInputModel, Offers>().ReverseMap();
             CreateMap<Offers, GetOfferOutputModel>();
             CreateMap<Offers, GetOfferDetailsOutputModel>();
 
+            CreateMap<Offers, GetOfferDetailsOutputModel>()
+                .ForMember(des=>des.OldPrice,o=>o.MapFrom(s=>s.product.Price));
         }
     }
 }
