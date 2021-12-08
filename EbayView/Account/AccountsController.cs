@@ -27,7 +27,7 @@
             {
                 RedirectToAction("Create","User");
             }
-            HttpContext.Session.SetString(user.UserName, "login");
+            HttpContext.Session.SetString("login", "login");
             return RedirectToAction("Index","Products");
         }
         [HttpGet]
