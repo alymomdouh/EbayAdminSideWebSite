@@ -89,8 +89,8 @@
         {
             try
             {
-                var stock = await _ShipperRepository.GetShipperDetailsAsync(id);
-                await _ShipperRepository.DeleteShipperAsync(stock);
+                var Shipper = await _ShipperRepository.GetShipperDetailsAsync(id);
+                await _ShipperRepository.DeleteShipperAsync(Shipper);
                 return RedirectToAction(nameof(Index));
             }
             catch

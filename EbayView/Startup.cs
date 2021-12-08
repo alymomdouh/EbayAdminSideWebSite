@@ -12,6 +12,8 @@ using EbayAdminRepository.Shippers;
 using EbayAdminRepository.Stocks;
 using EbayAdminRepository.SubCategory;
 using EbayAdminRepository.WatchLists;
+using EbayAdminRepository.Admins;
+using EbayAdminRepository.Users; 
 using EbayView.Controllers.UploadImg;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
@@ -46,6 +48,8 @@ namespace EbayView
             services.AddTransient<IRateRepository, RateRepository>();
             services.AddTransient<IShipperRepository, ShipperRepository>();
             services.AddTransient<IOfferRepository, OfferRepository>();
+            services.AddTransient<IAdminRepository, AdminRepository>();
+            services.AddTransient<IUserRepository, UserRepository>();
             services.AddAutoMapper(typeof(Startup));
             services.AddControllersWithViews();
 
@@ -55,6 +59,7 @@ namespace EbayView
 
 
             services.AddControllersWithViews();
+            services.AddSession();
             services.AddDbContext<myDbContext>
                 (options =>
                 {
@@ -80,8 +85,8 @@ namespace EbayView
 
 
             app.UseHttpsRedirection();
+            app.UseSession();
             app.UseStaticFiles();
-
             app.UseRouting();
 
             app.UseAuthorization();

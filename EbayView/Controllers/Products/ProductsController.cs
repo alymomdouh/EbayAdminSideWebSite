@@ -10,6 +10,7 @@
     using EbayView.Models.ViewModel.Stocks;
     using EbayView.Models.ViewModel.SubCategory;
     using global::Models;
+    using Microsoft.AspNetCore.Http;
     using Microsoft.AspNetCore.Mvc;
     using System.Collections.Generic;
     using System.Net;
@@ -39,10 +40,16 @@
         [HttpGet] // finshed
         public async Task<IActionResult> Index()
         {
-            var products = await _productRepository.GetProductsAsync();
-            var result = _mapper.Map<List<GetProductsOutputModel>>(products);
+            var value = HttpContext.Session.GetString("login");
 
-            return View(result);
+            if (!string.IsNullOrWhiteSpace(value))
+            {
+                var products = await _productRepository.GetProductsAsync();
+                var result = _mapper.Map<List<GetProductsOutputModel>>(products);
+                return View(result);
+            }
+            return RedirectToAction("Login","User");
+
         }
         [HttpGet]// error
         public async Task<ActionResult> Create()
