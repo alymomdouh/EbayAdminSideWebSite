@@ -140,7 +140,7 @@ namespace EbayView.Controllers.UploadImg
             {
                 // 1 => Get Directory
                 // Directory.GetCurrentDirectory() => replace the folder path on the server
-                string filePath = Directory.GetCurrentDirectory() + "/wwwroot/files/" + folderName;
+                string filePath = Directory.GetCurrentDirectory() + "\\img\\Uploads\\Photos" + folderName;
                 // 2 => Get File Name
                 //string cvName = model.Cv.FileName;
                 // Some browser send the file name with token to make the name unique

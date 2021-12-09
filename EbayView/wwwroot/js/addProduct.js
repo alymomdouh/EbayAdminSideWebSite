@@ -3,7 +3,7 @@
 // upload image handle
 let uploadImages = document.querySelectorAll('.fileupload'); // load all imgs  tag input file
 //let imagePaths = []; // will store all uploaded images paths;
-const imagePaths = Array.from({ length: 4 }).map(el => "");
+//const imagePaths = Array.from({ length: 4 }).map(el => "");
 uploadImages.forEach((fileupload, index) => {
     fileupload.addEventListener('change', () => {
             console.log(fileupload); // print the input tag
@@ -24,18 +24,11 @@ uploadImages.forEach((fileupload, index) => {
                 type: 'POST',
                 //url: '@Url.Action("UploadImagefun", "UploadImg")',  OnPostMyUploader
                 //url: '/UploadImg/UploadImagefun',  
-                url: '/UploadImg/UploadLogo',
+                url: '/UploadImg/UploadLogo',    
                 //dataType:"json",  //contentType: "application/json; charset=utf-8",
                 data: formData,
                 contentType: false, // Not to set any content header  
-                processData: false // Not to process data  
-                ////////
-                //type: 'POST',
-                //url: url,
-                //data: formData,
-                //cache: false,
-                //contentType: false,
-                //processData: false,
+                processData: false // Not to process data 
             })
             .done(function (response) {
                 //console.log(response); 
@@ -48,7 +41,7 @@ uploadImages.forEach((fileupload, index) => {
                     let label = document.querySelector(`label[for=${fileupload.id}]`);
                     label.style.backgroundImage = `url(/img/Uploads/Photos/${response.imagename})`;
                     $('#' + fileupload.id).removeAttr("type");
-                    $('#' + fileupload.id).css("cursor", "not-allowed");
+                    //$('#' + fileupload.id).css("cursor", "not-allowed");
                     //$('#' + fileupload.id).css("value", response.imagename);
                     //document.getElementById(fileupload.id).value = response.imagename;
                     document.getElementById(fileupload.id).value = `/img/Uploads/Photos/${response.imagename}`;

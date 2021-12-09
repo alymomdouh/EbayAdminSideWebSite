@@ -36,11 +36,12 @@
             return View(result);
         }
         [HttpGet]
-        public async Task<ActionResult> Create()
+          public async Task<ActionResult> Create()
+        //public  ActionResult  Create()
         {
             //add by aly 
             var products = await _productRepository.GetProductsAsync();
-            var AllproductsResult = _mapper.Map<List<GetProductsOutputModel>>(products);
+            var AllproductsResult =   _mapper.Map<List<GetProductsOutputModel>>(products);
            // if (AllproductsResult.Count >0) { 
             if (AllproductsResult!=null)
                 {
@@ -53,16 +54,16 @@
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> Create(CreateOffersInputModel model)
         {
-            try
-            {
+            //try
+           // {
                 var Offer = _mapper.Map<Offers>(model);
                 await _OfferRepository.AddOfferAsync(Offer);
                 return RedirectToAction(nameof(Index));
-            }
-            catch
-            {
-                return View();
-            }
+           // }
+            //catch
+            //{
+            //    return View();
+            //}
         }
         [HttpGet]
         public async Task<IActionResult> Edit(int id)

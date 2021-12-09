@@ -12,7 +12,8 @@
     {
         public ProductMapper()
         {
-            CreateMap<Product, GetProductsOutputModel>();
+            CreateMap<Product, GetProductsOutputModel>().ReverseMap();
+            //GetProductsOutputModel = (Product)AutoMapper.Mapper.Map(GetProductsOutputModel, Product, typeof(GetProductsOutputModel), typeof(Product));
 
             CreateMap<CreateProductInputModel, Product>()
                 .ForMember(dest => dest.ProductId, o => o.MapFrom(s => s.ProductId))
