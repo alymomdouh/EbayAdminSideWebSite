@@ -83,6 +83,7 @@
             
                var product = _mapper.Map<Product>(model); 
             await _productRepository.AddProductAsync(product);
+            ///impsrepostory.add(model.imgspathes)
             //return View(product);
 
             return RedirectToAction("Index");
