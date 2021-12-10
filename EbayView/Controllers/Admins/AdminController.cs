@@ -18,33 +18,22 @@
         [HttpGet]
         public async Task<IActionResult> Index()
         {
-            var Admins = await _AdminRepository.GetAdminAsync();
-
-            var result = _mapper.Map<List<GetAdminsOutputModel>>(Admins);
-
+            var Admins = await _AdminRepository.GetAdminAsync(); 
+            var result = _mapper.Map<List<GetAdminsOutputModel>>(Admins); 
             return View(result);
         }
         [HttpGet]
         public async Task<ActionResult> Details(int id)
         {
             var Admin = await _AdminRepository.GetAdminDetailsAsync(id);
-            var result = _mapper.Map<GetAdminDetailsOutputModel>(Admin);
+            var result = _mapper.Map<GetAdminDetailsOutputModel>(Admin);    
             return View(result);
-        }
+        }  
         [HttpGet]
         public ActionResult Create()
         {
             return View();
         }
-
-        [HttpGet]
-        public async Task<IActionResult> Edit(int id)
-        {
-            var Admin = await _AdminRepository.GetAdminDetailsAsync(id);
-            var result = _mapper.Map<GetAdminDetailsOutputModel>(Admin);
-            return View(result);
-        }
-
         [HttpPost]
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> Create(CreateAdminInputModel model)
@@ -60,9 +49,16 @@
                 return View();
             }
         }
+        [HttpGet]
+        public async Task<IActionResult> Edit(int id)
+        {
+            var Admin = await _AdminRepository.GetAdminDetailsAsync(id);
+            var result = _mapper.Map<GetAdminDetailsOutputModel>(Admin);
+            ViewBag.selectedadmin = result;
+            return View();
+        }
         [HttpPost]
-        [ValidateAntiForgeryToken]
-
+        [ValidateAntiForgeryToken] 
         public async Task<IActionResult> Edit(CreateAdminInputModel model)
         {
             try
@@ -73,31 +69,34 @@
             }
             catch
             {
-                return View();
+                return RedirectToAction(nameof(Edit),new {id= model.AdminId });
             }
         }
         [HttpGet]
         public async Task<IActionResult> Delete(int id)
         {
+            //var Admin = await _AdminRepository.GetAdminDetailsAsync(id);
+            //var result = _mapper.Map<GetAdminDetailsOutputModel>(Admin);
+            //return View(result);
             var Admin = await _AdminRepository.GetAdminDetailsAsync(id);
-            var result = _mapper.Map<GetAdminDetailsOutputModel>(Admin);
-            return View(result);
+            await _AdminRepository.DeleteAdminAsync(Admin);
+            return RedirectToAction(nameof(Index));
         }
 
-        [HttpPost]
-        [ValidateAntiForgeryToken]
-        public async Task<IActionResult> PostDelete(int id)
-        {
-            try
-            {
-                var Admin = await _AdminRepository.GetAdminDetailsAsync(id);
-                await _AdminRepository.DeleteAdminAsync(Admin);
-                return RedirectToAction(nameof(Index));
-            }
-            catch
-            {
-                return View();
-            }
-        }
+        //[HttpPost]
+        //[ValidateAntiForgeryToken]
+        //public async Task<IActionResult> PostDelete(int id)
+        //{
+        //    try
+        //    {
+        //        var Admin = await _AdminRepository.GetAdminDetailsAsync(id);
+        //        await _AdminRepository.DeleteAdminAsync(Admin);
+        //        return RedirectToAction(nameof(Index));
+        //    }
+        //    catch
+        //    {
+        //        return View();
+        //    }
+        //}
     }
 }

@@ -14,8 +14,8 @@
         public AdminMapper()
         {
             CreateMap<CreateAdminInputModel, Admin>();
-            CreateMap<Admin, GetAdminsOutputModel>();
-            CreateMap<Shipper, GetAdminDetailsOutputModel>();
+            CreateMap<Admin, GetAdminsOutputModel>().ReverseMap();
+            CreateMap<Admin, GetAdminDetailsOutputModel>().ReverseMap();
 
         }
     }
