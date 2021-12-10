@@ -22,6 +22,7 @@ using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 using Models;
+using EbayAdminRepository.Homes;
 
 namespace EbayView
 {
@@ -50,6 +51,8 @@ namespace EbayView
             services.AddTransient<IOfferRepository, OfferRepository>();
             services.AddTransient<IAdminRepository, AdminRepository>();
             services.AddTransient<IUserRepository, UserRepository>();
+            services.AddTransient<IHomeRepository, HomeRepository>();
+
             services.AddAutoMapper(typeof(Startup));
             services.AddControllersWithViews();
 
