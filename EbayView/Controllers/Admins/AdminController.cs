@@ -1,6 +1,7 @@
 ﻿namespace EbayView.Controllers.Admins
 {
     using AutoMapper;
+    using EbayView.Models.ViewModel.Account;
     using EbayView.Models.ViewModel.admns;
     using global::Models;
     using Microsoft.AspNetCore.Mvc;
@@ -98,5 +99,39 @@
         //        return View();
         //    }
         //}
+
+        [HttpGet,ActionName("Login")]
+        public ActionResult Login()
+        {
+            return View();
+        }
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public  IActionResult  Login(PostLoginModel model)
+        {
+            try
+            {
+                // write your code here
+                return RedirectToAction(nameof(Index));
+            }
+            catch
+            {
+                return RedirectToAction(nameof(Login));
+            }
+        }
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public IActionResult register(PostLoginModel model)
+        {
+            try
+            {
+                // write your code here
+                return RedirectToAction(nameof(Index));
+            }
+            catch
+            {
+                return RedirectToAction(nameof(Login));
+            }
+        }
     }
 }
