@@ -1,4 +1,4 @@
-﻿namespace EbayView.Account
+﻿namespace EbayView.Controllers.Account
 {
     using AutoMapper;
     using EbayView.Models.ViewModel.Account;

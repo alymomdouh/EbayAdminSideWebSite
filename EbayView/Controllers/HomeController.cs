@@ -1,12 +1,10 @@
-﻿using EbayView.Models;
+﻿using AutoMapper;
+using EbayView.Models;
 using EbayView.Models.ViewModel;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Logging;
 using Models;
-using System;
-using System.Collections.Generic;
 using System.Diagnostics;
-using System.Linq;
 using System.Threading.Tasks;
 
 namespace EbayView.Controllers
@@ -15,21 +13,25 @@ namespace EbayView.Controllers
     {
         private readonly ILogger<HomeController> _logger;
         private readonly IProductRepository _productRepository;
+        private readonly IHomeRepository _homeRepository;
+        private readonly IMapper _mapper;
 
-        public HomeController(ILogger<HomeController> logger,IProductRepository productRepository)
+        public HomeController(ILogger<HomeController> logger
+            , IProductRepository productRepository, IHomeRepository homeRepository,
+            IMapper mapper)
         {
             _productRepository = productRepository;
+            _homeRepository = homeRepository;
+            _mapper = mapper;
         }
 
         [HttpGet]
- 
+
         public async Task<IActionResult> Index()
         {
-            var productCount = await _productRepository.GetProductCountAsync();
-
-            var statics = new GetStatisticsOutputModel();
-            statics.ProductCount = productCount;
-            return View(productCount);
+            var dataCount = await _homeRepository.GetDataCountAsync();
+            var result = _mapper.Map<GetStatisticsOutputModel>(dataCount);
+            return View(result);
         }
 
         public IActionResult Privacy()

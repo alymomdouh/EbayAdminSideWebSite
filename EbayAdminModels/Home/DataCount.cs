@@ -1,6 +1,6 @@
-﻿namespace EbayView.Models.ViewModel
+﻿namespace  Models
 {
-    public class GetStatisticsOutputModel
+    public class DataCount
     {
         public int ProductCount { get; set; }
         public int CategoryCount { get; set; }
@@ -13,5 +13,7 @@
         public int CartCount { get; set; }
         public int WatchListCount { get; set; }
         public int OfferCount { get; set; }
+
+
     }
 }
