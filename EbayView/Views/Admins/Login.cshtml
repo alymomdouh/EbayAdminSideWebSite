@@ -121,13 +121,13 @@ ViewBag.Title = "Login";
 	$(".SignUp").click(function(){
 	//console.log($(".SignUp"));
 	console.log("you click in sign up");
-	//$("#UserNameup")
-	//$("#Passwordup")
-	//$("#rePasswordup")
-	//$("#Emailup") 
+	console.log($("#UserNameup").val());
+	console.log($("#Passwordup").val());
+	console.log($("#rePasswordup").val());
+	console.log($("#Emailup") .val()); 
 	var url = "@Url.Action("register","Admins")"; 
-	var model = { UserName :$("#UserNameup").val, Password:$("#Passwordup").val,
-                                                  Emailup:$("#Emailup").val}; 
+	var model = { UserName :$("#UserNameup").val(), Password:$("#Passwordup").val(),
+                                                  Emailup:$("#Emailup").val()}; 
 	$.post(url, model, function(res){ 
 	   //$("#SomeDivToShowTheResult").html(res);
 	   console.log("success"+res);
@@ -136,11 +136,12 @@ ViewBag.Title = "Login";
 	$(".SignIn").click(function(){
 	//console.log($(".SignIn"));
 	console.log("you click in sign in");
-	//$("#UserNamein")
-	//$("#Passwordin")
-	//$("#checkin")
+	console.log($("#UserNamein").val());
+	console.log($("#Passwordin").val());
+	console.log($("#checkin").val()); 
+
 	var url = "@Url.Action("Login","Admins")"; 
-	var model = { UserName :$("#UserNamein").val, Password:$("#Passwordin").val,check:$("#checkin").val}; 
+	var model = { UserName :$("#UserNamein").val(), Password:$("#Passwordin").val()};//   ,check:$("#checkin").val()}; 
 	$.post(url, model, function(res){ 
 	   //$("#SomeDivToShowTheResult").html(res);
 	   console.log("success"+res);
