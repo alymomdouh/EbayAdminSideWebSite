@@ -19,9 +19,15 @@
             _UserRepository = UserRepository;
             _mapper = mapper;
         }
-        [HttpPost]
-        public async Task<IActionResult> Login(PostLoginModel model)
+        [HttpGet, ActionName("Login")]
+        public ActionResult Login()
         {
+            return View();
+        }
+        [HttpPost, ActionName("Login")]
+        [ValidateAntiForgeryToken]
+        public async Task<IActionResult> Login(PostLoginModel model)
+        {  // this all are error fix it 
             var user = await _UserRepository.GetUserAsync(model.UserName, model.Password);
             if(user is null)
             {
@@ -30,10 +36,20 @@
             HttpContext.Session.SetString("login", "login");
             return RedirectToAction("Index","Products");
         }
-        [HttpGet]
-        public async Task<IActionResult> Login()
+        [HttpPost, ActionName("register")]
+        [ValidateAntiForgeryToken]
+        public IActionResult register(PostLoginModel model)
         {
-            return View();
+            try
+            {
+                // write your code here
+                return RedirectToAction(nameof(Index));
+            }
+            catch
+            {
+                return RedirectToAction(nameof(Login));
+            }
         }
+
     }
 }

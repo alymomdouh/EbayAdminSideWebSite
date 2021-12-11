@@ -84,6 +84,7 @@
             return RedirectToAction(nameof(Index));
         }
 
+        #region //some comment
         //[HttpPost]
         //[ValidateAntiForgeryToken]
         //public async Task<IActionResult> PostDelete(int id)
@@ -100,38 +101,40 @@
         //    }
         //}
 
-        [HttpGet,ActionName("Login")]
-        public ActionResult Login()
-        {
-            return View();
-        }
-        [HttpPost]
-        [ValidateAntiForgeryToken]
-        public  IActionResult  Login(PostLoginModel model)
-        {
-            try
-            {
-                // write your code here
-                return RedirectToAction(nameof(Index));
-            }
-            catch
-            {
-                return RedirectToAction(nameof(Login));
-            }
-        }
-        [HttpPost]
-        [ValidateAntiForgeryToken]
-        public IActionResult register(PostLoginModel model)
-        {
-            try
-            {
-                // write your code here
-                return RedirectToAction(nameof(Index));
-            }
-            catch
-            {
-                return RedirectToAction(nameof(Login));
-            }
-        }
+        //[HttpGet,ActionName("Login")]
+        //public ActionResult Login()
+        //{
+        //    return View();
+        //}
+
+        //[HttpPost]
+        //[ValidateAntiForgeryToken]
+        //public  IActionResult  Login(PostLoginModel model)
+        //{
+        //    try
+        //    {
+        //        // write your code here
+        //        return RedirectToAction(nameof(Index));
+        //    }
+        //    catch
+        //    {
+        //        return RedirectToAction(nameof(Login));
+        //    }
+        //}
+        //[HttpPost]
+        //[ValidateAntiForgeryToken]
+        //public IActionResult register(PostLoginModel model)
+        //{
+        //    try
+        //    {
+        //        // write your code here
+        //        return RedirectToAction(nameof(Index));
+        //    }
+        //    catch
+        //    {
+        //        return RedirectToAction(nameof(Login));
+        //    }
+        //}
+        #endregion 
     }
 }
