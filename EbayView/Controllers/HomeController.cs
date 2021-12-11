@@ -25,20 +25,17 @@ namespace EbayView.Controllers
             _mapper = mapper;
         }
 
-        [HttpGet]
-
+        [HttpGet] 
         public async Task<IActionResult> Index()
         {
             var dataCount = await _homeRepository.GetDataCountAsync();
             var result = _mapper.Map<GetStatisticsOutputModel>(dataCount);
             return View(result);
-        }
-
+        } 
         public IActionResult Privacy()
         {
             return View();
-        }
-
+        } 
         [ResponseCache(Duration = 0, Location = ResponseCacheLocation.None, NoStore = true)]
         public IActionResult Error()
         {

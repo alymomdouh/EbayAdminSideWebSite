@@ -13,6 +13,8 @@
         public int CartCount { get; set; }
         public int WatchListCount { get; set; }
         public int OfferCount { get; set; }
+        public int OrderCount { get; set; }
+        public int CommentCount { get; set; }
 
 
     }
