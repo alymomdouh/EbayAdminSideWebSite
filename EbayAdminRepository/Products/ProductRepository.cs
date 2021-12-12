@@ -24,7 +24,7 @@
                 await _context.SaveChangesAsync();
 
             }
-            catch(Exception e)
+            catch(Exception )
             {
 
             }

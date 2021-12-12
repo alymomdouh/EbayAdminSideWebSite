@@ -23,6 +23,7 @@ using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 using Models;
 using EbayAdminRepository.Homes;
+using EbayView.Services;
 
 namespace EbayView
 {
@@ -52,6 +53,10 @@ namespace EbayView
             services.AddTransient<IAdminRepository, AdminRepository>();
             services.AddTransient<IUserRepository, UserRepository>();
             services.AddTransient<IHomeRepository, HomeRepository>();
+            // mapping between class MainSetting and appsettings.json
+            services.Configure<MailSetting>(Configuration.GetSection("EmailSettings"));
+            services.Configure<AzureStorage>(Configuration.GetSection("AzureStorage")); 
+            services.AddTransient<IMailServices, MailServices>();
 
             services.AddAutoMapper(typeof(Startup));
             services.AddControllersWithViews();

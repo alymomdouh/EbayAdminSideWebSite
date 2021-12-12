@@ -12,27 +12,26 @@ namespace Models
     {
         public void Configure(EntityTypeBuilder<User> builder)
         {
-            builder.HasKey(u => u.UserId);
-            builder.Property(u => u.UserId).ValueGeneratedOnAdd();
-            builder.Property(u => u.FistName).IsRequired().HasMaxLength(15);
-            builder.Property(u => u.LastName).IsRequired().HasMaxLength(15);
             builder.Property(u => u.UserName).IsRequired().HasMaxLength(15);
             builder.Property(u => u.Email).IsRequired().HasMaxLength(15);
-            builder.Property(u => u.Password).IsRequired().HasMaxLength(15);
-            builder.Property(u => u.Img).IsRequired().HasMaxLength(30);
-            builder.Property(u => u.Phone).HasMaxLength(15);
-            builder.Property(u => u.Country).IsRequired().HasMaxLength(20);
-            builder.Property(u => u.ActivationCode).HasMaxLength(15).HasDefaultValue("");
 
-
-
-
+            //builder.HasKey(u => u.UserId);
+            //builder.Property(u => u.UserId).ValueGeneratedOnAdd();
+            //builder.Property(u => u.FistName).IsRequired().HasMaxLength(15);
+            //builder.Property(u => u.LastName).IsRequired().HasMaxLength(15);
+            //builder.Property(u => u.UserName).IsRequired().HasMaxLength(15);
+            //builder.Property(u => u.Email).IsRequired().HasMaxLength(15);
+            //builder.Property(u => u.Password).IsRequired().HasMaxLength(15);
+            //builder.Property(u => u.Img).IsRequired().HasMaxLength(30);
+            //builder.Property(u => u.Phone).HasMaxLength(15);
+            //builder.Property(u => u.Country).IsRequired().HasMaxLength(20);
+            //builder.Property(u => u.ActivationCode).HasMaxLength(15).HasDefaultValue(""); 
 
             //public string Country { get; set; }
             //public string City { get; set; }
             //public int ZIP { get; set; }
-             
-             
+
+
 
         }
     }

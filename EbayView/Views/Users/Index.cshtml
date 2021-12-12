@@ -42,10 +42,11 @@
             <th>
                 @Html.DisplayNameFor(model => model.FullAddress)
             </th>
-            <th>
-                @Html.DisplayNameFor(model => model.ActivationCode)
-            </th>
             *@
+            <th>
+                Send Email
+            </th>
+            
             <th>Details</th> 
             <th>Delete</th> 
         </tr>
@@ -89,10 +90,10 @@
             <td>
                 @Html.DisplayFor(modelItem => item.FullAddress)
             </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.ActivationCode)
-            </td>
             *@
+            <td>
+                <a asp-action="sendemail" asp-route-id="@item.UserId" class="btn btn-primary">Send Email</a>
+            </td> 
             <td>
                 @*<a asp-action="Edit" asp-route-id="@item.UserId">Edit</a> |*@
                 <a asp-action="Details" asp-route-id="@item.UserId" class="btn btn-primary">Details</a>  

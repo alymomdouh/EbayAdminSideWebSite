@@ -14,7 +14,10 @@
         public UserMapper()
         {
             CreateMap<User, GetUsersOutputModel>();
+               CreateMap<User, GetUsersOutputModel>().ForMember(des => des.UserId, o => o.MapFrom(s => s.Id)).ReverseMap();
             CreateMap<User, GetUsserDetailsOutputModel>();
+            CreateMap<User, GetUsserDetailsOutputModel>().ForMember(des => des.UserId, o => o.MapFrom(s => s.Id))
+                                    .ForMember(des => des.Phone, o => o.MapFrom(s => s.PhoneNumber)).ReverseMap();
 
         }
     }

@@ -47,7 +47,14 @@
             {
                 return View();
             }
-        } 
+        }
+        [HttpGet]
+        public async Task<IActionResult> sendemail(int id)
+        {
+            var User = await _UserRepository.GetUserDetailsAsync(id);
+            var userinfo = _mapper.Map<GetUsserDetailsOutputModel>(User);
+            return RedirectToAction("index", "Mail", userinfo);
+        }
         //[HttpPost]
         //[ValidateAntiForgeryToken]
         //public async Task<IActionResult> PostDelete(int id)
