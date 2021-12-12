@@ -18,10 +18,8 @@
         [HttpGet]
         public async Task<IActionResult> Index()
         {
-            var Users = await _UserRepository.GetUserAsync();
-
-            var result = _mapper.Map<List<GetUsersOutputModel>>(Users);
-
+            var Users = await _UserRepository.GetUserAsync(); 
+            var result = _mapper.Map<List<GetUsersOutputModel>>(Users); 
             return View(result);
         }
         [HttpGet]
@@ -30,21 +28,15 @@
             var User = await _UserRepository.GetUserDetailsAsync(id);
             var result = _mapper.Map<GetUsserDetailsOutputModel>(User);
             return View(result);
-        }
-  
-
+        } 
         [HttpGet]
         public async Task<IActionResult> Delete(int id)
         {
-            var User = await _UserRepository.GetUserDetailsAsync(id);
-            var result = _mapper.Map<GetUsserDetailsOutputModel>(User);
-            return View(result);
-        }
+            //var User = await _UserRepository.GetUserDetailsAsync(id);
+            //var result = _mapper.Map<GetUsserDetailsOutputModel>(User);
+            //return View(result);
 
-        [HttpPost]
-        [ValidateAntiForgeryToken]
-        public async Task<IActionResult> PostDelete(int id)
-        {
+            // add by aly
             try
             {
                 var User = await _UserRepository.GetUserDetailsAsync(id);
@@ -55,6 +47,21 @@
             {
                 return View();
             }
-        }
+        } 
+        //[HttpPost]
+        //[ValidateAntiForgeryToken]
+        //public async Task<IActionResult> PostDelete(int id)
+        //{
+        //    try
+        //    {
+        //        var User = await _UserRepository.GetUserDetailsAsync(id);
+        //        await _UserRepository.DeleteUserAsync(User);
+        //        return RedirectToAction(nameof(Index));
+        //    }
+        //    catch
+        //    {
+        //        return View();
+        //    }
+        //}
     }
 }

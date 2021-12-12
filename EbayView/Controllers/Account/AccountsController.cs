@@ -1,4 +1,4 @@
-﻿namespace EbayView.Account
+﻿namespace EbayView.Controllers.Account
 {
     using AutoMapper;
     using EbayView.Models.ViewModel.Account;
@@ -19,9 +19,16 @@
             _UserRepository = UserRepository;
             _mapper = mapper;
         }
-        [HttpPost]
+        [HttpGet, ActionName("Login")]
+        public ActionResult Login()
+        { 
+            return View();
+        }
+        
+        //[ValidateAntiForgeryToken]
+        [HttpPost, ActionName("Login")] 
         public async Task<IActionResult> Login(PostLoginModel model)
-        {
+        {  // this all are error fix it 
             var user = await _UserRepository.GetUserAsync(model.UserName, model.Password);
             if(user is null)
             {
@@ -30,10 +37,21 @@
             HttpContext.Session.SetString("login", "login");
             return RedirectToAction("Index","Products");
         }
-        [HttpGet]
-        public async Task<IActionResult> Login()
+        
+        [ValidateAntiForgeryToken]
+        [HttpPost, ActionName("register")]
+        public IActionResult register(PostLoginModel model)
         {
-            return View();
+            try
+            {
+                // write your code here
+                return RedirectToAction(nameof(Index));
+            }
+            catch
+            {
+                return RedirectToAction(nameof(Login));
+            }
         }
+
     }
 }

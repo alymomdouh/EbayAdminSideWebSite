@@ -16,11 +16,8 @@
         }
         public async Task<int> AddUserAsync(User User)
         {
-            await _context.Users.AddAsync(User);
-
-            await _context.SaveChangesAsync();
-
-
+            await _context.Users.AddAsync(User); 
+            await _context.SaveChangesAsync(); 
             return User.UserId;
         }
 
