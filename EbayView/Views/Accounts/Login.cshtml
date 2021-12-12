@@ -55,8 +55,7 @@ ViewBag.Title = "Login";
 <head>
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    @*<title>Document</title>*@
+    <meta name="viewport" content="width=device-width, initial-scale=1.0"> 
     <link href="https://fonts.googleapis.com/css?family=Open+Sans:600" /> 
 	<link href="~/css/login.css" rel="stylesheet" />
 </head>
@@ -67,46 +66,50 @@ ViewBag.Title = "Login";
 		<input id="tab-2" type="radio" name="tab" class="sign-up"><label for="tab-2" class="tab">Sign Up</label>
 		<div class="login-form">
 			<div class="sign-in-htm">
-				<div class="group">
-					<label for="UserNamein" class="label">Username</label>
-					<input id="UserNamein" name="UserNamein" type="text" class="input">
-				</div>
-				<div class="group">
-					<label for="Passwordin" class="label">Password</label>
-					<input id="Passwordin" name="Passwordin" type="password" class="input" data-type="password">
-				</div>
-				<div class="group">
-					<input id="checkin" type="checkbox" class="check" checked>
-					<label for="checkin"><span class="icon"></span> Keep me Signed in</label>
-				</div>
-				<div class="group">
-					<input type="submit" class="button SignIn" value="Sign In">
-				</div>
+				<form id="SignIndata">
+						<div class="group">
+							<label for="UserNamein" class="label">Username</label>
+							<input id="UserNamein" name="UserNamein" type="text" class="input">
+						</div>
+						<div class="group">
+							<label for="Passwordin" class="label">Password</label>
+							<input id="Passwordin" name="Passwordin" type="password" class="input" data-type="password">
+						</div>
+						<div class="group">
+							<input id="checkin" type="checkbox" class="check" checked>
+							<label for="checkin"><span class="icon"></span> Keep me Signed in</label>
+						</div>
+						<div class="group">
+							<input type="submit" class="button SignIn" value="Sign In">
+						</div>
+                </form>
 				<div class="hr"></div>
 				<div class="foot-lnk">
 					<a href="#forgot">Forgot Password?s</a>
 				</div>
 			</div>
 			<div class="sign-up-htm">
-				<div class="group">
-					<label for="userup" class="label">Username</label>
-					<input id="UserNameup" name="UserNameup" type="text" class="input">
-				</div>
-				<div class="group">
-					<label for="Passwordup" class="label">Password</label>
-					<input id="Passwordup" type="Password" name="Passwordup" class="input" data-type="password">
-				</div>
-				<div class="group">
-					<label for="rePasswordup" class="label">Repeat Password</label>
-					<input id="rePasswordup" type="password" class="input" data-type="password">
-				</div>
-				<div class="group">
-					<label for="Emailup" class="label">Email Address</label>
-					<input id="Emailup" name="Emailup" type="email" class="input">
-				</div>
-				<div class="group">
-					<input type="submit" class="button SignUp" value="Sign Up">
-				</div>
+				<form id="SignUpdata">
+                       <div class="group">
+							<label for="userup" class="label">Username</label>
+							<input id="UserNameup" name="UserNameup" type="text" class="input">
+						</div>
+						<div class="group">
+							<label for="Passwordup" class="label">Password</label>
+							<input id="Passwordup" type="Password" name="Passwordup" class="input" data-type="password">
+						</div>
+						<div class="group">
+							<label for="rePasswordup" class="label">Repeat Password</label>
+							<input id="rePasswordup" type="password" class="input" data-type="password">
+						</div>
+						<div class="group">
+							<label for="Emailup" class="label">Email Address</label>
+							<input id="Emailup" name="Emailup" type="email" class="input">
+						</div>
+						<div class="group">
+							<input type="submit" class="button SignUp" value="Sign Up">
+						</div>
+                </form>
 				<div class="hr"></div>
 				<div class="foot-lnk">
 					<label for="tab-1">Already Member?</label>
@@ -116,38 +119,8 @@ ViewBag.Title = "Login";
 	</div>
 </div>
 <script src="~/lib/jquery/dist/jquery.min.js"></script>
-<script>  
-	//console.log();//https://localhost:44371/Admins/login
-	$(".SignUp").click(function(){
-	//console.log($(".SignUp"));
-	console.log("you click in sign up");
-	console.log($("#UserNameup").val());
-	console.log($("#Passwordup").val());
-	console.log($("#rePasswordup").val());
-	console.log($("#Emailup") .val()); 
-	var url = "@Url.Action("register","Admins")"; 
-	var model = { UserName :$("#UserNameup").val(), Password:$("#Passwordup").val(),
-                                                  Emailup:$("#Emailup").val()}; 
-	$.post(url, model, function(res){ 
-	   //$("#SomeDivToShowTheResult").html(res);
-	   console.log("success"+res);
-	    }); 
-	});
-	$(".SignIn").click(function(){
-	//console.log($(".SignIn"));
-	console.log("you click in sign in");
-	console.log($("#UserNamein").val());
-	console.log($("#Passwordin").val());
-	console.log($("#checkin").val()); 
-
-	var url = "@Url.Action("Login","Admins")"; 
-	var model = { UserName :$("#UserNamein").val(), Password:$("#Passwordin").val()};//   ,check:$("#checkin").val()}; 
-	$.post(url, model, function(res){ 
-	   //$("#SomeDivToShowTheResult").html(res);
-	   console.log("success"+res);
-	    }); 
-	});
-
+<script src="~/js/login.js"></script>
+<script> 
 </script>
 </body>
 </html>

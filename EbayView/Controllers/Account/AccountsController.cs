@@ -21,11 +21,12 @@
         }
         [HttpGet, ActionName("Login")]
         public ActionResult Login()
-        {
+        { 
             return View();
         }
-        [HttpPost, ActionName("Login")]
-        [ValidateAntiForgeryToken]
+        
+        //[ValidateAntiForgeryToken]
+        [HttpPost, ActionName("Login")] 
         public async Task<IActionResult> Login(PostLoginModel model)
         {  // this all are error fix it 
             var user = await _UserRepository.GetUserAsync(model.UserName, model.Password);
@@ -36,8 +37,9 @@
             HttpContext.Session.SetString("login", "login");
             return RedirectToAction("Index","Products");
         }
-        [HttpPost, ActionName("register")]
+        
         [ValidateAntiForgeryToken]
+        [HttpPost, ActionName("register")]
         public IActionResult register(PostLoginModel model)
         {
             try
