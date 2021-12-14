@@ -40,15 +40,15 @@
         [HttpGet] // finshed
         public async Task<IActionResult> Index()
         {
-            var value = HttpContext.Session.GetString("login");
+            //var value = HttpContext.Session.GetString("login");
 
-            if (!string.IsNullOrWhiteSpace(value))
-            {
+            //if (!string.IsNullOrWhiteSpace(value))
+            //{
                 var products = await _productRepository.GetProductsAsync();
                 var result = _mapper.Map<List<GetProductsOutputModel>>(products);
                 return View(result);
-            }
-            return RedirectToAction("Login","User");
+            //}
+            //return RedirectToAction("Login","User");
 
         }
         [HttpGet]// error
