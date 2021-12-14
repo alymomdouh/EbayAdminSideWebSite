@@ -17,8 +17,9 @@ namespace EbayView.Services
         private readonly MailSetting mailSettings;
         public MailServices(IOptions<MailSetting> _mailSettings)
         {
-            mailSettings = _mailSettings.Value;
+            mailSettings = _mailSettings.Value;//AzureStorage
         }
+         
         public async Task SendEmailAsync(string mailto, string subject, string body, IList<IFormFile> attachments = null)
         {
             var email = new MimeMessage

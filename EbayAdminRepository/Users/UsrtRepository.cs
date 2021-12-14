@@ -18,23 +18,24 @@
         {
             await _context.Users.AddAsync(User); 
             await _context.SaveChangesAsync(); 
-            return User.UserId;
+            return User.Id;
         }
 
         public async Task<int> DeleteUserAsync(User User)
         {
             _context.Users.Remove(User);
             await _context.SaveChangesAsync();
-            return User.UserId;
+            return User.Id;
         }
 
         public async Task<User> GetUserDetailsAsync(int value)
         {
-            return await _context.Users.Where(c => c.UserId == value).FirstOrDefaultAsync();
+            return await _context.Users.Where(c => c.Id == value).FirstOrDefaultAsync();
         }
 
         public async Task<List<User>> GetUserAsync()
         {
+            //return await _context.Users.ToListAsync();
             return await _context.Users.ToListAsync();
         }
 
@@ -42,13 +43,13 @@
         {
             _context.Update(User);
             await _context.SaveChangesAsync();
-            return User.UserId;
+            return User.Id;
         }
-
+        ///    aly add password hash and this nevor login  
         public async Task<User> GetUserAsync(string userName, string password)
         {
-            return await _context.Users
-                .Where(u => u.Password == password && u.UserName == userName).FirstOrDefaultAsync();
+            return await _context.Users // here PasswordHash
+                .Where(u => u.PasswordHash == password && u.UserName == userName).FirstOrDefaultAsync();
         }
     }
 }

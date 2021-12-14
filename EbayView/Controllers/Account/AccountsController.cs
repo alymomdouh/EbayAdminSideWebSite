@@ -32,10 +32,10 @@
             var user = await _UserRepository.GetUserAsync(model.UserName, model.Password);
             if(user is null)
             {
-                RedirectToAction("Create","User");
+                 RedirectToAction("Create","User");
             }
-            HttpContext.Session.SetString("login", "login");
-            return RedirectToAction("Index","Products");
+            //HttpContext.Session.SetString("login", "login");
+             return RedirectToAction("Index","Products");
         }
         
         [ValidateAntiForgeryToken]

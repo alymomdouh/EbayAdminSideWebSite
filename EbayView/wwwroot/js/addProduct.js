@@ -32,19 +32,21 @@ uploadImages.forEach((fileupload, index) => {
             })
             .done(function (response) {
                 //console.log(response); 
-                if (response.success) {
+                if (response.success) {  //////////////////////////////////////////////////////imgazureurl
                     //$("#ImageURL").val(response.ImageURL);
                     //$("#productImage").attr("src", response.ImageURL);
                     //alert("sucess" + response.imagename);
                     //console.log(response.imageURL);
                     //$('.product-image').removeAttribute("background-image");
                     let label = document.querySelector(`label[for=${fileupload.id}]`);
-                    label.style.backgroundImage = `url(/img/Uploads/Photos/${response.imagename})`;
+                    //label.style.backgroundImage = `url(/img/Uploads/Photos/${response.imagename})`;//////////////////forlocalstorage
+                    label.style.backgroundImage = `url(${response.imgazureurl})`;//////////////////////////////////for azure storage
                     $('#' + fileupload.id).removeAttr("type");
                     //$('#' + fileupload.id).css("cursor", "not-allowed");
                     //$('#' + fileupload.id).css("value", response.imagename);
                     //document.getElementById(fileupload.id).value = response.imagename;
-                    document.getElementById(fileupload.id).value = `/img/Uploads/Photos/${response.imagename}`;
+                     document.getElementById(fileupload.id).value = `/img/Uploads/Photos/${response.imagename}`;//////////////////forlocalstorage
+                       // document.getElementById(fileupload.id).value = `${response.imgazureurl}`;//////////////////////////////////for azure storage
                     //console.log($('#' + fileupload.id));
                     //document.getElementById("second-file-upload-btn").value
                     //$("#" + fileupload.id ).css("background-image", "url(/img/Uploads/Photos/" + response.imagename + ")");
@@ -54,7 +56,8 @@ uploadImages.forEach((fileupload, index) => {
                     //label.style.backgroundImage = `url(${response.imageURL})`;
                     let productImage = document.querySelector('.product-image');
                     //productImage.removeAttribute("background-image"); 
-                    productImage.style.backgroundImage = `url(/img/Uploads/Photos/${response.imagename})`;
+                   // productImage.style.backgroundImage = `url(/img/Uploads/Photos/${response.imagename})`;//////////////////forlocalstorage
+                    productImage.style.backgroundImage = `url(${response.imgazureurl})`;////////////////////////for azure storage
                     //$('.product-image').css('background-image', 'url(~/img/Uploads/Photos/' + response.imagename + ')');
                    //$(".product-image").css("background-image", "url(/img/Uploads/Photos/" + response.imagename + ")");
                     //$('#blah').attr('src', "~/img/Uploads/Photos/" + response.imagename);
