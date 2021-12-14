@@ -48,5 +48,10 @@
             return Admin.AdminId;
         }
 
+        public async Task<Admin> GetAdminAsync(string userName, string password)
+        {
+            return await _context.Admins.Where(a => a.UserName == userName && a.Password == password)
+                                        .FirstOrDefaultAsync();
+        }
     }
 }

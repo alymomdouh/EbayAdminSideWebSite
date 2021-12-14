@@ -1,6 +1,7 @@
 ﻿namespace EbayAdminRepository.Products
 {
     using EbayAdminDbContext;
+    using EbayAdminModels.Pagination;
     using Microsoft.EntityFrameworkCore;
     using Models;
     using System;
@@ -61,6 +62,22 @@
         public async Task<List<Product>> GetProductsAsync()
         {
             return await _context.Products.ToListAsync();
+        }
+
+        public async Task<PaginationResult> GetProductPagesAsync(PaginationSearch pagination)
+        {
+            var paginationResult = new PaginationResult();
+
+            paginationResult.RowCount = await _context.Products.CountAsync();
+            paginationResult.PageCount = (int)Math.Ceiling((double)paginationResult.RowCount / pagination.PageSize);
+            paginationResult.PageSize = pagination.PageSize;
+            paginationResult.PagNumber = pagination.PagNumber;
+
+            paginationResult.Data = await _context.Products
+                .Skip((pagination.PagNumber-1) * pagination.PageSize).
+                Take(pagination.PageSize).ToListAsync();
+
+            return paginationResult;
         }
 
         public async Task<int> UpdateProductAsync(Product product)

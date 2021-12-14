@@ -3,51 +3,53 @@
     using AutoMapper;
     using EbayView.Models.ViewModel.Account;
     using global::Models;
-    using Microsoft.AspNetCore.Http;
     using Microsoft.AspNetCore.Mvc;
     using System;
-    using System.Collections.Generic;
-    using System.Linq;
     using System.Threading.Tasks;
-   
+
     public class AccountsController : Controller
     {
-        private readonly IUserRepository _UserRepository;
+        private readonly IAdminRepository _adminRepository;
+
         private readonly IMapper _mapper;
-        public AccountsController(IUserRepository UserRepository, IMapper mapper)
+        public AccountsController( IMapper mapper, IAdminRepository adminRepository)
         {
-            _UserRepository = UserRepository;
+            _adminRepository = adminRepository;
             _mapper = mapper;
         }
         [HttpGet, ActionName("Login")]
         public ActionResult Login()
-        { 
+        {
             return View();
         }
-        
-        //[ValidateAntiForgeryToken]
-        [HttpPost, ActionName("Login")] 
+
+        [ValidateAntiForgeryToken]
+        [HttpPost, ActionName("Login")]
+
         public async Task<IActionResult> Login(PostLoginModel model)
-        {  // this all are error fix it 
-            var user = await _UserRepository.GetUserAsync(model.UserName, model.Password);
-            if(user is null)
+        { 
+            var admin = await _adminRepository.GetAdminAsync(model.UserName, model.Password);
+            if (admin is null)
             {
-                 RedirectToAction("Create","User");
+                RedirectToAction("register");
             }
-            //HttpContext.Session.SetString("login", "login");
-             return RedirectToAction("Index","Products");
+            return RedirectToAction("Index", "Products");
         }
-        
+        public IActionResult register()
+        {
+            return View();
+        }
+
         [ValidateAntiForgeryToken]
         [HttpPost, ActionName("register")]
-        public IActionResult register(PostLoginModel model)
+        public async Task<IActionResult> register(PostLoginModel model)
         {
             try
             {
-                // write your code here
+
                 return RedirectToAction(nameof(Index));
             }
-            catch
+            catch 
             {
                 return RedirectToAction(nameof(Login));
             }

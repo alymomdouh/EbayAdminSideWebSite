@@ -2,8 +2,10 @@
 {
     using AutoMapper;
     using EbayAdminModels.Category;
+    using EbayAdminModels.Pagination;
     using EbayAdminModels.SubCategory;
     using EbayView.Models;
+    using EbayView.Models.ViewModel;
     using EbayView.Models.ViewModel.Brands;
     using EbayView.Models.ViewModel.Category;
     using EbayView.Models.ViewModel.Products;
@@ -49,6 +51,17 @@
                 return View(result);
             //}
             //return RedirectToAction("Login","User");
+
+        }
+        [HttpGet]
+        public async Task<IActionResult> GetProductPages([FromQuery] GetPaginationModel model) 
+        {
+            var paging = _mapper.Map<PaginationSearch>(model);
+
+            PaginationResult products = await _productRepository.GetProductPagesAsync(paging);
+            var result = _mapper.Map<GetPaginationResult<List<GetProductsOutputModel>>>(products);
+
+            return View(result);
 
         }
         [HttpGet]// error

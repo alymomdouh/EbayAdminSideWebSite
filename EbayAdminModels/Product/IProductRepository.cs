@@ -1,5 +1,6 @@
 ﻿namespace Models
 {
+    using EbayAdminModels.Pagination;
     using System.Collections.Generic;
     using System.Threading.Tasks;
 
@@ -11,5 +12,6 @@
         Task<int> UpdateProductAsync(Product product);
         Task<int> DeleteProductAsync(Product product);
         Task<int> GetProductCountAsync();
+        Task<PaginationResult> GetProductPagesAsync(PaginationSearch pagination);
     }
 }

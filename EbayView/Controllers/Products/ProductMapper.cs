@@ -1,6 +1,8 @@
 ﻿namespace EbayView.Controllers.Products
 {
     using AutoMapper;
+    using EbayAdminModels.Pagination;
+    using EbayView.Models.ViewModel;
     using EbayView.Models.ViewModel.Products;
     using global::Models;
     using System;
@@ -12,6 +14,11 @@
     {
         public ProductMapper()
         {
+            CreateMap< GetPaginationModel, PaginationSearch>();
+
+            CreateMap<PaginationResult, GetPaginationResult<List<GetProductsOutputModel>>>();
+              
+
             CreateMap<Product, GetProductsOutputModel>().ReverseMap();
             //GetProductsOutputModel = (Product)AutoMapper.Mapper.Map(GetProductsOutputModel, Product, typeof(GetProductsOutputModel), typeof(Product));
 
