@@ -24,6 +24,9 @@ using Microsoft.Extensions.Hosting;
 using Models;
 using EbayAdminRepository.Homes;
 using EbayView.Services;
+using EbayAdminModels;
+using Microsoft.AspNetCore.Identity;
+using System;
 
 namespace EbayView
 {
@@ -58,6 +61,11 @@ namespace EbayView
             services.Configure<AzureStorage>(Configuration.GetSection("AzureStorage")); 
             services.AddTransient<IMailServices, MailServices>();
 
+            // For Identity  
+            services.AddIdentity<User, UserRoles>()
+                .AddEntityFrameworkStores<myDbContext>()
+                .AddDefaultTokenProviders();
+
             services.AddAutoMapper(typeof(Startup));
             services.AddControllersWithViews();
 
@@ -68,6 +76,13 @@ namespace EbayView
 
             services.AddControllersWithViews();
             services.AddSession();
+            //Added for session state
+            services.AddDistributedMemoryCache();
+
+            services.AddSession(options =>
+            {
+                options.IdleTimeout = TimeSpan.FromDays(1);
+            });
             services.AddDbContext<myDbContext>
                 (options =>
                 {
@@ -90,7 +105,8 @@ namespace EbayView
                 // The default HSTS value is 30 days. You may want to change this for production scenarios, see https://aka.ms/aspnetcore-hsts.
                 app.UseHsts();
             }
-
+            ///Session
+            app.UseSession();
 
             app.UseHttpsRedirection();
             app.UseSession();
@@ -104,7 +120,7 @@ namespace EbayView
                 endpoints.MapControllerRoute(
                     name: "default",
                     pattern: "{controller=Home}/{action=Index}/{id?}");
-                // Products   Home  Categories
+                // Products   Home  Categories Accounts  Login   Index
             });
         }
 

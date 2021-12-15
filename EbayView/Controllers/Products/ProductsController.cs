@@ -14,6 +14,7 @@
     using Microsoft.AspNetCore.Mvc;
     using System.Collections.Generic;
     using System.Net;
+    using System.Text.Json;
     using System.Threading.Tasks;
 
     public class ProductsController : Controller
@@ -40,13 +41,15 @@
         [HttpGet] // finshed
         public async Task<IActionResult> Index()
         {
-            //var value = HttpContext.Session.GetString("login");
-
+            //object o = TempData.Peek("admin");
+            //ViewBag.admin = (o == null ? null : JsonSerializer.Deserialize<Admin>((string)o));
+            //var value = HttpContext.Session.GetString("login"); 
             //if (!string.IsNullOrWhiteSpace(value))
             //{
-                var products = await _productRepository.GetProductsAsync();
+            var products = await _productRepository.GetProductsAsync();
                 var result = _mapper.Map<List<GetProductsOutputModel>>(products);
-                return View(result);
+           // TempData.Keep("admin");
+            return View(result);
             //}
             //return RedirectToAction("Login","User");
 

@@ -1,4 +1,6 @@
 ﻿//using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
+using EbayAdminModels;
+using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore;
 using Models;
 using System;
@@ -9,7 +11,7 @@ using System.Threading.Tasks;
 
 namespace EbayAdminDbContext
 {
-    public class myDbContext : DbContext
+    public class myDbContext : IdentityDbContext<User, UserRoles, int>//DbContext
     {
         public myDbContext(DbContextOptions<myDbContext> options)
            : base(options)

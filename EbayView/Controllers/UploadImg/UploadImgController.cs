@@ -54,7 +54,7 @@ namespace EbayView.Controllers.UploadImg
                 {
                     //string webRootPath = _hostingEnvironment.WebRootPath + "\\ProfileImages\\";
                     string  webRootPath = _hostingEnvironment.WebRootPath + "\\img\\Uploads\\Photos";
-                var rn = new Random();
+                //var rn = new Random();
                       fileName = "prodimg"+ Guid.NewGuid().ToString() + Path.GetExtension(file.FileName);
                      //fileName = "prodimg"+ rn.Next(10,10000).ToString() + Path.GetExtension(file.FileName);
                 fullPath = Path.Combine(webRootPath, fileName); 
@@ -144,6 +144,46 @@ namespace EbayView.Controllers.UploadImg
             }
             catch (Exception e) { return e.Message.ToString() ; }
              
+        }
+        
+        public async Task<IActionResult> UploadadminImg(IFormFile file)
+        {
+            var fileName = "";
+            var fullPath = "";
+            var imgazureurl = "";
+            try
+            {
+                if (file.Length > 0)
+                {
+                    fileName = "adminimg" + Guid.NewGuid().ToString() + Path.GetExtension(file.FileName);
+                    BlobServiceClient blobServiceClient = new BlobServiceClient(azureStorage.ConnectionString);
+                    BlobContainerClient containerClient;
+                    if (blobServiceClient.GetBlobContainerClient(azureStorage.ContainerName) != null)
+                    {
+                        containerClient = blobServiceClient.GetBlobContainerClient(azureStorage.ContainerName);
+                    }
+                    else
+                    {
+                        containerClient = blobServiceClient.CreateBlobContainer(azureStorage.ContainerName);
+                    }
+                    // Get a reference to a blob
+                    BlobClient blobClient = containerClient.GetBlobClient(fileName);
+                    // Upload data from the local file 
+                    var httpheaders = new BlobHttpHeaders()
+                    {
+                        ContentType = file.ContentType,
+                    };
+                    var res = await blobClient.UploadAsync(file.OpenReadStream(), httpheaders);// if given file in IFormFile
+                    if (res != null) { imgazureurl = blobClient.Uri.AbsoluteUri; }
+                    return Json(new { success = true, imgazureurl = imgazureurl, imageURL = fullPath, imagename = fileName });
+                }
+            }
+            catch (Exception ex)
+            {
+                // return Ok(fileName);
+                return Json(new { Success = false, Message = ex.Message });
+            }
+            return Json(new { Success = false, Message ="image not save to server try again" });
         }
         // not working  yet
         public static string DeleteFile(string folderName, string fileName)

@@ -1,5 +1,11 @@
 ﻿@model EbayView.Models.ViewModel.admns.CreateAdminInputModel
 
+
+@section styleslink  {   <link href="~/css/addProduct.css" rel="stylesheet"/>  
+ <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script> 
+  <script src="~/js/addadmin.js"></script> 
+} 
+
 <h4>Create New Admin</h4>
 <hr />
 <div class="row">
@@ -32,9 +38,12 @@
                 <span asp-validation-for="Password" class="text-danger"></span>
             </div>
             <div class="form-group">
-                <label asp-for="Img" class="control-label"></label>
-                <input asp-for="Img" class="form-control" />
+                <div class="upload-catalouge">
+                        <input type="file" class="form-control fileupload"  name="Img" id="file-upload-btn" hidden accept=".png, .jpg"/>
+ 				        <label for="second-file-upload-btn" class="upload-image control-label"></label>
+                  </div>
                 <span asp-validation-for="Img" class="text-danger"></span>
+
             </div>
             <div class="form-group">
                 <label asp-for="Phone" class="control-label"></label>
@@ -66,4 +75,7 @@
 <div>
     <a asp-action="Index" class="btn btn-primary">Back to List</a>
 </div>
+
+@section Scriptslink  {  @* <script src="~/js/addadmin.js"></script> *@
+}
  

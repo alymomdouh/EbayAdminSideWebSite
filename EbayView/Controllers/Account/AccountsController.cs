@@ -12,13 +12,14 @@
    
     public class AccountsController : Controller
     {
-        private readonly IUserRepository _UserRepository;
+        private readonly IAdminRepository _adminRepository;
         private readonly IMapper _mapper;
-        public AccountsController(IUserRepository UserRepository, IMapper mapper)
+        public AccountsController(IAdminRepository adminRepository, IMapper mapper)
         {
-            _UserRepository = UserRepository;
+            _adminRepository = adminRepository;
             _mapper = mapper;
         }
+        
         [HttpGet, ActionName("Login")]
         public ActionResult Login()
         { 
@@ -26,30 +27,42 @@
         }
         
         //[ValidateAntiForgeryToken]
-        [HttpPost, ActionName("Login")] 
-        public async Task<IActionResult> Login(PostLoginModel model)
+        [HttpPost,ActionName("Loginuser")] 
+        public async Task<IActionResult> Loginuser(PostLoginModel model)
         {  // this all are error fix it 
-            var user = await _UserRepository.GetUserAsync(model.UserName, model.Password);
-            if(user is null)
+            ///findadminlogin
+            var admin = await _adminRepository.findadminlogin(model.UserName, model.Password);
+            if(admin !=null)
             {
-                 RedirectToAction("Create","User");
+               
+                //ViewData["admin"] = admin;
+                //return RedirectToAction("Index", "Home");
+                TempData["admin"] = admin;
+                return RedirectToAction("Index", "Home"); 
             }
             //HttpContext.Session.SetString("login", "login");
-             return RedirectToAction("Index","Products");
-        }
-        
-        [ValidateAntiForgeryToken]
+            else
+            {
+                ViewBag.errormsg = "not found this username and password tey to register with new acount";
+                return RedirectToAction("Login", "Accounts");
+                //return Redirect("/Accounts/Login");
+            }
+        } 
+
+        //[ValidateAntiForgeryToken]
         [HttpPost, ActionName("register")]
-        public IActionResult register(PostLoginModel model)
+        public async Task<IActionResult> register(PostLoginModel model)
         {
             try
-            {
-                // write your code here
-                return RedirectToAction(nameof(Index));
+            { 
+                var admin = _mapper.Map<Admin>(model);
+                await _adminRepository.AddAdminAsync(admin);
+                ViewData["admin"] = admin;
+                return RedirectToAction("Index", "Home");
             }
             catch
             {
-                return RedirectToAction(nameof(Login));
+                return RedirectToAction("Accounts", "Login");
             }
         }
 

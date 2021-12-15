@@ -16,16 +16,18 @@ $(".SignUp").click(function () {
 	//	//$("#SomeDivToShowTheResult").html(res);
 	//	console.log("success" + res);
 	//});
-
+	//LastName   FistName
 	var formData = new FormData();
 	formData.append("UserName", $("#UserNameup").val());
 	formData.append("Password", $("#Passwordup").val());
 	formData.append("Email", $("#Emailup").val());
+	formData.append("FistName", $("#FistName").val());
+	formData.append("LastName", $("#LastName").val());
 	//formData.append("Gender", $("#Gender").val());
 	//formData.append("City", $("#City").val());
 	$.ajax({
-		url: "/Accounts/register",
 		type: 'POST',
+		url: "/Accounts/register", 
 		cache: false,
 		contentType: false,
 		processData: false,
@@ -64,8 +66,8 @@ $(".SignIn").click(function () {
 	//formData.append("Gender", $("#Gender").val());
 	//formData.append("City", $("#City").val());
 	$.ajax({
-		url: "/Accounts/Login",
 		type: 'POST',
+		url: "/Accounts/Loginuser", 
 		cache: false,
 		contentType: false,
 		processData: false,

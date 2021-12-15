@@ -10,5 +10,6 @@
         Task<Admin> GetAdminDetailsAsync(int value);
         Task<int> UpdateAdminAsync(Admin Admin);
         Task<int> DeleteAdminAsync(Admin Admin);
+         Task<Admin> findadminlogin(string email, string password);
     }
 }

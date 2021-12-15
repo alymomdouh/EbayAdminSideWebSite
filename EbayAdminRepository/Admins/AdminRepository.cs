@@ -47,6 +47,11 @@
             await _context.SaveChangesAsync();
             return Admin.AdminId;
         }
+        public async Task<Admin> findadminlogin(string email, string password)
+        {
+            return await _context.Admins 
+                .Where(a => a.Password == password && a.Email == email).FirstOrDefaultAsync();
+        }
 
     }
 }
