@@ -4,6 +4,7 @@
     using EbayAdminModels.Category;
     using EbayAdminModels.SubCategory;
     using EbayView.Models;
+    using EbayView.Models.ViewModel;
     using EbayView.Models.ViewModel.Brands;
     using EbayView.Models.ViewModel.Category;
     using EbayView.Models.ViewModel.Products;
@@ -13,9 +14,11 @@
     using Microsoft.AspNetCore.Http;
     using Microsoft.AspNetCore.Mvc;
     using System.Collections.Generic;
+    using System.Linq;
     using System.Net;
     using System.Text.Json;
     using System.Threading.Tasks;
+    using EbayView.Views.Shared.Components.SearchBar;
 
     public class ProductsController : Controller
     {
@@ -39,17 +42,43 @@
         }
 
         [HttpGet] // finshed
-        public async Task<IActionResult> Index()
+        public async Task<IActionResult> Index(string SearchText = "",int pg=1 )
         {
             //object o = TempData.Peek("admin");
             //ViewBag.admin = (o == null ? null : JsonSerializer.Deserialize<Admin>((string)o));
             //var value = HttpContext.Session.GetString("login"); 
             //if (!string.IsNullOrWhiteSpace(value))
             //{
-            var products = await _productRepository.GetProductsAsync();
+            // for search
+            List<Product> products;
+            if (SearchText!=null&&SearchText!="")
+            {
+                products = await _productRepository.GetProductsAsyncWithSearch(SearchText);
+            }
+            else
+            {
+                products = await _productRepository.GetProductsAsync();
+            }
+            //var products = await _productRepository.GetProductsAsync();
                 var result = _mapper.Map<List<GetProductsOutputModel>>(products);
-           // TempData.Keep("admin");
-            return View(result);
+
+            // merage 
+            // SPager searchpager = new SPager() { Action = "Index", Controller = "Products", SearchText = SearchText };
+            // ViewBag.SearchPager = searchpager;
+            // TempData.Keep("admin");
+            // for Pagination
+             const int pagesize = 4;
+             if (pg < 1) { pg = 1; }
+             int recsCount = result.Count();
+             //var pager = new Pager(recsCount,pg,pagesize);
+             int recSkip = (pg - 1) * pagesize;
+             var data = result.Skip(recSkip).Take(pagesize).ToList();
+            SPager searchpager = new SPager(recsCount, pg, pagesize) {Action="Index",Controller="Products",SearchText=SearchText };
+            ViewBag.SearchPager = searchpager;
+             //this.ViewBag.Pager = pager;
+            return View(data);
+            // to merage search and pager 
+            //return View(result);
             //}
             //return RedirectToAction("Login","User");
 
@@ -76,16 +105,9 @@
 
             var stocks = await _stockRepository.GetStockAsync();
             var AllstocksResult = _mapper.Map<List<GetStocksOutputModel>>(stocks);
-            ViewBag.AvailableStock = AllstocksResult;
-
-            //CreateProductInputModel metaData = new CreateProductInputModel(); 
-            //metaData.AvailableCategories = AllcategoriesResult;
-            //metaData.AvailableSubCategories = AllsubcategoriesResult;
-            //metaData.AvailableBrands = AllbrandsResult;
-            //metaData.AvailableStock = AllstocksResult;
-            //return View(metaData);
+            ViewBag.AvailableStock = AllstocksResult; 
             return View();
-        } 
+        }  
         [HttpPost]
         [ValidateAntiForgeryToken] 
         public async Task<IActionResult> Create(CreateProductInputModel model)
@@ -122,14 +144,31 @@
             {
                 return  BadRequest(HttpStatusCode.BadRequest);
             }
-            var product = await _productRepository.GetProductDetailsAsync(id.Value);
-
+            var product = await _productRepository.GetProductDetailsAsync(id.Value); 
             if (product == null)
             {
                 return StatusCode((int)HttpStatusCode.NotFound);
             }
             var result = _mapper.Map<GetProductDetailsOutputModel>(product);
-            return View(result);
+            ViewBag.selectProduct = result;
+
+            var categories = await _categoryRepository.GetCategoriesAsync();
+            var AllcategoriesResult = _mapper.Map<List<GetCategoriesOutputModel>>(categories);
+            ViewBag.AvailableCategories = AllcategoriesResult;
+
+            var subcategories = await _subcategoryRepository.GetSubCategoriesAsync();
+            var AllsubcategoriesResult = _mapper.Map<List<GetSubCategoriesOutputModel>>(subcategories);
+            ViewBag.AvailableSubCategories = AllsubcategoriesResult;
+
+            var brands = await _brandRepository.GetBrandsAsync();
+            var AllbrandsResult = _mapper.Map<List<GetBrandsOutputModel>>(brands);
+            ViewBag.AvailableBrands = AllbrandsResult;
+
+            var stocks = await _stockRepository.GetStockAsync();
+            var AllstocksResult = _mapper.Map<List<GetStocksOutputModel>>(stocks);
+            ViewBag.AvailableStock = AllstocksResult;
+
+            return View();
         }
         [HttpPost]
         [ValidateAntiForgeryToken]

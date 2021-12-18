@@ -24,8 +24,7 @@ namespace EbayView.Models.ViewModel.Account
 
         public string UserName { get; set; } 
         public string FistName { get; set; } = "";
-        public string LastName { get; set; } = "";
-
+        public string LastName { get; set; } = ""; 
         public bool IsAgree { get; set; }
     }
 }

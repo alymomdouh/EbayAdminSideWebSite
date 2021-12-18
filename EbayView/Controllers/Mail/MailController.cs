@@ -42,9 +42,9 @@ namespace EbayView.Controllers.Mail
                 await mailServices.SendEmailAsync(request.ToEmail, request.Subject, request.Body, request.Attachments);
                 return Ok();
             }
-            catch (Exception ex)
+            catch (Exception )
             {
-                throw; 
+                throw;
             } 
         }
         //[HttpPost("welcome")]

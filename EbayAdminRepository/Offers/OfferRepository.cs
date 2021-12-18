@@ -38,12 +38,12 @@
 
         public async Task<Offers> GetOfferDetailsAsync(int value)
         {
-            return await _context.Offers.Where(c => c.OfferId == value).FirstOrDefaultAsync();
+            return await _context.Offers.Where(c => c.OfferId == value).Include(s=>s.product).Include(s => s.admin).FirstOrDefaultAsync();
         }
 
         public async Task<List<Offers>> GetOffersAsync()
         {
-            return await _context.Offers.ToListAsync();
+            return await _context.Offers.Include(s => s.product).ToListAsync();
         }
 
 

@@ -1,5 +1,7 @@
 ﻿@model EbayView.Models.ViewModel.Products.CreateProductInputModel
- 
+@using EbayView.Services
+@using Microsoft.AspNetCore.Http 
+@inject Microsoft.AspNetCore.Http.IHttpContextAccessor HttpContextAccessor
 @section styleslink  {   <link href="~/css/addProduct.css" rel="stylesheet"/> 
  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
 
@@ -48,13 +50,13 @@
 				</div>
 				<div class="row form-group">
 					<div class="col-6 bp-2">
-						<label asp-for="AdminId" class="control-label"></label>    @*<label> Select Admin Name Category</label>*@
-						<input asp-for="AdminId" id="AdminId" class="form-control" />
-						@*<select asp-for="AdminId" class="form-control" asp-items="@Model."></select>*@ 
-						 
+						<label asp-for="AdminId" class="control-label">Admin Name</label>    @*<label> Select Admin Name Category</label>*@
+						<input asp-for="AdminId" id="AdminId" hidden class="form-control" value="@HttpContextAccessor.HttpContext.Session.GetObjectFromJson("admin").AdminId" />
+						<input type="text" readonly class="form-control" value="@HttpContextAccessor.HttpContext.Session.GetObjectFromJson("admin").FistName  @HttpContextAccessor.HttpContext.Session.GetObjectFromJson("admin").LastName" />
+						@*<select asp-for="AdminId" class="form-control" asp-items="@Model."></select>*@  
 					</div>
 					<div class="col-6 bp-2">
-						<label asp-for="CatId" class="control-label"></label>
+						<label asp-for="CatId" class="control-label">Select Category Name</label>
 						@*<select asp-for="CatId" class="form-control" asp-items="ViewBag."></select>*@
 						<select class="form-control" name="CatId">
 							@foreach (var category in ViewBag.AvailableCategories)
@@ -82,7 +84,8 @@
 								<option value="@Stock.StockId">@Stock.StockName</option>
 							}
 						</select>					
-					</div> 
+					</div>
+				</div> 
 				<div class="row form-group">
 					<label asp-for="SubCatId" class="control-label">Select SubCategory Name</label>
 					<select class="form-control" name="SubCatId">
@@ -90,13 +93,14 @@
 							{
 								<option value="@SubCategory.SubCategoryId">@SubCategory.SubCatName</option>
 							}
-					</select>				</div> 
+					</select>				
+				</div> 
 			</div>
 			@*<div class="col-md-2"></div>*@
 			<div class="row">
 				<div class="col-12">
 					<div class="product-info">
-						 <div class="product-image">
+						 <div class="product-image" style="background-size: cover;border: 1px solid red;background-repeat: no-repeat;">
 							<p class="text">
 								 @*<h4>product image </h4>*@
 								@*<img id="blah" src="#" />*@

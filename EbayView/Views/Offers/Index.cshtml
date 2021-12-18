@@ -45,7 +45,7 @@
                 @Html.DisplayFor(modelItem => item.NewPrice)
             </td>
             <td>
-                @Html.DisplayFor(modelItem => item.Precentage)
+                @Html.DisplayFor(modelItem => item.Precentage) %
             </td>
             <td>
                 @Html.DisplayFor(modelItem => item.StartDate)
@@ -54,10 +54,10 @@
                 @Html.DisplayFor(modelItem => item.EndDate)
             </td>
              <td> 
-                <a asp-action="Edit" asp-route-id="@item.OfferId">Edit</a>
+                <a asp-action="Edit" asp-route-id="@item.OfferId" class="btn btn-primary">Edit</a>
             </td> 
             <td> 
-                <a asp-action="Delete" asp-route-id="@item.OfferId">Delete</a>
+                <a asp-action="Delete" asp-route-id="@item.OfferId" class="btn btn-primary">Delete</a>
             </td>
             @{i++ ;}
         </tr>

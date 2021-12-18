@@ -130,70 +130,7 @@
 <div>
     <h4>Admin Details</h4>
     <hr />
-    @*  
-    <dl class="row">
-        <dt class = "col-sm-2">
-            @Html.DisplayNameFor(model => model.FistName)
-        </dt>
-        <dd class = "col-sm-10">
-            @Html.DisplayFor(model => model.FistName)
-        </dd>
-        <dt class = "col-sm-2">
-            @Html.DisplayNameFor(model => model.LastName)
-        </dt>
-        <dd class = "col-sm-10">
-            @Html.DisplayFor(model => model.LastName)
-        </dd>
-        <dt class = "col-sm-2">
-            @Html.DisplayNameFor(model => model.UserName)
-        </dt>
-        <dd class = "col-sm-10">
-            @Html.DisplayFor(model => model.UserName)
-        </dd>
-        <dt class = "col-sm-2">
-            @Html.DisplayNameFor(model => model.Email)
-        </dt>
-        <dd class = "col-sm-10">
-            @Html.DisplayFor(model => model.Email)
-        </dd>
-        @*<dt class = "col-sm-2">
-            @Html.DisplayNameFor(model => model.Password)
-        </dt>
-        <dd class = "col-sm-10">
-            @Html.DisplayFor(model => model.Password)
-        </dd>*@  @*   
-        <dt class = "col-sm-2">
-            @Html.DisplayNameFor(model => model.Img)
-        </dt>
-        <dd class = "col-sm-10">
-            @Html.DisplayFor(model => model.Img)
-        </dd>
-        <dt class = "col-sm-2">
-            @Html.DisplayNameFor(model => model.Phone)
-        </dt>
-        <dd class = "col-sm-10">
-            @Html.DisplayFor(model => model.Phone)
-        </dd>
-        <dt class = "col-sm-2">
-            @Html.DisplayNameFor(model => model.BirthDate)
-        </dt>
-        <dd class = "col-sm-10">
-            @Html.DisplayFor(model => model.BirthDate)
-        </dd>
-        <dt class = "col-sm-2">
-            @Html.DisplayNameFor(model => model.HireDate)
-        </dt>
-        <dd class = "col-sm-10">
-            @Html.DisplayFor(model => model.HireDate)
-        </dd>
-        <dt class = "col-sm-2">
-            @Html.DisplayNameFor(model => model.Salary)
-        </dt>
-        <dd class = "col-sm-10">
-            @Html.DisplayFor(model => model.Salary)
-        </dd>
-    </dl>
-    *@
+     
      <section class="section about-section gray-bg" id="about">
             <div class="container">
                 <div class="row align-items-center flex-row-reverse">
@@ -228,17 +165,19 @@
                                     </div>
                                 </div> 
                             </div> 
-                            @*<div class="row about-list col-md-12">
-                                <div class="media w-100">
-                                <label class="w-50">Full Address Details</label>
-                                <p>@Model.FullAddress</p>
-                                </div>
-                            </div>*@
+                             
                         </div>
                     </div>
                     <div class="col-lg-6">
                         <div class="about-avatar">
-                            <img src="https://bootdey.com/img/Content/avatar/avatar7.png" title="" alt=""> 
+                        @if (@Model.Img!=null)
+                        {
+                            <img src="@Model.Img" title="" alt="" style="width:300px;height300px;"> 
+                        }
+                        else
+                        {
+                            <img src="https://bootdey.com/img/Content/avatar/avatar7.png" title="" alt="" style="width:300px;height300px;"> 
+                        }  
                             @*<img src="@Model.Img" >*@
                         </div>
                     </div>

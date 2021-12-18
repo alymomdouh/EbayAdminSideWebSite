@@ -62,7 +62,10 @@
         {
             return await _context.Products.ToListAsync();
         }
-
+        public async Task<List<Product>> GetProductsAsyncWithSearch(string SearchText)
+        {
+            return await _context.Products.Where(c => c.Name.Contains(SearchText)).ToListAsync();
+        }
         public async Task<int> UpdateProductAsync(Product product)
         {
             _context.Update(product);

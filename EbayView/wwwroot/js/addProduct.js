@@ -45,8 +45,8 @@ uploadImages.forEach((fileupload, index) => {
                     //$('#' + fileupload.id).css("cursor", "not-allowed");
                     //$('#' + fileupload.id).css("value", response.imagename);
                     //document.getElementById(fileupload.id).value = response.imagename;
-                     document.getElementById(fileupload.id).value = `/img/Uploads/Photos/${response.imagename}`;//////////////////forlocalstorage
-                       // document.getElementById(fileupload.id).value = `${response.imgazureurl}`;//////////////////////////////////for azure storage
+                    document.getElementById(fileupload.id).value = `/img/Uploads/Photos/${response.imagename}`;//////////////////forlocalstorage
+                    // document.getElementById(fileupload.id).value = `${response.imgazureurl}`;//////////////////////////////////for azure storage
                     //console.log($('#' + fileupload.id));
                     //document.getElementById("second-file-upload-btn").value
                     //$("#" + fileupload.id ).css("background-image", "url(/img/Uploads/Photos/" + response.imagename + ")");
@@ -56,10 +56,10 @@ uploadImages.forEach((fileupload, index) => {
                     //label.style.backgroundImage = `url(${response.imageURL})`;
                     let productImage = document.querySelector('.product-image');
                     //productImage.removeAttribute("background-image"); 
-                   // productImage.style.backgroundImage = `url(/img/Uploads/Photos/${response.imagename})`;//////////////////forlocalstorage
+                    // productImage.style.backgroundImage = `url(/img/Uploads/Photos/${response.imagename})`;//////////////////forlocalstorage
                     productImage.style.backgroundImage = `url(${response.imgazureurl})`;////////////////////////for azure storage
                     //$('.product-image').css('background-image', 'url(~/img/Uploads/Photos/' + response.imagename + ')');
-                   //$(".product-image").css("background-image", "url(/img/Uploads/Photos/" + response.imagename + ")");
+                    //$(".product-image").css("background-image", "url(/img/Uploads/Photos/" + response.imagename + ")");
                     //$('#blah').attr('src', "~/img/Uploads/Photos/" + response.imagename);
                     //$('#blah').attr('src', "~/img/Uploads/Photos/" + response.imagename);
                     $(".product-image").css("background-size", "contain");
@@ -70,10 +70,12 @@ uploadImages.forEach((fileupload, index) => {
                     //productImage.style.backgroundImage = `url(${response.imageURL})`;
                     imagePaths[index] = response.imageURL;
                     console.log(imagePaths[index]);
+                } else {
+                    alert("FAIL in online server upload ");
                 }
             })
             .fail(function (XMLHttpRequest, textStatus, errorThrown) {
-                alert("FAIL");
+                alert("FAIL ofline server inserver ");
             });
     });
      

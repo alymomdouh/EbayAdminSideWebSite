@@ -48,4 +48,16 @@
     <Folder Include="wwwroot\ProfileImages\" />
   </ItemGroup>
 
+  <ItemGroup>
+    <Content Update="Views\Shared\Components\SearchBar\Default.cshtml">
+      <ExcludeFromSingleFile>true</ExcludeFromSingleFile>
+      <CopyToPublishDirectory>PreserveNewest</CopyToPublishDirectory>
+    </Content>
+    <Content Update="Views\_ViewImports.cshtml">
+      <ExcludeFromSingleFile>true</ExcludeFromSingleFile>
+      <CopyToPublishDirectory>PreserveNewest</CopyToPublishDirectory>
+    </Content>
+  </ItemGroup>
+ 
+  
 </Project>

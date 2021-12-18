@@ -1,4 +1,7 @@
-﻿@model EbayView.Models.ViewModel.Offers.CreateOffersInputModel
+﻿@using EbayView.Services
+@using Microsoft.AspNetCore.Http 
+@inject Microsoft.AspNetCore.Http.IHttpContextAccessor HttpContextAccessor
+@model EbayView.Models.ViewModel.Offers.CreateOffersInputModel
 
 <h4> Create New Offer</h4>
 <hr />
@@ -8,7 +11,7 @@
         <form asp-action="Create">
             <div asp-validation-summary="ModelOnly" class="text-danger"></div>
             <div class="form-group">
-                <label asp-for="ProductId" class="control-label"></label> 
+                <label asp-for="ProductId" class="control-label">Select Product Name</label> 
 				<select class="form-control" name="ProductId" onchange="changeoldprice(event)">
 					@foreach (var product in ViewBag.AvailableProducts )
 					{
@@ -20,9 +23,10 @@
                  onchange="changeoldprice(@ViewBag.AvailableProducts.Price)"  asp-items="@ViewBag.AvailableProducts.Name"></select>*@
             </div>
             <div class="form-group">
-                <label asp-for="AdminId" class="control-label"></label>
+                <label asp-for="AdminId" class="control-label">AdminName</label>
                 @*<select asp-for="AdminId" class ="form-control" asp-items="ViewBag.AdminId"></select>*@
-                <input asp-for="AdminId" class="form-control" />
+               <input type="text" readonly value="@HttpContextAccessor.HttpContext.Session.GetObjectFromJson("admin").FistName  @HttpContextAccessor.HttpContext.Session.GetObjectFromJson("admin").LastName" class="form-control"/>
+                <input asp-for="AdminId" hidden value="@HttpContextAccessor.HttpContext.Session.GetObjectFromJson("admin").AdminId" class="form-control" readonly  />
             </div> 
             <div class="form-group">
                 <label asp-for="NewPrice" class="control-label"></label>
@@ -35,18 +39,18 @@
                 <span asp-validation-for="OldPrice" class="text-danger"></span>
             </div>
             <div class="form-group">
-                <label asp-for="Precentage" class="control-label"></label>
+                <label asp-for="Precentage" class="control-label">Precentage in % </label>
                 <input asp-for="Precentage" class="form-control" />
                 <span asp-validation-for="Precentage" class="text-danger"></span>
             </div>
             <div class="form-group">
                 <label asp-for="StartDate" class="control-label"></label>
-                <input asp-for="StartDate" id="StartDate" type="datetime-local" min="2021-12-10T08:30" class="form-control" />
+                <input asp-for="StartDate" id="StartDate" type="datetime-local" asp-format="{0:yyyy-MM-ddTHH:mm}" min="2021-12-10T08:30" class="form-control" />
                 <span asp-validation-for="StartDate" class="text-danger"></span>
             </div>
             <div class="form-group">
                 <label asp-for="EndDate" class="control-label"></label>
-                <input asp-for="EndDate" id=""EndDate" class="form-control" />
+                <input asp-for="EndDate" id=""EndDate" class="form-control" asp-format="{0:yyyy-MM-ddTHH:mm}" />
                 <span asp-validation-for="EndDate" class="text-danger"></span>
             </div>
             <div class="form-group">

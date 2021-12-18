@@ -1,4 +1,6 @@
-﻿namespace EbayView.Models.ViewModel.Products
+﻿using System.ComponentModel.DataAnnotations;
+
+namespace EbayView.Models.ViewModel.Products
 {
     public class GetProductDetailsOutputModel  //Details
     {
@@ -7,8 +9,12 @@
         public float Price { get; set; }
         public int Quantity { get; set; }
         public string Description { get; set; }
-        int AdminId { get; set; }
-        public string AdminName { get; set; }
+        public int AdminId { get; set; }
+        public string AdminName { get; set; } 
+         public int CatId { get; set; }
+         public int BrandId { get; set; }
+         public int StockId { get; set; } 
+        public int SubCatId { get; set; } 
 
         // add more
         public string categoryName { get; set; }

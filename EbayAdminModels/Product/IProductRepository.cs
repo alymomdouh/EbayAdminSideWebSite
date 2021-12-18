@@ -7,6 +7,7 @@
     {
         Task<int> AddProductAsync(Product product);
         Task<List<Product>> GetProductsAsync();
+        Task<List<Product>> GetProductsAsyncWithSearch(string SearchText);
         Task<Product> GetProductDetailsAsync(int value);
         Task<int> UpdateProductAsync(Product product);
         Task<int> DeleteProductAsync(Product product);

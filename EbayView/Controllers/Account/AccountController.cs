@@ -5,6 +5,7 @@ using Microsoft.AspNetCore.Mvc;
 using Models;
 using Newtonsoft.Json;
 using System;
+using System.Web;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
@@ -83,11 +84,29 @@ namespace EbayView.Controllers
                     // var result = await signInManager.PasswordSignInAsync(model.Email, model.Password, model.RememberMe, false);
                     var admin = await _adminRepository.findadminlogin(model.Email, model.Password);
                     if (admin != null)
-                    {
-
+                    { 
+                        /*
                         //ViewData["admin"] = admin;
                         //return RedirectToAction("Index", "Home");
                         //TempData["admin"] = JsonConvert.SerializeObject(admin);
+                        //if (model.RememberMe)
+                        //{
+                            //encrypt the ticket and add it to a cookie
+                            //HttpCookie cookie = new HttpCookie(FormsAuthentication.FormsCookieName, FormsAuthentication.Encrypt(authTicket));
+                            //Response.Cookies.Add(cookie); 
+                            //int timeout = model.RememberMe ? 525600 : 30; // Timeout in minutes, 525600 = 365 days.
+                            //var ticket = new FormsAuthenticationTicket(model.Email, model.RememberMe, timeout);
+                            //string encrypted = FormsAuthentication.Encrypt(ticket);
+                            //var cookie = new Microsoft.AspNetCore.Http.HttpResponse.Cookies.Append(FormsAuthentication.FormsCookieName, encrypted);
+                            //cookie.Expires = System.DateTime.Now.AddMinutes(timeout);// Not my line
+                            /cookie.HttpOnly = true; // cookie not available in javascript.
+                            Response.Cookies.Add(cookie);
+                        }
+                        else if(!model.RememberMe)
+                        {
+
+                        }
+                        */
                         HttpContext.Session.SetObjectAsJson("admin", admin);
                         return RedirectToAction("Index", "Home");
                     } 

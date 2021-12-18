@@ -35,13 +35,16 @@
                     <span asp-validation-for="Password" class="text-danger"></span>
                 </div>
                 <div class="row">
-                    <div class="col-xs-8 p-t-5">
-                        <input type="checkbox" asp-for="RememberMe" id="rememberme" class="filled-in chk-col-pink">
-                        <label for="rememberme">Remember Me</label>
-                    </div>
+                   <div class="col-xs-8 p-t-5">
+                       @* 
+                        <input type="checkbox" asp-for="RememberMe" id="RememberMe" hidden class="filled-in chk-col-pink">
+                        <label for="RememberMe" hidden>Remember Me</label>
+                        <span asp-validation-for="RememberMe" class="text-danger"></span>
+                        *@
+                    </div> 
                     <div class="col-xs-4">
-                        @*<button class="btn btn-block bg-pink waves-effect" type="submit">SIGN IN</button>*@
-                        <input type="submit" value="SIGN IN" class="btn btn-block btn-lg bg-pink waves-effect" />
+@*                         <button class="btn btn-block bg-pink waves-effect" type="submit">SIGN IN</button> 
+*@                        <input type="submit" value="SIGN IN" class="btn btn-block btn-lg bg-pink waves-effect" />
                     </div>
                 </div>
                 <div class="row m-t-15 m-b--20">

@@ -14,7 +14,7 @@ namespace EbayView.Models.ViewModel.Account
         public string Email { get; set; }
         [Required(ErrorMessage = "Password is required")]
         [MinLength(5, ErrorMessage = "Min Length 5 characters")]
-        public string Password { get; set; }
-        public bool RememberMe { get; set; }
+        public string Password { get; set; } 
+        public bool RememberMe { get; set; } = true;
     }
 }

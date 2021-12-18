@@ -92,7 +92,8 @@
                                     }
                                     else
                                     {
-                                        <img width="42" class="rounded-circle" src="~/img/defaultuserimg.png" style="width: 80px;"  alt="admin image">
+                                        @*<img width="42" class="rounded-circle" src="~/img/defaultuserimg.png" style="width: 80px;"  alt="admin image">*@
+                                        <img width="42" class="rounded-circle" src=" https://www.bootdey.com/img/Content/avatar/avatar7.png" style="width: 80px;"  alt="admin image">
                                     }    
                                             <i class="fa fa-angle-down ml-2 opacity-8"></i>
                                         </a>
@@ -112,7 +113,7 @@
                                                                     }
                                                                     else
                                                                     {
-                                                                        <img width="42" class="rounded-circle" src="~/img/defaultuserimg.png" style="width: 80px;"  alt="admin image">
+                                                                        <img width="42" class="rounded-circle" src=" https://www.bootdey.com/img/Content/avatar/avatar7.png" style="width: 80px;"  alt="admin image">
                                                                     }  
                                                                 </div>
                                                                 <div class="widget-content-left">
@@ -153,7 +154,7 @@
                                 <div class="sb-nav-link-icon"><i class="fas fa-tachometer-alt"></i></div>
                                 Dashboard
                             </a>
-                            @*<div class="sb-sidenav-menu-heading">Interface</div> *@ 
+                            @*<div class="sb-sidenav-menu-heading">Interface</div>   
                             <a class="nav-link collapsed" href="#" data-bs-toggle="collapse" data-bs-target="#collapseAdmins" aria-expanded="false" aria-controls="collapseAdmins">
                                 <div class="sb-nav-link-icon"><i class="fas fa-columns"></i></div>
                                 Admins
@@ -185,7 +186,24 @@
                                     <a class="nav-link" href="@Url.Action("Index", "Categories")">view all Categories</a>
                                     <a class="nav-link" href="@Url.Action("Create", "Categories")">create Categories</a> 
                                  </nav>
-                            </div> 
+                            </div>
+                            *@
+                            <a class="nav-link" href="@Url.Action("Index", "Admins")" aria-expanded="false">
+                                <div class="sb-nav-link-icon"><i class="fas fa-book-open"></i></div>
+                                Admins
+                                <div class="sb-sidenav-collapse-arrow"> </div>
+                            </a>
+                             <a class="nav-link" href="@Url.Action("Index", "Users")" aria-expanded="false">
+                                <div class="sb-nav-link-icon"><i class="fas fa-book-open"></i></div>
+                                Users
+                                <div class="sb-sidenav-collapse-arrow"> </div>
+                            </a>
+                             <a class="nav-link" href="@Url.Action("Index", "Categories")" aria-expanded="false">
+                                <div class="sb-nav-link-icon"><i class="fas fa-book-open"></i></div>
+                                Categories
+                                <div class="sb-sidenav-collapse-arrow"> </div>
+                            </a>
+                            @*
                             <a class="nav-link collapsed" href="#" data-bs-toggle="collapse" data-bs-target="#collapseProducts" aria-expanded="false" aria-controls="collapseProducts">
                                 <div class="sb-nav-link-icon"><i class="fas fa-columns"></i></div>
                                 Products
@@ -195,14 +213,13 @@
                                 <nav class="sb-sidenav-menu-nested nav">
                                     <a class="nav-link" href="@Url.Action("Index", "Products")">view all products</a>
                                     <a class="nav-link" href="@Url.Action("Create", "Products")">create product</a> 
-                                    @*<a class="nav-link" href="/Products/index">view all products</a>
-                                    <a class="nav-link" href="/Products/create">create product</a>*@
                                 </nav>
-                            </div> 
-                            @*<a class="nav-link collapsed" href="@Url.Action("Index", "Categories")">
+                            </div>*@ 
+                            <a class="nav-link" href="@Url.Action("Index", "Products")" aria-expanded="false">
                                 <div class="sb-nav-link-icon"><i class="fas fa-book-open"></i></div>
-                                Categories  
-                            </a>*@
+                                Products
+                                <div class="sb-sidenav-collapse-arrow"> </div>
+                            </a>
                             <a class="nav-link" href="@Url.Action("Index", "Offers")" aria-expanded="false">
                                 <div class="sb-nav-link-icon"><i class="fas fa-book-open"></i></div>
                                 Offers
@@ -233,6 +250,7 @@
                                 Comment
                                 <div class="sb-sidenav-collapse-arrow">  </div>
                             </a>  
+                            @*
                             <a class="nav-link collapsed" href="#" data-bs-toggle="collapse" data-bs-target="#collapsePages" aria-expanded="false" aria-controls="collapsePages">
                                 <div class="sb-nav-link-icon"><i class="fas fa-book-open"></i></div>
                                 Pages
@@ -251,7 +269,7 @@
                                             <a class="nav-link" href="password.html">Forgot Password</a>
                                         </nav>
                                     </div>
-                                   @* <a class="nav-link collapsed" href="#" data-bs-toggle="collapse" data-bs-target="#pagesCollapseError" aria-expanded="false" aria-controls="pagesCollapseError">
+                                     <a class="nav-link collapsed" href="#" data-bs-toggle="collapse" data-bs-target="#pagesCollapseError" aria-expanded="false" aria-controls="pagesCollapseError">
                                         Error
                                         <div class="sb-sidenav-collapse-arrow"><i class="fas fa-angle-down"></i></div>
                                     </a>
@@ -261,10 +279,10 @@
                                             <a class="nav-link" href="404.html">404 Page</a>
                                             <a class="nav-link" href="500.html">500 Page</a>
                                         </nav>
-                                    </div>*@
+                                    </div>
                                 </nav>
                             </div>
-                            @*<div class="sb-sidenav-menu-heading">Addons</div>
+                            <div class="sb-sidenav-menu-heading">Addons</div>
                             <a class="nav-link" href="charts.html">
                                 <div class="sb-nav-link-icon"><i class="fas fa-chart-area"></i></div>
                                 Charts
