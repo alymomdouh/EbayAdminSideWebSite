@@ -19,6 +19,7 @@
     using System.Text.Json;
     using System.Threading.Tasks;
     using EbayView.Views.Shared.Components.SearchBar;
+    using EbayView.Services;
 
     public class ProductsController : Controller
     {
@@ -41,8 +42,8 @@
 
         }
 
-        [HttpGet] // finshed
-        public async Task<IActionResult> Index(string SearchText = "",int pg=1 )
+        //[HttpGet] // finshed
+        public async Task<IActionResult> Index(string SearchText = "",int pg=1, string sortExpression = "")
         {
             //object o = TempData.Peek("admin");
             //ViewBag.admin = (o == null ? null : JsonSerializer.Deserialize<Admin>((string)o));
@@ -60,14 +61,32 @@
                 products = await _productRepository.GetProductsAsync();
             }
             //var products = await _productRepository.GetProductsAsync();
-                var result = _mapper.Map<List<GetProductsOutputModel>>(products);
+            
+
+            ////make sort by column Name
+            // SortModel sortModel = applySort(sortExpression);
+            SortModel sortModel = new SortModel();
+            sortModel.AddColumn("Name", true);
+            sortModel.AddColumn("Quantity");
+            sortModel.AddColumn("Price");
+            sortModel.applySort(sortExpression);
+            ViewData["SortModel"] = sortModel;
+            //List<Instructor> INS = mycontext.Instructors.ToList();
+            //List<Product> INS = await _productRepository.GetProductsAsyncWithSort(sortModel.sortproperty, sortModel.sortOrder);
+            //return View(INS);
+            if (sortExpression!=""&&sortExpression!=null)
+            {
+                 products = await _productRepository.GetProductsAsyncWithSort(sortModel.sortproperty, sortModel.sortOrder);
+            }
+            List<GetProductsOutputModel> result = _mapper.Map<List<GetProductsOutputModel>>(products);
+
 
             // merage 
             // SPager searchpager = new SPager() { Action = "Index", Controller = "Products", SearchText = SearchText };
             // ViewBag.SearchPager = searchpager;
             // TempData.Keep("admin");
             // for Pagination
-             const int pagesize = 4;
+            const int pagesize = 4;
              if (pg < 1) { pg = 1; }
              int recsCount = result.Count();
              //var pager = new Pager(recsCount,pg,pagesize);
@@ -166,8 +185,7 @@
 
             var stocks = await _stockRepository.GetStockAsync();
             var AllstocksResult = _mapper.Map<List<GetStocksOutputModel>>(stocks);
-            ViewBag.AvailableStock = AllstocksResult;
-
+            ViewBag.AvailableStock = AllstocksResult; 
             return View();
         }
         [HttpPost]

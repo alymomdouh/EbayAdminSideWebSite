@@ -9,9 +9,10 @@ namespace EbayView.Views.Shared.Components.SearchBar
     public class SearchBarViewComponent: ViewComponent
     {
         public SearchBarViewComponent() { }
-        public IViewComponentResult Invoke(SPager SearchPager)
+        public IViewComponentResult Invoke(SPager SearchPager,bool SearchNavagtion)
         {
-            return View("Default", SearchPager);
+            if (SearchNavagtion) { return View("SearchPart", SearchPager); }
+            else { return View("PaginationPart", SearchPager); } 
         }
     }
 }

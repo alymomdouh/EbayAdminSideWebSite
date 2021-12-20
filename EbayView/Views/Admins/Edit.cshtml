@@ -49,17 +49,22 @@
                 <span asp-validation-for="Phone" class="text-danger"></span>
             </div>
             <div class="form-group">
-                 <label asp-for="BirthDate" class="control-label"></label>
+                <input type="hidden" asp-for="BirthDate" value="@ViewBag.selectedadmin.BirthDate" />
+
+                @* <label asp-for="BirthDate" class="control-label"></label>
                 <input asp-for="BirthDate" id="BirthDate" class="form-control" asp-format="{0:yyyy-MM-ddTHH:mm}" value ="@ViewBag.selectedadmin.BirthDate"  />
-                <span asp-validation-for="BirthDate" class="text-danger"></span> 
+                <span asp-validation-for="BirthDate" class="text-danger"></span> *@ 
+
                 @*@Html.DisplayFor(Model=>Model.BirthDate,new{@class="control-label"})
                 @Html.EditorFor(Model => Model.BirthDate,"{0:yyyy-MM-ddTHH:mm}",new{@class="form-control",@value="@ViewBag.selectedadmin.BirthDate"})
                 @Html.ValidationMessageFor(Model => Model.BirthDate)*@
             </div>
             <div class="form-group">
-                <label asp-for="HireDate" class="control-label"></label>
+                <input type="hidden" asp-for="HireDate" value="@ViewBag.selectedadmin.HireDate" />
+
+               @* <label asp-for="HireDate" class="control-label"></label>
                 <input asp-for="HireDate" id="HireDate" class="form-control" asp-format="{0:yyyy-MM-ddTHH:mm}" value ="@ViewBag.selectedadmin.HireDate"  />
-                <span asp-validation-for="HireDate" class="text-danger"></span>
+                <span asp-validation-for="HireDate" class="text-danger"></span>*@
             </div>
             <div class="form-group">
                 <label asp-for="Salary" class="control-label"></label>

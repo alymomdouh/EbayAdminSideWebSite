@@ -6,6 +6,7 @@ using System.Threading.Tasks;
 
 namespace Models 
 {
+    public enum SortOrder { Ascending=0,Descending=1}
     public partial class Product
     {
         public int ProductId { get; set; }

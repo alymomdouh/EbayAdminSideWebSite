@@ -66,6 +66,46 @@
         {
             return await _context.Products.Where(c => c.Name.Contains(SearchText)).ToListAsync();
         }
+        public async Task<List<Product>> GetProductsAsyncWithSort(string SortProperty, SortOrder sortOrder)
+        {
+            List < Product > products= await _context.Products.ToListAsync();
+           // if (SortProperty.ToLower()== "Name")
+            if (SortProperty== "Name")
+                {
+                if (sortOrder==SortOrder.Ascending)
+                {
+                    products = products.OrderBy(n=>n.Name).ToList();
+                }
+                else
+                {
+                    products = products.OrderByDescending(n => n.Name).ToList();
+                }
+            }
+            //else if (SortProperty.ToLower() == "Price")
+            else if (SortProperty == "Price")
+                    {
+                if (sortOrder == SortOrder.Ascending)
+                {
+                    products = products.OrderBy(n => n.Price).ToList();
+                }
+                else
+                {
+                    products = products.OrderByDescending(n => n.Price).ToList();
+                }
+            }
+            else
+            {
+                if (sortOrder == SortOrder.Ascending)
+                {
+                    products = products.OrderBy(n => n.Quantity).ToList();
+                }
+                else
+                {
+                    products = products.OrderByDescending(n => n.Quantity).ToList();
+                }
+            }
+            return products;
+        }
         public async Task<int> UpdateProductAsync(Product product)
         {
             _context.Update(product);
